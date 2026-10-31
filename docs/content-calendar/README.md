@@ -148,21 +148,26 @@ Extra todo fields (Oct 23):
 
 ### Starting a devotional (from Oct 31)
 
-The calendar is the source of truth for which story comes next. The scheduled task
-`devotional-kickoff-2` runs hourly on weekdays, 08:00 to 18:00, and each run becomes ONE story's
-own session:
+Every devotional runs in its own session NESTED under the Calendar session (Lyuba, Oct 31). Only
+the Calendar session starts them, with `start_session` and the brief in
+`docs/content-calendar/story-session-brief.md` plus the story's calendar slots.
 
-1. a page request first: Lyuba opens a planned long-form tile and presses "Start this
-   devotional", which adds `requests` doc `{kind: "start", story, date, at, status: "new"}`
-   (owner only);
-2. otherwise the earliest planned long form dated within the next 3 working days whose story
-   has no session yet (no `session` on its `stories` doc and no folder in Social Media).
-   The run claims the story first (`stories/<slug>.session`, request `status: "done"`), names itself
-   "✍️ <Story>", messages the Calendar session, drafts the scripts, and after Lyuba's approval runs
-   the rest on its own (video, covers, captions, READY TO PUBLISH, Shorts). A run with nothing to do
-   archives itself. Scheduled runs and turns started by other sessions cannot call `start_session`,
-   which is why the run becomes the story session itself instead of nesting under Calendar. When
-   Lyuba asks the Calendar session directly, Calendar starts the session itself (then it nests).
+- Scheduled: `devotional-kickoff-2` runs hourly on weekdays 08:00-18:00 as a dispatcher. It finds
+  page requests (`requests` `{kind: "start", status: "new"}`) and planned long forms within the
+  next 3 working days that have no session, marks them (`stories/<slug>.proposedAt`, request
+  `status: "delivered"`), messages Calendar "START: ...", and archives itself.
+- A turn started by a message or a schedule cannot start a session, only propose one, so Calendar
+  answers a START message with a start card; Lyuba clicks it (or writes "запусти") and the nested
+  session starts. When Lyuba asks Calendar directly, Calendar starts it at once.
+- Page button: Lyuba opens a planned long-form tile and presses "Start this devotional" (owner
+  only); the dispatcher picks it up within the hour.
+  After her script approval the story session runs the rest on its own: video, covers, captions,
+  READY TO PUBLISH, then the Shorts she approved.
+
+November 2026 slot pattern (Mon/Wed/Fri long forms; RU long 08:00 + intro 08:30, EN long 13:00 +
+intro 21:00 with FB): Mon story clip Tue RU 13:00 / EN 17:00 (YT+IG), rotation Short Sat
+RU 13:00 / EN 17:00 (YT+FB+IG); Wed story clip Thu RU 13:00 / EN 17:00, rotation Sun same times;
+Fri story clip Sat RU 17:00 / EN 21:00, rotation the next Tue RU 17:00 / EN 21:00 with FB.
 
 ### Lyuba's answers (`requests`)
 
@@ -203,18 +208,28 @@ Shorts always go to Instagram as well.
 From 2026-10-22 a story gets either a reflection Short or a verse Short, not both,
 alternating (see the shorts playbook, section 0). The calendar plans only that one row.
 
-| Story              | Gets                                     |
-| ------------------ | ---------------------------------------- |
-| Great Catch        | reflection (decided before the rotation) |
-| Rich Fool          | reflection (decided before the rotation) |
-| Bleeding Woman     | verse                                    |
-| Jairus's Daughter  | reflection                               |
-| Peter's Denial     | verse                                    |
-| Peter's Confession | reflection                               |
-| Transfiguration    | verse                                    |
-| Boy with a Spirit  | reflection                               |
-| Follow Me          | verse                                    |
-| Teach Us to Pray   | reflection                               |
+| Story                  | Gets                                     |
+| ---------------------- | ---------------------------------------- |
+| Great Catch            | reflection (decided before the rotation) |
+| Rich Fool              | reflection (decided before the rotation) |
+| Bleeding Woman         | verse                                    |
+| Jairus's Daughter      | reflection                               |
+| Peter's Denial         | verse                                    |
+| Peter's Confession     | reflection                               |
+| Transfiguration        | verse                                    |
+| Boy with a Spirit      | reflection                               |
+| Follow Me              | verse                                    |
+| Teach Us to Pray       | reflection                               |
+| Friend at Midnight     | reflection                               |
+| Not One Sparrow        | verse                                    |
+| Do Not Worry           | reflection                               |
+| Ready and Waiting      | verse                                    |
+| The Fig Tree           | reflection                               |
+| The Bent Woman         | verse                                    |
+| Mustard Seed and Yeast | reflection                               |
+| The Narrow Door        | verse                                    |
+| The Great Banquet      | reflection                               |
+| Lost Sheep             | verse                                    |
 
 Add the next stories here when they are planned, continuing the alternation. From Oct 27 the stories follow Luke in order (Centurion dropped, Lost Sheep later).
 

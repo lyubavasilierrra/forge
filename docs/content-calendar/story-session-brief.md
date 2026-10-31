@@ -6,8 +6,9 @@ chapter, the long-form date and the Shorts slots; this file is the rest of the b
 
 Talk to Lyuba in Russian, plainly, without jargon. Files, commits and docs stay in English.
 
-1. Name this session "✍️ <Story>" with mcp**ccd_session_mgmt**set_session_title on "self";
-   the stage emoji then moves ✍️ → 🎬 → 📱 → ✅. Write `session: <this session's id>` into the
+1. Name this session "✍️ <Story> <d/m>" with `mcp__ccd_session_mgmt__set_session_title` on
+   "self", where <d/m> is the long-form date without the year, e.g. "✍️ Boy with a Spirit 4/11"
+   (Lyuba, Oct 31). The stage emoji then moves ✍️ → 🎬 → 📱 → ✅; keep the date when you rename. Write `session: <this session's id>` into the
    story's doc in the calendar's `stories` collection (id = slug of the story).
 2. A JESUS-film (1979) story is built the way the JESUS version of Bartimaeus was built (folder
    ~/Desktop/Social Media/Bartimaeus, README line 1: JESUS film ch. 32): the LUMO steps (segment,

@@ -146,6 +146,18 @@ Extra todo fields (Oct 23):
   so the store stays small.
 - `"approve": true`: an approval question without a video (placeholder "Approve, or what to change").
 
+### Starting a devotional from the calendar (from Oct 31)
+
+The Calendar session is the main session; every devotional runs in its own session started
+from it (`start_session`, so it nests under Calendar and reports back here). Lyuba opens a
+planned long-form tile and presses "Start this devotional"; the page adds a `requests` doc
+`{kind: "start", story, date, at, status: "new"}` (owner only). On Lyuba's next message the
+Calendar session reads new start requests, starts the story's session with a full brief
+(story, passage, film and chapter, dates and Shorts slots from the calendar, rotation turn,
+the script-doc and review rules), and sets the request `status: "done"`, `session: <id>`.
+A turn started by another session or a schedule cannot start sessions, only propose them,
+so a start always rides on Lyuba's own message. The kickoff task no longer opens sessions.
+
 ### Lyuba's answers (`requests`)
 
 Every pick, note, Approve or Needs changes on the page becomes a doc in `requests`:

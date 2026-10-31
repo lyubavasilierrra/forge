@@ -490,6 +490,23 @@
     background: #33261f;
     border-color: var(--muted);
   }
+  /* Start a devotional's own Claude session from its planned long-form tile (owner only). */
+  button.pbtn.start {
+    width: 100%;
+    cursor: pointer;
+    background: var(--flame);
+    border-color: var(--flame);
+    color: #fff;
+  }
+  button.pbtn.start small {
+    color: rgba(255, 255, 255, 0.8);
+  }
+  button.pbtn.start:disabled {
+    background: #261d19;
+    border-color: var(--line);
+    color: var(--ink);
+    cursor: default;
+  }
   .pbtn.off {
     opacity: 0.45;
     cursor: default;
@@ -1491,6 +1508,7 @@
         long: t.long,
         tall: !t.long,
         kind: lead.kind,
+        story: lead.story || "",
         time: times[0] || "",
         title: lead.title || "",
         label: t.long ? workName(lead) : cutLabel(lead),
@@ -1779,6 +1797,7 @@
       esc(when + (it.note ? " · " + it.note : "")) +
       "</div>" +
       btns +
+      startBtn(it) +
       "</div>" +
       '<div class="ov-thumb ' +
       (it.tall ? "tall" : "wide") +
@@ -1789,6 +1808,49 @@
     hideTip()
     document.getElementById("ovx").focus()
   }
+  // A planned devotional (long form, not yet made) can be started from here: the click files a
+  // `requests` doc {kind: "start"}; the Calendar session opens the story's own session from it.
+  function startBtn(it) {
+    if (!it.long || !it.planned || !it.story) return ""
+    if (!document.body.classList.contains("owner")) return ""
+    const r = requests.find((q) => q.kind === "start" && q.story === it.story)
+    const note = !r
+      ? "script, then video"
+      : r.status === "done"
+        ? "session started"
+        : "waiting for Claude"
+    return (
+      '<button type="button" class="pbtn start" id="startStory"' +
+      (r ? " disabled" : "") +
+      ' data-story="' +
+      esc(it.story) +
+      '" data-date="' +
+      esc(it.date) +
+      '"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 5.5v13l10-6.5z"/></svg>' +
+      (r ? "Requested" : "Start this devotional") +
+      "<small>" +
+      note +
+      "</small></button>"
+    )
+  }
+  async function requestStart(btn) {
+    if (!dbRef) return
+    btn.disabled = true
+    try {
+      await dbRef.collection("requests").add({
+        kind: "start",
+        story: btn.dataset.story,
+        date: btn.dataset.date,
+        at: new Date().toISOString(),
+        status: "new",
+      })
+      btn.lastChild.textContent = "waiting for Claude"
+      btn.childNodes[1].textContent = "Requested"
+    } catch (e) {
+      btn.disabled = false
+      btn.lastChild.textContent = "could not send, try again"
+    }
+  }
   function closeOverlay() {
     ov.hidden = true
     ov.innerHTML = ""
@@ -1796,6 +1858,8 @@
   }
   ov.addEventListener("click", (e) => {
     if (e.target === ov || e.target.closest("#ovx")) closeOverlay()
+    const sb = e.target.closest("#startStory")
+    if (sb && !sb.disabled) requestStart(sb)
   })
   addEventListener("keydown", (e) => {
     if (e.key === "Escape" && !ov.hidden) closeOverlay()

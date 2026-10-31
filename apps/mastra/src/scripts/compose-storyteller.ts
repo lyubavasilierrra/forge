@@ -311,6 +311,25 @@ const STORIES: Record<
     ],
     out: "Boy with a Spirit",
   },
+  "lumo-luke-9-follow": {
+    // No setting: the card opens on "as they were walking along the road";
+    // the Samaritan village before it (9:51-56) is not shown.
+    terms: [
+      "Fox",
+      "Plough",
+      "Agriculture",
+      // 9:61-62 echoes Elijah calling Elisha from the plough (1 Kings 19:19-21).
+      "Elisha",
+      "Burial",
+      "Funeral",
+      "Mourning",
+      "Disciple",
+      "Son of man",
+      "Kingdom of God",
+      "THE JOURNEY TO JERUSALEM - CHRONOLOGICAL ARRANGEMENT OF THE LAST PART OF THE GOSPEL-NARRATIVES - FIRST INCIDENTS BY THE WAY.",
+    ],
+    out: "Follow Me",
+  },
   "jesus-32": {
     // Luke puts the blind man straight after the Twelve fail to understand
     // the third passion prediction ("the meaning was hidden from them"): the

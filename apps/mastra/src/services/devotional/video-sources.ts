@@ -458,6 +458,32 @@ const SOURCES: VideoSource[] = [
       byLang: { ru: "video-sources/lumo-luke-9-boy.ru.vtt" },
     },
   },
+  {
+    // The cost of following closes segment 2610. EN «As they were walking»
+    // starts at 458.55 (9:56 «another village» ends near 454, music between);
+    // «kingdom of God» (9:62) ends at 519.35 and the segment ends at 522.3, so
+    // the window ends inside the file and needs no endPadSec.
+    key: "lumo-luke-9-follow",
+    index: 1015,
+    mediaComponentId: "6_GOLuke2610",
+    title: "Follow Me",
+    film: "lumo",
+    passage: { reference: "Luke 9:57-62", osisRef: "Luke.9.57-Luke.9.62" },
+    window: { startSec: 458.3, lengthSec: 62.4 },
+    // RU «Когда они шли» starts at 458.5; «Божьего Царства» ends at 520.35.
+    windowByLang: { ru: { startSec: 457.8, lengthSec: 63.5 } },
+    // ~63s ×1.05 → ~60s on screen, plus a breath.
+    maxVideoCardSec: 62,
+    videoSpeed: 1.05,
+    filmCaptionStyle: "scroll",
+    filmMark: "lumo",
+    style: "clean",
+    captions: {
+      kind: "file",
+      path: "video-sources/lumo-luke-9-follow.en.vtt",
+      byLang: { ru: "video-sources/lumo-luke-9-follow.ru.vtt" },
+    },
+  },
 ]
 
 const BY_KEY = new Map(SOURCES.map((s) => [s.key, s]))

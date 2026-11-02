@@ -278,6 +278,28 @@ export const JESUS_FILM_PASSAGES: ChapterPassage[] = [
     maxVideoCardSec: 62,
   }, // Peter Declares Jesus to be the Christ. Jesus prays alone → "Who do the crowds say I am?" → "Who do you say I am?" → the pause → "You are God's Messiah" → "tell no one" → suffer, be killed, raised on the third day → they walk on (~71s). (subtitle-verified)
   {
+    index: 23,
+    // The chapter ends on the voice ("Listen to Him", ~96s) with Jesus and
+    // the three still in the cloud, so the passage stops at 9:35: 9:36 ("Jesus
+    // was found alone", the silence afterwards) is not on screen. Moses and
+    // Elijah fade away before Peter speaks.
+    osisRef: "Luke.9.28-Luke.9.35",
+    reference: "Luke 9:28-35",
+    mood: "awe",
+    themes: ["glory", "listen", "voice", "presence", "son"],
+    // Subtitle- and frame-verified (Arclight EN + RU tracks, 2026-11-02).
+    // Picture fades in on the hillside by 3s; first line 4.6s. The two long
+    // wordless stretches are the scene, not dead air: Jesus walks apart and
+    // covers his head (15-26.8s) and the disciples sleep, wake and see the
+    // glory (49.4-68.9s, Luke 9:32), so minGapSec keeps both. The voice ends
+    // ~96.3s; the picture holds in the cloud to ~97.7s, then black and the
+    // credits. The RU dub keeps the same clock.
+    clipStartSec: 3,
+    clipLengthSec: 94.5,
+    minGapSec: 25,
+    maxVideoCardSec: 96,
+  }, // The Transfiguration. Up the hill → Jesus prays, his face and clothes change → Moses and Elijah: "You will fulfill God's purpose. You will die in Jerusalem." → the disciples wake → "Master, how good it is that we are here. We will make three tents" → the cloud → "This is My Son, the Chosen One. Listen to Him" (~97s). (subtitle- and frame-verified)
+  {
     index: 25,
     // The chapter is Luke 11:1-4 only. The friend at midnight (11:5-8) is not
     // in the film, and "Ask, seek, knock" (11:9-13) opens chapter 26, so the

@@ -373,6 +373,26 @@ const STORIES: Record<
     ],
     out: "Peter's Confession",
   },
+  "jesus-23": {
+    // No setting: the card opens on the walk up the hill, which is 9:28
+    // itself; Peter's confession before it is a different chapter.
+    terms: [
+      "Transfiguration",
+      "Moses",
+      "Elijah",
+      "Elias",
+      "Cloud",
+      "Pillar of cloud",
+      "Shechinah",
+      "Tabernacle",
+      "Booth",
+      "Mount",
+      "Hermon",
+      "Tabor",
+      "Glory",
+    ],
+    out: "Transfiguration",
+  },
   "jesus-25": {
     // No setting: the card opens on Jesus praying apart with the disciples
     // by the stream, which is 11:1 itself; Martha and Mary before it are a

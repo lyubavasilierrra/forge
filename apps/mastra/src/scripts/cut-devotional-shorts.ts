@@ -938,6 +938,9 @@ async function main() {
           await symlink(path.resolve(from, f), dest)
         }
       }
+      // `--text-pool=0.45`: a lighter dark pool behind the text, for a light
+      // backdrop (owner, Transfiguration 2026-11-03: too heavy over cloud).
+      if (arg("text-pool")) m.textPoolAlpha = Number(arg("text-pool"))
       // `--voice-speed=1.25`: the narration played faster, pitch kept
       // (owner, Paralytic 2026-10-20: the investigation wants pace). Each
       // card's take is re-encoded with atempo and every time on it scaled,

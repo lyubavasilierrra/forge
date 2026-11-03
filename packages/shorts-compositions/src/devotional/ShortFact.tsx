@@ -334,7 +334,7 @@ export function DevotionalShortFact(props: DevotionalInputProps) {
           height: f(fact?.layout === "history" ? 951 : 759),
           borderRadius: f(100),
           filter: `blur(${f(36.65)}px)`,
-          background: `radial-gradient(${f(490.7)}px ${f(413.8)}px at 50% 50%, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0) 100%)`,
+          background: `radial-gradient(${f(490.7)}px ${f(413.8)}px at 50% 50%, rgba(0,0,0,${props.textPoolAlpha ?? 0.75}) 0%, rgba(0,0,0,0) 100%)`,
         }}
       />
       {language || voxHistory ? (

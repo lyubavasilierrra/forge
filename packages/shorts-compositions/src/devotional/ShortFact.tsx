@@ -1333,6 +1333,11 @@ function isRussian(words: ReadonlyArray<{ word: string }>): boolean {
   return words.some((w) => /\p{Script=Cyrillic}/u.test(w.word))
 }
 
+/** Fine still grain for the label tab: SVG turbulence as a tiled image. */
+const LABEL_GRAIN = `url("data:image/svg+xml;utf8,${encodeURIComponent(
+  '<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120"><filter id="g"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 0.16 0 0 0 0 0.11 0 0 0 0 0.05 0 0 0 0.22 0"/></filter><rect width="120" height="120" filter="url(#g)"/></svg>',
+)}")`
+
 /** "From the Full Devotional:" over a short (Figma 415-2610, 425-2722):
  *  PT Serif italic 36 at 85%, centred at the top of the safe area, so the
  *  viewer knows this is one piece of a longer video. */
@@ -1349,9 +1354,10 @@ function FullDevotionalLabel({
   // The solid gold tab read as hard against the soft film (owner, Jairus
   // 2026-10-29): dark text on a see-through orange tab that blurs the film
   // behind it, a thin gold-orange outline, a glow that breathes about once
-  // every seven seconds and a slow, soft band of light every ten.
+  // every seven seconds. The band of light read as metal and went, the tab
+  // more see-through with a touch of grain instead (owner, Transfiguration
+  // 2026-11-03).
   const breath = 0.5 + 0.5 * Math.sin(t * 0.9)
-  const sweep = ((t - 0.6) % 10) / 4.5 // 0..1 while the light crosses, then rests
   return (
     <div
       style={{
@@ -1371,7 +1377,7 @@ function FullDevotionalLabel({
         whiteSpace: "nowrap",
         padding: `${f(3)}px ${f(21)}px ${f(5)}px`,
         borderRadius: f(14),
-        background: "rgba(242,168,82,0.45)",
+        background: `${LABEL_GRAIN}, rgba(242,168,82,0.3)`,
         backdropFilter: `blur(${f(10)}px)`,
         WebkitBackdropFilter: `blur(${f(10)}px)`,
         border: `${f(1.4)}px solid rgba(250,190,105,0.95)`,
@@ -1379,20 +1385,6 @@ function FullDevotionalLabel({
         overflow: "hidden",
       }}
     >
-      {sweep >= 0 && sweep <= 1 ? (
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            bottom: 0,
-            left: `${(-60 + 170 * sweep).toFixed(2)}%`,
-            width: "50%",
-            background:
-              "linear-gradient(100deg, rgba(255,226,170,0) 0%, rgba(255,238,200,0.38) 50%, rgba(255,226,170,0) 100%)",
-            pointerEvents: "none",
-          }}
-        />
-      ) : null}
       <span style={{ position: "relative" }}>{text}</span>
     </div>
   )

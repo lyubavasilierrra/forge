@@ -374,6 +374,10 @@ export const devotionalInputPropsSchema = z.object({
    *  0.75). A light backdrop wants less (owner, Transfiguration 2026-11-03:
    *  over cloud it read as too heavy). */
   textPoolAlpha: z.number().min(0).max(1).optional(),
+  /** Reflection short only: how far each sentence sits below the usual top,
+   *  Figma units, never past the bottom safe line (owner, Transfiguration
+   *  2026-11-03: short lines mid-screen hid the picture). */
+  textDrop: z.number().nonnegative().optional(),
   /** Soft instrumental bed under the whole devotional (loops, fades in/out). */
   musicFile: z.string().optional(),
   /** Music bed level (0–1), low so narration stays on top. */

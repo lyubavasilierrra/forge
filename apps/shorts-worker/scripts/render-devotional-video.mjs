@@ -578,6 +578,10 @@ async function main() {
       ...(manifest.bgPlaybackRate
         ? { bgPlaybackRate: manifest.bgPlaybackRate }
         : {}),
+      ...(manifest.textPoolAlpha != null
+        ? { textPoolAlpha: manifest.textPoolAlpha }
+        : {}),
+      ...(manifest.textDrop ? { textDrop: manifest.textDrop } : {}),
       // Only name the bed if it was actually staged: `staticFile` on a file
       // that is not there fails the render, which would undo the degrade above.
       ...(manifest.musicFile && musicStaged

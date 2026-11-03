@@ -1,4 +1,10 @@
-import { useLayoutEffect, useRef, useState } from "react"
+import {
+  createContext,
+  useContext,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react"
 import {
   AbsoluteFill,
   Audio,
@@ -329,7 +335,8 @@ export function DevotionalShortFact(props: DevotionalInputProps) {
               ? height / 2 - f(156.5) - f(475.5)
               : height / 2 +
                 f(language || reflection ? -92.5 : 19.5) -
-                f(379.5),
+                f(379.5) +
+                (reflection ? f(props.textDrop ?? 0) : 0),
           width: f(900),
           height: f(fact?.layout === "history" ? 951 : 759),
           borderRadius: f(100),
@@ -396,21 +403,23 @@ export function DevotionalShortFact(props: DevotionalInputProps) {
         ) : null,
       )}
       {reflection ? (
-        <ReflectionLayout
-          f={f}
-          t={t}
-          total={total}
-          words={words}
-          credit={
-            fact?.source
-              ? {
-                  label: fact.label,
-                  source: fact.source,
-                  portrait: fact.portrait,
-                }
-              : undefined
-          }
-        />
+        <TextDrop.Provider value={props.textDrop ?? 0}>
+          <ReflectionLayout
+            f={f}
+            t={t}
+            total={total}
+            words={words}
+            credit={
+              fact?.source
+                ? {
+                    label: fact.label,
+                    source: fact.source,
+                    portrait: fact.portrait,
+                  }
+                : undefined
+            }
+          />
+        </TextDrop.Provider>
       ) : voxHistory ? (
         <>
           <div
@@ -974,6 +983,19 @@ const REFLECTION_BOTTOM = 1200
 /** A lifted sentence never rises above this (just under the label). */
 const REFLECTION_LIFT_MIN_TOP = 330
 
+/** How far each reflection sentence sits below REFLECTION_TOP, as far as
+ *  it can without passing REFLECTION_BOTTOM (Figma units; `textDrop`). */
+const TextDrop = createContext(0)
+function sentenceDrop(drop: number, sentence: ReadonlyArray<TimedWord>) {
+  return Math.max(
+    0,
+    Math.min(
+      drop,
+      REFLECTION_BOTTOM - REFLECTION_TOP - sentenceHeight(sentence),
+    ),
+  )
+}
+
 /** Lines a run of words takes when wrapped greedily at `cap` characters. */
 function wrappedLines(words: ReadonlyArray<string>, cap: number): number {
   let lines = 0
@@ -1028,6 +1050,7 @@ function RevealText({
   minLines: number
 }) {
   // One sentence (card) at a time, as the long form shows it.
+  const drop = useContext(TextDrop)
   const cards = [...new Set(words.map((w) => w.card))]
   const starts = cards.map((c) => words.find((w) => w.card === c)!.startSec)
   const idx = starts.findIndex(
@@ -1073,7 +1096,11 @@ function RevealText({
       style={{
         ...box,
         opacity: out,
-        ...(lift > 0 ? { transform: `translateY(${-f(lift)}px)` } : {}),
+        ...(lift > 0 || drop > 0
+          ? {
+              transform: `translateY(${f(sentenceDrop(drop, sentence) - lift)}px)`,
+            }
+          : {}),
       }}
     >
       <p

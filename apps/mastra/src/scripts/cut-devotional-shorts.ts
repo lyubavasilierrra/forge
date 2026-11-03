@@ -941,6 +941,9 @@ async function main() {
       // `--text-pool=0.45`: a lighter dark pool behind the text, for a light
       // backdrop (owner, Transfiguration 2026-11-03: too heavy over cloud).
       if (arg("text-pool")) m.textPoolAlpha = Number(arg("text-pool"))
+      // `--text-drop=220`: the reflection's sentences sit lower, short lines
+      // off the middle of the picture (owner, Transfiguration 2026-11-03).
+      if (arg("text-drop")) m.textDrop = Number(arg("text-drop"))
       // `--voice-speed=1.25`: the narration played faster, pitch kept
       // (owner, Paralytic 2026-10-20: the investigation wants pace). Each
       // card's take is re-encoded with atempo and every time on it scaled,

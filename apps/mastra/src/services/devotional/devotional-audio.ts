@@ -20,6 +20,7 @@ import {
   planRuns,
   runTake,
   sliceRun,
+  type AudioEnvelope,
   type VoiceRun,
 } from "./continuous-voice"
 import type {
@@ -835,6 +836,8 @@ export type ProduceDevotionalAudioDeps = {
     fromSec: number,
     toSec: number,
   ) => Promise<Uint8Array>
+  /** The run's level, so cuts land in its real pauses (`sliceRun`). */
+  envelope?: (bytes: Uint8Array) => Promise<AudioEnvelope>
 }
 
 /**
@@ -1059,7 +1062,13 @@ export async function produceDevotionalAudio(
       // A failed or misaligned run falls back to the per-segment path below,
       // which records any failure the usual way.
       if (!r.ok) continue
-      const cuts = r.audio.words ? sliceRun(run, r.audio.words) : undefined
+      const cuts = r.audio.words
+        ? sliceRun(
+            run,
+            r.audio.words,
+            deps.envelope ? await deps.envelope(r.audio.bytes) : undefined,
+          )
+        : undefined
       if (!cuts) continue
       for (const [k, rs] of run.segments.entries()) {
         const c = cuts[k]!

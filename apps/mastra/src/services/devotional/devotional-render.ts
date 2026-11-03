@@ -35,6 +35,7 @@ import {
 } from "./devotional-audio"
 import {
   audioDurationSec,
+  audioEnvelope,
   joinAudioVarGaps,
   normalizeLoudness,
   sliceAudio,
@@ -4171,6 +4172,7 @@ export async function produceNarration(
         ? {
             continuous: true,
             slice: sliceAudio,
+            envelope: (b: Uint8Array) => audioEnvelope(b),
             prepareSync: (t: string) =>
               applyStressOverrides(t, locale.stressOverrides ?? []),
             ...(opts.hookVoices?.length

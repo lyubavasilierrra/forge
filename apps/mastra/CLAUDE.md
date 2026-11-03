@@ -577,6 +577,16 @@ whole-bundle staleness check compares the same field. See
 silence and reported success). And a "everything is cached" shortcut must
 compare text, not merely check that segments exist.
 
+**Continuous v4 reads are cut in their real pauses.** `sliceRun` splits one
+read into cards by the word times, but the alignment pads word ends, so the
+midpoint between two words could fall after the next word's real onset: that
+onset then played alone at the end of the earlier card, before the render's
+pause (Transfiguration EN, 2026-11-03, 13 of 28 cards). The render passes the
+run's level (`audioEnvelope`), and each cut moves into the longest silence
+between the last word's start and the next word's start (`quietestCut`); the
+aligned midpoint is only the fallback. Takes cached before this fix keep
+their old cuts; a stray fragment there is trimmed in the cache file.
+
 **The opening sequence — cover, stepper, scripture — is a settled contract, not
 a per-video decision.** The four stages (READ / WATCH / REFLECT / PRAY), what
 the cover shows and when, and how on-screen text is aligned to ElevenLabs word

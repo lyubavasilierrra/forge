@@ -299,6 +299,49 @@ export async function sliceAudio(
 }
 
 /**
+ * The level of an MP3 in `stepSec` steps (RMS, dBFS; silence reads -99), so a
+ * continuous read can be cut in its real pauses (`quietestCut`).
+ */
+export async function audioEnvelope(
+  bytes: Uint8Array,
+  stepSec = 0.01,
+): Promise<{ stepSec: number; db: number[] }> {
+  const tmp = await mkdtemp(path.join(tmpdir(), "devo-env-"))
+  try {
+    const inp = path.join(tmp, "in.mp3")
+    const out = path.join(tmp, "env.txt")
+    await writeFile(inp, bytes)
+    const rate = 44100
+    await run("ffmpeg", [
+      "-v",
+      "error",
+      "-y",
+      "-i",
+      inp,
+      "-ac",
+      "1",
+      "-ar",
+      String(rate),
+      "-af",
+      `asetnsamples=${Math.round(rate * stepSec)}:p=0,astats=metadata=1:reset=1,ametadata=print:key=lavfi.astats.Overall.RMS_level:file=${out}`,
+      "-f",
+      "null",
+      "-",
+    ])
+    const db = (await readFile(out, "utf8"))
+      .split("\n")
+      .filter((l) => l.startsWith("lavfi.astats.Overall.RMS_level="))
+      .map((l) => {
+        const v = Number(l.split("=")[1])
+        return Number.isFinite(v) ? v : -99
+      })
+    return { stepSec, db }
+  } finally {
+    await rm(tmp, { recursive: true, force: true })
+  }
+}
+
+/**
  * Bring one take to a fixed loudness (EBU R128, single pass). Used to join
  * lines read by two different voices into one segment: the Russian female
  * voice comes out ~12 dB under the male one, and the render's per-voice

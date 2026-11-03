@@ -1,6 +1,12 @@
 import { describe, expect, it } from "vitest"
 
-import { planRuns, runTake, runText, sliceRun } from "./continuous-voice"
+import {
+  planRuns,
+  quietestCut,
+  runTake,
+  runText,
+  sliceRun,
+} from "./continuous-voice"
 import { wordsFromAlignment } from "./elevenlabs-voiceover"
 
 const seg = (id: string, voice: string, text: string, direction?: string) => ({
@@ -88,6 +94,43 @@ describe("sliceRun", () => {
 
   it("refuses to cut by guesswork when the alignment's words do not match", () => {
     expect(sliceRun(run, words.slice(1))).toBeUndefined()
+  })
+
+  // Transfiguration EN (2026-11-03): "stopped." is aligned to end at 1.0 but
+  // the voice goes quiet at 0.7, and "Then" really starts at 1.25, before its
+  // aligned 1.6. The midpoint (1.3) put the onset of "Then" at the end of
+  // the first card, heard alone before the pause.
+  const envelope = {
+    stepSec: 0.05,
+    // Steps of 0.05 s: speech 0.2-0.7 s (steps 4-13) and from 1.25 s (25).
+    db: Array.from({ length: 60 }, (_, i) =>
+      (i >= 4 && i < 14) || i >= 25 ? -20 : -80,
+    ),
+  }
+
+  it("moves a cut into the real silence when the midpoint is inside the next word", () => {
+    const cuts = sliceRun(run, words, envelope)!
+    expect(cuts[0]!.toSec).toBeCloseTo(0.975)
+    expect(cuts[0]!.toSec).toBeLessThan(1.25)
+    expect(cuts[1]!.fromSec).toBe(cuts[0]!.toSec)
+    expect(cuts[1]!.words[0]!.startSec).toBeCloseTo(1.6 - 0.975)
+    // The padded end of "stopped." no longer runs past its card.
+    expect(cuts[0]!.words[1]!.endSec).toBeLessThanOrEqual(
+      cuts[0]!.toSec - cuts[0]!.fromSec,
+    )
+  })
+
+  it("keeps the midpoint when the stretch has no silence", () => {
+    const loud = { stepSec: 0.05, db: Array.from({ length: 60 }, () => -20) }
+    expect(sliceRun(run, words, loud)![0]!.toSec).toBeCloseTo(1.3)
+  })
+})
+
+describe("quietestCut", () => {
+  it("returns the middle of the longest quiet run in the window", () => {
+    const env = { stepSec: 0.1, db: [-20, -80, -20, -80, -80, -80, -20] }
+    expect(quietestCut(env, 0, 0.7)).toBeCloseTo(0.45)
+    expect(quietestCut(env, 0, 0.1)).toBeUndefined()
   })
 })
 

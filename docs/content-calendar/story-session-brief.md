@@ -42,3 +42,8 @@ Talk to Lyuba in Russian, plainly, without jargon. Files, commits and docs stay 
 9. Reflection OR verse Short, never both (Lyuba, 2026-10-22): they alternate story to story. Look up this story's turn in docs/content-calendar/README.md, "Reflection / verse rotation", and offer only that one in the Shorts table.
 
 10. Previews on the calendar page (Lyuba, 2026-10-23): whenever you send Lyuba a video to approve, also upload it to the calendar artifact and put it in your stories todo item as "video": "/\_blob/<id>" so she can watch and press Approve / Needs changes there. Shorts as they are; long forms as a light 480p preview under 20 MB made in your scratchpad (no copies on the Desktop). Her answers reach you via the Calendar session. Recipe: docs/content-calendar/README.md, "Content view and open decisions".
+
+11. Shorts from Nov 3, 2026 (supersedes 8 and 9): make BOTH a reflection Short and a film-verse
+    Short; Lyuba watches both and picks. No intro (except on the RU morning-test days Nov 4, 6, 9,
+    11), no word insight, history or verse Shorts. One Short a day per channel; the Calendar session
+    gives the slots.

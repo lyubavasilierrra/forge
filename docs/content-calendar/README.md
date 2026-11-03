@@ -185,6 +185,17 @@ Short cut from the Jan 12 Baptism episode.
 Film-source prep deadlines: JESUS ch. 1 + 2 and LUMO Luke 1:1-56 by Thu Nov 26; LUMO Luke
 1:57-2:40 by Thu Dec 10; everything for January (incl. LUMO Matthew for Jan 7) by Fri Dec 18.
 
+### One Short a day (from Nov 3, 2026; supersedes the slot patterns above)
+
+Analytics found that on RU the first Short of a day got 437-1,300 views and any later ones 6-15
+(12 of 12 days), so Lyuba approved: ONE Short per day per YouTube channel. Formats: reflection and
+film-verse only (no word insight, history, verse-of-the-day; the reflection/verse rotation is
+retired). Every story session makes BOTH a reflection and a film-verse; Lyuba picks one or both, and
+a cut she rejects is not posted (its day stays empty, never doubled). Intros only on the RU
+morning-test long-form days Nov 4, 6, 9, 11 (RU 08:30, EN 21:00, the only Short that day); none
+from Nov 12. Shorts go into a queue, oldest story first, one per day at RU 13:00 / EN 17:00 (EN on
+YT + FB + IG, the day's single FB post), skipping intro days and the RU-only Jan 7 / Jan 19 days.
+
 ### Lyuba's answers (`requests`)
 
 Every pick, note, Approve or Needs changes on the page becomes a doc in `requests`:

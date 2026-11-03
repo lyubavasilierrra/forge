@@ -169,6 +169,22 @@ intro 21:00 with FB): Mon story clip Tue RU 13:00 / EN 17:00 (YT+IG), rotation S
 RU 13:00 / EN 17:00 (YT+FB+IG); Wed story clip Thu RU 13:00 / EN 17:00, rotation Sun same times;
 Fri story clip Sat RU 17:00 / EN 21:00, rotation the next Tue RU 17:00 / EN 21:00 with FB.
 
+### December 2026 and January 2027 (approved Nov 3)
+
+Full plan: https://claude.ai/artifact/2b9cbe8zdKtNXrEysNBTts (from the "New Script" session).
+From Dec 1: two long forms a week, Tue and Fri, RU 08:00 + EN 13:00 Kyiv, same story on both
+channels. Each long form has two Shorts: the film-verse clip the next day and the rotation Short
+(reflection / verse, alternating from The Beginning = reflection) on Thu for a Tuesday story and
+on Mon for a Friday story; RU 13:00, EN 17:00 on YT + FB + IG (one FB post a day). Weekend and
+Monday Shorts are scheduled in advance (no Monday work for Lyuba). Long rows carry `startBy`
+(3 working days before; Dec 22 and Dec 25 start on Dec 14 so Christmas week is finished by Fri
+Dec 18); the kickoff dispatcher uses it. RU-only: Thu Jan 7 Orthodox Christmas long form (the
+Magi, Matthew 2:1-12, LUMO Matthew) + a shepherds Christmas-greeting Short; Tue Jan 19 Theophany
+Short cut from the Jan 12 Baptism episode.
+
+Film-source prep deadlines: JESUS ch. 1 + 2 and LUMO Luke 1:1-56 by Thu Nov 26; LUMO Luke
+1:57-2:40 by Thu Dec 10; everything for January (incl. LUMO Matthew for Jan 7) by Fri Dec 18.
+
 ### Lyuba's answers (`requests`)
 
 Every pick, note, Approve or Needs changes on the page becomes a doc in `requests`:

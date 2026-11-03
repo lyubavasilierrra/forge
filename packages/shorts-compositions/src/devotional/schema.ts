@@ -370,6 +370,10 @@ export const devotionalInputPropsSchema = z.object({
    *  than the background timeline, so the ONE continuous take stretches to cover
    *  every card without running out / freezing. Imperceptible (~3–5%). */
   bgPlaybackRate: z.number().positive().optional(),
+  /** Short only: strength of the dark pool behind the text, 0 to 1 (default
+   *  0.75). A light backdrop wants less (owner, Transfiguration 2026-11-03:
+   *  over cloud it read as too heavy). */
+  textPoolAlpha: z.number().min(0).max(1).optional(),
   /** Soft instrumental bed under the whole devotional (loops, fades in/out). */
   musicFile: z.string().optional(),
   /** Music bed level (0–1), low so narration stays on top. */

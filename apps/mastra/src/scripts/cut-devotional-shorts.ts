@@ -859,6 +859,19 @@ async function main() {
             }
           })
       }
+      // `--no-credit`: no commentary credit on a reflection short whose lines
+      // are not the commentator's (owner, Boy with a Spirit 2026-11-04: the
+      // "only Luke" paragraph showed Ryle's credit over its text).
+      if (
+        short.kind === "reflection" &&
+        process.argv.includes("--no-credit") &&
+        m.shortFact
+      ) {
+        const fact = m.shortFact as Record<string, unknown>
+        delete fact.label
+        delete fact.source
+        delete fact.portrait
+      }
       if (short.kind === "history" && arg("history-sub") && m.shortFact) {
         ;(m.shortFact as { closeSub?: string }).closeSub = arg("history-sub")
       }

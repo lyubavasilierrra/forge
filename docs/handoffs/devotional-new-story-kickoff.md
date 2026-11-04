@@ -166,7 +166,15 @@ Then read it yourself before Lyuba does:
     on screen (owner, 2026-10-16; the overlay must draw it);
   - no soft or quiet direction tag on the first reflection paragraph: it
     opens the reflection and must sound plain and calm, not whispered;
-  - the question is personal and not yes/no.
+  - the question is personal and not yes/no;
+  - (Boy with a Spirit, 2026-11-04) the opening promises the reflection's
+    real turns, with no forced link back to the previous episode and no
+    vague question; Jesus' hard words are explained (who they are for,
+    why), never waved off as "a clue"; the last paragraph ends on a
+    checked detail the passage shows (e.g. what only this Gospel says,
+    checked against the parallels in the BSB corpus), never on an obvious
+    restatement; no idioms that do not translate; the takeaway is one
+    plain sentence (EN and RU).
     The Widow cache (`ch1006-seq0/devo.json`) is the worked example of every
     field.
 

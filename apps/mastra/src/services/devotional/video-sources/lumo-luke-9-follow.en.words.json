@@ -1,7 +1,7 @@
 {
   "note": "Per-cue word start times (s), whisper.cpp small -dtw small per speech burst on the isolated dialogue (dialoguenhance centre channel), first word on the burst start, 2026-10-31, aligned to the cue words with difflib.",
   "cues": [
-    [458.6, 458.64, 458.9, 459.17, 459.65, 459.99, 460.34],
+    [458.6, 458.64, 458.9, 459.17, 459.65, 459.8, 460.05],
     [
       460.7, 460.74, 460.89, 461.18, 461.33, 462.4, 462.44, 462.66, 463.1,
       463.32, 463.91, 464.13

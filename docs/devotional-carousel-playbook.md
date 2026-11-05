@@ -46,6 +46,10 @@ Rules that came out of the review:
 - A language card (a Greek or Hebrew word) sits over a blurred picture with a
   dark wash; the word itself is drawn large in the original script
   (Χριστός, מָשִׁיחַ) with the transliteration small under it.
+- YouTube shows a 1080x1350 Community post as a square on many phones and
+  cuts the bottom. Keep every line of text, the "Swipe" mark included, above
+  y=1050 (the owner noticed it on two posts, Nov 5); lift the photo if the
+  text would then cover a face.
 - Text never covers a face. Put the text block at the bottom with the shade,
   and move the picture so the face sits in the top half.
 

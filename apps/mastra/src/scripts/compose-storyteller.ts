@@ -346,6 +346,29 @@ const STORIES: Record<
     ],
     out: "Sparrow",
   },
+  "lumo-luke-12-worry": {
+    // No setting: the card opens on "Then Jesus said to his disciples"; the
+    // rich fool (12:13-21) just before it is in the segment but outside it.
+    terms: [
+      "Raven",
+      "Lily",
+      "Solomon",
+      "Grass",
+      "Oven",
+      "Spinning",
+      "Cubit",
+      "Purse",
+      "Bag",
+      "Moth",
+      "Kingdom of God",
+      // Edersheim reads 12:22-34 as the moral of the rich fool, told to the
+      // Peraean disciples ("little flock"); his Sermon on the Mount chapter
+      // has the Rabbinic "bread in the basket" saying on anxious care.
+      "TO THE DISCIPLES - TWO EVENTS AND THEIR MORAL.",
+      "THE SERMON ON THE MOUNT - THE KINGDOM OF CHRIST AND RABBINIC TEACHING. [2499]",
+    ],
+    out: "Worry",
+  },
   "jesus-32": {
     // Luke puts the blind man straight after the Twelve fail to understand
     // the third passion prediction ("the meaning was hidden from them"): the

@@ -512,6 +512,35 @@ const SOURCES: VideoSource[] = [
       byLang: { ru: "video-sources/lumo-luke-12-sparrows.ru.vtt" },
     },
   },
+  {
+    // "Do not worry" follows the rich fool in segment 2613 (Luke 12:1-59):
+    // EN "Then Jesus said to his disciples" (12:22) starts at 206.8 after
+    // "not rich toward God" ends at 203.7. "There your heart will be also"
+    // (12:34) ends ~320.0 and 12:35 ("Be dressed ready for service") starts
+    // at 320.5 with no pause, so the window ends in that short dip (whisper
+    // per word + RMS, 2026-11-06). A long passage: ~108 s on screen.
+    key: "lumo-luke-12-worry",
+    index: 1017,
+    mediaComponentId: "6_GOLuke2613",
+    title: "Do Not Worry",
+    film: "lumo",
+    passage: { reference: "Luke 12:22-34", osisRef: "Luke.12.22-Luke.12.34" },
+    window: { startSec: 206.5, lengthSec: 113.8 },
+    // RU «Затем Иисус» starts at 206.4; «там будет и ваше сердце» ends at
+    // 318.4 and «Будьте всегда наготове» starts at 320.4.
+    windowByLang: { ru: { startSec: 206.1, lengthSec: 113.3 } },
+    // ~113.8s ×1.05 → ~108.4s on screen, plus a breath.
+    maxVideoCardSec: 111,
+    videoSpeed: 1.05,
+    filmCaptionStyle: "scroll",
+    filmMark: "lumo",
+    style: "clean",
+    captions: {
+      kind: "file",
+      path: "video-sources/lumo-luke-12-worry.en.vtt",
+      byLang: { ru: "video-sources/lumo-luke-12-worry.ru.vtt" },
+    },
+  },
 ]
 
 const BY_KEY = new Map(SOURCES.map((s) => [s.key, s]))

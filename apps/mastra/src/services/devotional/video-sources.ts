@@ -484,6 +484,34 @@ const SOURCES: VideoSource[] = [
       byLang: { ru: "video-sources/lumo-luke-9-follow.ru.vtt" },
     },
   },
+  {
+    // "Not one sparrow" sits inside segment 2613 (Luke 12:1-59), right after
+    // "proclaimed from the roofs" (12:3). EN "I tell you, my friends" starts
+    // at 36.35; "many sparrows" (12:7) ends at 78.05 and 12:8 ("I tell you,
+    // whoever publicly acknowledges me") starts at 78.7, so the window ends in
+    // that short gap (whisper per speech burst, 2026-11-06).
+    key: "lumo-luke-12-sparrows",
+    index: 1016,
+    mediaComponentId: "6_GOLuke2613",
+    title: "Not One Sparrow",
+    film: "lumo",
+    passage: { reference: "Luke 12:4-7", osisRef: "Luke.12.4-Luke.12.7" },
+    window: { startSec: 35.9, lengthSec: 42.45 },
+    // RU «Я говорю вам» starts at 33.15 («с крыш» ends at 32.6); «множества
+    // воробьёв» ends at 74.5 and «Говорю вам, каждого» starts at 75.35.
+    windowByLang: { ru: { startSec: 32.8, lengthSec: 42.2 } },
+    // ~42.5s ×1.05 → ~40.5s on screen, plus a breath.
+    maxVideoCardSec: 43,
+    videoSpeed: 1.05,
+    filmCaptionStyle: "scroll",
+    filmMark: "lumo",
+    style: "clean",
+    captions: {
+      kind: "file",
+      path: "video-sources/lumo-luke-12-sparrows.en.vtt",
+      byLang: { ru: "video-sources/lumo-luke-12-sparrows.ru.vtt" },
+    },
+  },
 ]
 
 const BY_KEY = new Map(SOURCES.map((s) => [s.key, s]))

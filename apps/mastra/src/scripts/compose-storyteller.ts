@@ -330,6 +330,22 @@ const STORIES: Record<
     ],
     out: "Follow Me",
   },
+  "lumo-luke-12-sparrows": {
+    // No setting: the card opens on "I tell you, my friends"; the warning
+    // about the Pharisees' yeast (12:1-3) is in the segment but outside it.
+    terms: [
+      "Sparrow",
+      "Farthing",
+      "Penny",
+      "Hair",
+      "Hell",
+      "Gehenna",
+      "Providence",
+      "Persecution",
+      "TO THE DISCIPLES - TWO EVENTS AND THEIR MORAL.",
+    ],
+    out: "Sparrow",
+  },
   "jesus-32": {
     // Luke puts the blind man straight after the Twelve fail to understand
     // the third passion prediction ("the meaning was hidden from them"): the
@@ -593,11 +609,16 @@ async function main() {
   const inside = sections.filter((s) => s.from >= v1 && s.to <= v2)
   // Ryle's section can run past the scene (Boy with a Spirit: his 9:37-45
   // also covers 9:43b-45, which the card leaves out); take the section that
-  // starts inside the passage when none fits entirely.
+  // starts inside the passage when none fits entirely. Failing that, take the
+  // one that ends inside it (Not One Sparrow: his 12:1-7 opens on the
+  // Pharisees' yeast, 12:1-3, which the card leaves out).
+  const starting = sections.filter((s) => s.from >= v1 && s.from <= v2)
   const entries = (
     inside.length
       ? inside
-      : sections.filter((s) => s.from >= v1 && s.from <= v2)
+      : starting.length
+        ? starting
+        : sections.filter((s) => s.to >= v1 && s.to <= v2)
   ).map((s) => s.e)
   if (!entries.length)
     throw new Error(`no Ryle section inside ${src.passage.reference}`)

@@ -275,3 +275,20 @@ Backfilled on 2026-10-09 back to the first post (Instagram, 2026-08-20). Known g
 the five Instagram-only posts of Aug 20–27 have no link (Business Suite does not
 show the permalink). Carousels and ad-set rows have no duration. A few thumbnails
 (Storm "fear", Pharisee "Pride", brand ads) are low-res screenshots.
+
+## Blog-matched episodes (from Nov 6, 2026)
+
+The jesusfilm.org blog team embeds our episodes in their posts (live for a year) and shared their
+top-10 posts. Lyuba's call on Nov 6, 2026:
+
+- Nov 20: "Sending of the Seventy-Two" (Luke 10:1-12, LUMO) for `bible-verses-about-missionary-work`.
+  It is out of Luke order on purpose and replaces The Bent Woman.
+- Nov 25: "The Place of Honor" (Luke 14:7-11, LUMO) for `humility-bible-verses`. It replaces The Narrow Door.
+- The Bent Woman (JESUS ch. 30, Luke 13:10-17) and The Narrow Door (Luke 13:22-30) are parked. They
+  go after the January series, not in December.
+- The rest of the top 10 is already covered:
+  - parables, trusting God, God's will, faith, bad-to-good: the November stories;
+  - OT prophecies: The Beginning, Dec 1.
+- Still open: Easter verses (Holy Week, March 2027) and Christian service (Luke 22, spring).
+
+When an episode goes live, the Calendar session tells Lyuba which blog post and section it fits.

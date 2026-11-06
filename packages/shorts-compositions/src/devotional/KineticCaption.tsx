@@ -500,7 +500,8 @@ export function CalmCallToAction({
           textWrap: "balance",
           fontFamily: SERIF,
           fontWeight: 400,
-          fontSize: px(30),
+          // 30 read too large on a phone (owner, 2026-11-05).
+          fontSize: px(25),
           lineHeight: 1.25,
           color: "#f4efe8",
           opacity: p,

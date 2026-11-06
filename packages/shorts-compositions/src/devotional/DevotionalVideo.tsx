@@ -2872,7 +2872,11 @@ function ClipIntro({
                   // Inside the platforms' safe area (owner, 2026-10-05: right
                   // blocks ran under the action rail, x > 940 of 1080): every
                   // block ends by x = 920, a right-hand one anchored there.
-                  maxWidth={frameWidth * (920 / 1080) - px((28 * 390) / 360)}
+                  // And starts at x >= 90 (owner, 2026-11-05: a right-hand
+                  // hero «ПОХОРОНИТЬ» ran to the left edge on the phone), with
+                  // the type a step smaller than the Sept 30 sizes. The caps
+                  // measure runs ~5% narrow, hence the extra 50 px.
+                  maxWidth={frameWidth * ((920 - 140) / 1080)}
                   rightInset={frameWidth * (160 / 1080)}
                   sizes={{ hero: 1.3, accent: 1.4, plain: 1.6 }}
                   // Each word lands orange and cools to white, as in the film

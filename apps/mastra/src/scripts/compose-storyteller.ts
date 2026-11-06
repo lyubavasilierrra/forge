@@ -430,6 +430,29 @@ const STORIES: Record<
     ],
     out: "Teach Us to Pray",
   },
+  "jesus-26": {
+    // No setting: the card opens on Jesus walking with the disciples and
+    // already saying "Ask, and you will receive" (11:9); the friend at
+    // midnight (11:5-8) is told in words, not shown.
+    terms: [
+      "Prayer",
+      "Pray",
+      "Friend",
+      "Midnight",
+      "Bread",
+      "Loaf",
+      "Loaves",
+      "Hospitality",
+      "Door",
+      "Bed",
+      "Importunity",
+      "Scorpion",
+      "Serpent",
+      "Egg",
+      "Holy Spirit",
+    ],
+    out: "Friend at Midnight",
+  },
   "jesus-45": {
     // No setting: the card opens on Peter following Jesus into the courtyard,
     // which is 22:54 itself; the arrest before it is not shown.

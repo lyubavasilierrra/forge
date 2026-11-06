@@ -320,6 +320,29 @@ export const JESUS_FILM_PASSAGES: ChapterPassage[] = [
     maxVideoCardSec: 45,
   }, // The Lord's Prayer. Jesus prays apart by the stream → "Teach us to pray, just as John taught his disciples" → "Our Father in heaven" … "deliver us from evil" → he rejoins them (~48s). (subtitle-verified)
   {
+    index: 26,
+    // The passage is the whole of Ryle's section, Luke 11:5-13 ("Friend at
+    // Midnight", Lyuba's calendar), but the film shows only 11:9-13: the
+    // friend at midnight (11:5-8) is not in it, so the script tells the
+    // parable in words and the card never claims to show it. The chapter
+    // then goes on to "take no thought for your life" (Luke 12:22-31),
+    // which the card leaves out.
+    osisRef: "Luke.11.5-Luke.11.13",
+    reference: "Luke 11:5-13",
+    mood: "hope",
+    themes: ["prayer", "asking", "persistence", "father", "holy spirit"],
+    // Subtitle- and frame-verified (Arclight EN + RU tracks, 2026-11-06).
+    // Jesus walks with the disciples through the woods and across a stream
+    // from 0s, talking as he goes; "Ask, and you will receive" from ~1.1s
+    // (audio). A laugh at ~26.5s (Arclight cue "(laughing)") before "Would
+    // any of you who are fathers"; "to those who ask Him" ends ~49.3s in
+    // both dubs, and "I tell you this" (12:22) starts ~51.0s, so the card
+    // ends at 50.5s. The RU dub keeps the same clock.
+    clipStartSec: 0,
+    clipLengthSec: 50.5,
+    maxVideoCardSec: 51,
+  }, // Ask, Seek, Knock. Walking through the woods and a stream → "Ask, and you will receive; seek … knock" → "a snake when he asks for a fish, a scorpion when he asks for an egg" → "How much more will the Heavenly Father give the Holy Spirit to those who ask Him" (~50s). (subtitle- and frame-verified)
+  {
     index: 31,
     // Tightened from 10:25-37: Ryle splits this into two DISTINCT sections —
     // 10:25-28 is the lawyer's lead-in question ("The Rule of Faith"), 10:29-37

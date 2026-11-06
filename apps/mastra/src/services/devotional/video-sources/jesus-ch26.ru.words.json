@@ -1,0 +1,16 @@
+{
+  "note": "Per-cue word start times (s), whisper.cpp small -dtw small per speech burst on the isolated dialogue (dialoguenhance centre channel), first word on the burst start, 2026-11-06, aligned to the cue words with difflib. Cue 7 hand-set from the whole-clip whisper times +0.15 s (its burst began on the laugh at 25.7 s). Cue 4 hand-set from the whole-clip whisper (получает 12.93 +0.12; the burst pass had interpolated it into the pause).",
+  "cues": [
+    [0.85, 1.95, 1.98, 2.27, 2.7],
+    [3.7, 4.9, 4.93],
+    [7.35, 8.7, 8.73, 9.32],
+    [11.35, 11.7, 12.0, 13.05],
+    [14.74, 15.6],
+    [17.7, 17.73, 18.59, 19.61],
+    [27.27, 27.62, 27.95, 28.09, 28.66, 29.13, 29.41, 30.16, 30.25, 30.82],
+    [31.66, 32.06, 32.24],
+    [34.8, 35.05, 35.5, 36.19],
+    [38.0, 38.48, 38.72, 39.42, 40.12, 41.01, 41.46, 41.81],
+    [43.85, 44.05, 44.55, 44.94, 45.62, 46.31, 46.8, 47.92, 48.57, 48.72]
+  ]
+}

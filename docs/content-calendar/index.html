@@ -1099,6 +1099,32 @@
     }
   }
 
+  /* Narrow windows keep the whole week and scroll it sideways; the channel
+     column stays pinned (Lyuba, Nov 6). Only a real phone gets one day. */
+  @media (max-width: 1180px) {
+    .weeks {
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      scroll-snap-type: x proximity;
+      border-radius: 10px;
+    }
+    .week {
+      min-width: calc(64px + 7 * 150px);
+      overflow: clip;
+    }
+    .week .dh,
+    .week .cell {
+      scroll-snap-align: start;
+      scroll-margin-left: 65px;
+    }
+    .week > .dh:first-child,
+    .week > .lab {
+      position: sticky;
+      left: 0;
+      z-index: 2;
+    }
+  }
+
   /* Phone: one day per block, the three lanes stacked inside it. */
   .agenda {
     display: none;
@@ -1164,12 +1190,6 @@
       grid-row: 2;
       justify-content: space-between;
     }
-    .weeks {
-      display: none;
-    }
-    .agenda {
-      display: grid;
-    }
     .ov-card {
       flex-direction: column-reverse;
       gap: 14px;
@@ -1182,6 +1202,14 @@
     }
     .ov-thumb.wide {
       width: min(92vw, 520px);
+    }
+  }
+  @media (max-width: 600px) {
+    .weeks {
+      display: none;
+    }
+    .agenda {
+      display: grid;
     }
   }
   @media (prefers-reduced-motion: reduce) {
@@ -1651,7 +1679,11 @@
         .join("")
     })
     html += "</section>"
-    document.getElementById("weeks").innerHTML = html
+    const wk = document.getElementById("weeks")
+    wk.innerHTML = html
+    // When the week scrolls sideways, start at today (or the week's first day).
+    const td = wk.querySelector(".dh.today")
+    wk.scrollLeft = td ? td.offsetLeft - 65 : 0
 
     // Phone: one day at a time (Lyuba, Oct 23), today unless she paged away.
     const keys = [ymd(day)]
@@ -1698,7 +1730,7 @@
   }
 
   // Desktop pages weeks, the phone pages days; both stay in step.
-  const isPhone = () => matchMedia("(max-width: 860px)").matches
+  const isPhone = () => matchMedia("(max-width: 600px)").matches
   let day = new Date(now.getFullYear(), now.getMonth(), now.getDate())
   const step = (n) => {
     if (isPhone()) {
@@ -1731,7 +1763,12 @@
   addEventListener(
     "touchstart",
     (e) => {
-      tx = e.touches[0].clientX
+      // A sideways-scrolling week takes the swipe itself.
+      const w = document.getElementById("weeks")
+      tx =
+        w.contains(e.target) && w.scrollWidth > w.clientWidth
+          ? null
+          : e.touches[0].clientX
     },
     { passive: true },
   )

@@ -318,3 +318,16 @@ Each story still makes both Shorts on its two days, but the order differs by cha
 gets the reflection and RU gets the film-verse; day 2 is the other way round. All planned
 pairs were swapped this way on Nov 10. Lyuba can still pick the other cut for a given story.
 Analytics re-checks per Short every Monday.
+
+## EN YouTube Shorts in the US evening (from Nov 10, 2026)
+
+Lyuba decided this in Analytics on Nov 10: EN YouTube Shorts go out at 19:00 New York time, which is 02:00 Kyiv
+the following night. RU Shorts, all long forms and FB/IG reels keep their Kyiv slots.
+
+In the calendar, each EN Short is split into two rows:
+
+- the `*-en` row is YouTube EN only, dated the day after the planned day, at 02:00;
+- the `*-meta` row is FB+IG at the original day and time.
+
+Analytics compares the 2 weeks before and after, around Nov 24 to Dec 1. It looks at views in the first 48 h, the
+share who did not swipe away, and the share of US views.

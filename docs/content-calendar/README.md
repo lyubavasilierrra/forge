@@ -306,3 +306,15 @@ start brief must say so. Everything else stays as usual: titles, covers, Shorts,
 Why: on 11 long videos about half the viewers left in the first ~20 s, during the spoken opening.
 The baseline is 45% still watching at 0:30. Analytics compares 30-second retention once each video
 has 15+ views.
+
+## Default Short per channel (from Nov 10, 2026)
+
+Lyuba decided this in Analytics on Nov 10, based on the share of viewers who did not swipe away:
+
+- EN: reflection first. Reflection Shorts score 39%, film scene + question 29%.
+- RU: film scene + question first. They score 58%, reflection 53%.
+
+Each story still makes both Shorts on its two days, but the order differs by channel. On day 1, EN (YT, FB, IG)
+gets the reflection and RU gets the film-verse; day 2 is the other way round. All planned
+pairs were swapped this way on Nov 10. Lyuba can still pick the other cut for a given story.
+Analytics re-checks per Short every Monday.

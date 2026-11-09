@@ -292,3 +292,17 @@ top-10 posts. Lyuba's call on Nov 6, 2026:
 - Still open: Easter verses (Holy Week, March 2027) and Christian service (Luke 22, spring).
 
 When an episode goes live, the Calendar session tells Lyuba which blog post and section it fits.
+
+## Clip-first test (from Nov 10, 2026)
+
+Lyuba decided this in Analytics on Nov 10. The next 3 long forms render with `--structure=clip-first`:
+the film comes first, with no spoken opening and no cover; there is a 3-step stepper, and the verse
+closes the reflection. The 3 stories are Do Not Worry (Nov 13), Ready and Waiting (Nov 16) and
+The Fig Tree (Nov 18). Their long rows carry the note "test: clip-first (n of 3)".
+
+When the Calendar session starts the story sessions for Ready and Waiting and The Fig Tree, the
+start brief must say so. Everything else stays as usual: titles, covers, Shorts, slots.
+
+Why: on 11 long videos about half the viewers left in the first ~20 s, during the spoken opening.
+The baseline is 45% still watching at 0:30. Analytics compares 30-second retention once each video
+has 15+ views.

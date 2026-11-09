@@ -379,6 +379,12 @@ export const RU_LOCALE: DevotionalLocale = {
   // Combining acute accent (U+0301) forces the correct stress for the voice.
   // "стоит" is phrase-scoped (stands, not "is worth"); grow this list as needed.
   stressOverrides: [
+    // Not One Sparrow RU (2026-11-09, Lyuba): бо́льший is the comparative
+    // ("the greater fear"), воло́с the genitive plural, сто́ит "is worth".
+    ["перед большим", "перед бо́льшим"],
+    ["сколько волос", "сколько воло́с"],
+    ["почти ничего не стоит", "почти ничего не сто́ит"],
+    ["Бояться стоит только", "Бояться сто́ит только"],
     ["потерянных", "поте́рянных"],
     ["стоит в стороне", "стои́т в стороне"],
     // Paralytic RU (2026-10-16): «в этом доме стоит Сам Бог» is the verb стои́т.

@@ -47,3 +47,9 @@ Talk to Lyuba in Russian, plainly, without jargon. Files, commits and docs stay 
     Short; Lyuba watches both and picks. No intro (except on the RU morning-test days Nov 4, 6, 9,
     11), no word insight, history or verse Shorts. One Short a day per channel; the Calendar session
     gives the slots.
+
+12. Shorts pairs per channel (Lyuba, 2026-11-10; this replaces the film-verse + reflection pair for EN):
+    - EN: an intro Short plus the reflection Short. No film-scene Short on EN. EN YouTube Shorts go out at 19:00
+      New York, which is 02:00 Kyiv the following night.
+    - RU: the film-scene + question Short plus the reflection Short. No RU intro unless Lyuba asks.
+      Lyuba picks one per day per channel. Follow the calendar rows for the dates.

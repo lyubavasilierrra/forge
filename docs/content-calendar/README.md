@@ -331,3 +331,14 @@ In the calendar, each EN Short is split into two rows:
 
 Analytics compares the 2 weeks before and after, around Nov 24 to Dec 1. It looks at views in the first 48 h, the
 share who did not swipe away, and the share of US views.
+
+## Shorts pairs per channel (from Nov 10, 2026; replaces "Default Short per channel")
+
+Lyuba decided this in Analytics on Nov 10:
+
+- EN: intro or reflection. There is no film-scene Short on EN. The planned `*-clip-en` rows now carry `cut: "intro"`.
+- RU: film scene + question, or reflection.
+
+Why: on EN, the intro averages 385 views and 2.5 new subscribers, the reflection 237 and 1.7, and the film scene 195 and 0.
+On RU, the film scene and the reflection each bring 4.0 subscribers per Short. Analytics re-checks weekly.
+FB/IG rows were left unchanged for now; check with Lyuba.

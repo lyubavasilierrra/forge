@@ -247,6 +247,11 @@ Reference she liked: youtube.com/shorts/OPrWpX9dA-M.
 
 ### 6.2 film-verse
 
+**Hard limit: under 30 s of film** (owner, 2026-11-09, after a 1:17 LUMO clip was
+blocked globally on YouTube on 2026-11-04 for exceeding the copyright holder's
+match length). Pick the turn of the scene, not the whole scene, and list the exact
+verses of the clip (dub wording for RU) in the review doc.
+
 Content: the quoted passage found by verse ADDRESS (every caption line tagged
 with a verse in the scripture card's range, e.g. Luke 10:41-42), then whole
 lines before it up to ~30 s, ending 0.5 s after the passage's last line.

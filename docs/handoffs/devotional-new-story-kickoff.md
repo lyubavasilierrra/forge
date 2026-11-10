@@ -171,9 +171,11 @@ Then read it yourself before Lyuba does:
     real turns, with no forced link back to the previous episode and no
     vague question; Jesus' hard words are explained (who they are for,
     why), never waved off as "a clue"; the last paragraph ends on a
-    checked detail the passage shows (e.g. what only this Gospel says,
-    checked against the parallels in the BSB corpus), never on an obvious
-    restatement; no idioms that do not translate; the takeaway is one
+    checked detail the passage shows, never on an obvious restatement
+    (Do Not Worry, 2026-11-10: NOT a default "Matthew says X, Luke says Y"
+    comparison; Lyuba found it out of place. A detail inside the passage,
+    such as the order of Jesus' words, works better; name another Gospel
+    only when the difference carries the one thought); no idioms that do not translate; the takeaway is one
     plain sentence (EN and RU).
     The Widow cache (`ch1006-seq0/devo.json`) is the worked example of every
     field.

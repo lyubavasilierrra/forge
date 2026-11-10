@@ -1843,7 +1843,8 @@
       '<div class="ov-side"><h2>' +
       esc(it.title || it.label) +
       '</h2><div class="ov-meta">' +
-      esc(when + (it.note ? " · " + it.note : "")) +
+      // Row notes are Claude's working notes; the overlay shows only when (Lyuba, Nov 10).
+      esc(when) +
       "</div>" +
       btns +
       startBtn(it) +

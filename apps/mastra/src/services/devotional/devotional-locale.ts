@@ -409,6 +409,10 @@ export const RU_LOCALE: DevotionalLocale = {
     // Prodigal RU rewrite (2026-10-08).
     ["от дома", "от до́ма"],
     ["стоит снаружи", "стои́т снаружи"],
+    // Friend at Midnight RU (2026-11-06): the voice said про́сить; the verb is
+    // проси́ть (also right inside спроси́ть, попроси́ть).
+    ["просить", "проси́ть"],
+    ["Просить", "Проси́ть"],
   ],
   spokenDate(iso) {
     const p = parseIso(iso)

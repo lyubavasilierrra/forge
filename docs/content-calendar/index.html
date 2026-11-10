@@ -1404,7 +1404,17 @@
   const isPlanned = (p) => p.status === "planned"
   const isFuture = (p) =>
     p.status === "scheduled" &&
-    new Date(p.date + "T" + (p.time || "23:59")) > new Date()
+    new Date((p._kd || p.date) + "T" + (p._kt || p.time || "23:59")) >
+      new Date()
+  // EN YouTube Shorts go out at 19:00 New York = 02:00 Kyiv the next night (Nov 10). Show them on the
+  // American day so the calendar reads "what went out that evening" (Lyuba, Nov 10).
+  function usDay(p) {
+    const en = (p.platforms || []).length === 1 && p.platforms[0] === "yt-en"
+    if (isLong(p) || !en || !p.time || p.time >= "06:00") return p
+    const d = new Date(p.date + "T12:00")
+    d.setDate(d.getDate() - 1)
+    return { ...p, date: ymd(d), time: "19:00 NY", _kd: p.date, _kt: p.time }
+  }
   // "martha-short-history-yt-en" -> story "martha", cut "history". Planned rows: "plan-a-short-intro-en".
   function parseId(p) {
     const id = String(p.id || "")
@@ -1477,7 +1487,7 @@
 
   // One tile per (date, lane, cut). The overlay of a tile lists every platform the same cut went to that day.
   function build() {
-    const live = posts.filter((p) => p.date && !p.campaign)
+    const live = posts.filter((p) => p.date && !p.campaign).map(usDay)
     const tiles = new Map()
     for (const p of live) {
       for (const lane of LANES) {

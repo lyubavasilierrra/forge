@@ -342,3 +342,10 @@ Lyuba decided this in Analytics on Nov 10:
 Why: on EN, the intro averages 385 views and 2.5 new subscribers, the reflection 237 and 1.7, and the film scene 195 and 0.
 On RU, the film scene and the reflection each bring 4.0 subscribers per Short. Analytics re-checks weekly.
 FB/IG rows were left unchanged for now; check with Lyuba.
+
+## A Short every day (from Nov 10, 2026)
+
+Lyuba's rule is a Short every day on every channel (RU, EN YT and FB/IG). If a planned Short isn't ready, pull the
+next approved one forward instead of leaving the day empty. On Nov 10 the planned queue was pulled forward, so
+Nov 10–30 has no gaps. Each Short still goes out on or after its own long form. From December (2 long forms a
+week) a 3rd Short per story is needed to fill every day.

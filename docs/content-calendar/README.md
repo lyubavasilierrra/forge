@@ -349,3 +349,13 @@ Lyuba's rule is a Short every day on every channel (RU, EN YT and FB/IG). If a p
 next approved one forward instead of leaving the day empty. On Nov 10 the planned queue was pulled forward, so
 Nov 10–30 has no gaps. Each Short still goes out on or after its own long form. From December (2 long forms a
 week) a 3rd Short per story is needed to fill every day.
+
+## YouTube Community posts (from Nov 10, 2026)
+
+Decided by Lyuba with Analytics. Tue / Thu / Sat at 10:00 Kyiv, YouTube EN + RU, one format per day:
+
+- Tue `post-verse`: the key BSB verse of the latest long form on a film frame. Short caption, no "watch the video".
+- Thu `post-quiz`: a YouTube Quiz post, one Bible-knowledge question about the story, 3 answers. The explanation may point to the long video.
+- Sat `post-amen`: one short promise line from the reflection, addressed to the viewer, big text on an image. Caption ends "Type Amen" / «Напишите «Аминь»». Community replies to the Amens.
+
+Each post belongs to the latest long form published before it. Dropped: polls with personal questions, long texts, "new video" posts. A poll only as a choice ("which story next?"). Analytics compares likes + comments per 100 subscribers around Dec 1.

@@ -369,6 +369,26 @@ const STORIES: Record<
     ],
     out: "Worry",
   },
+  "lumo-luke-12-ready": {
+    // No setting: the card opens on "Be dressed ready for service"; "Do not
+    // worry" (12:22-34) just before it is a separate episode.
+    terms: [
+      "Lamp",
+      "Girdle",
+      "Marriage",
+      "Wedding",
+      "Banquet",
+      "Watches",
+      "Night",
+      "Hour",
+      "Servant",
+      // Edersheim's Olivet chapter explains why the hour of the Coming was
+      // left unknown ("loins girt for work"); Luke 12:35-40 has no chapter
+      // of its own in his Life.
+      "THE EVENING OF THE THIRD DAY IN PASSION-WEEK - ON THE MOUNT OF OLIVES: DISCOURES TO THE DISCIPLES CONCERNING THE LAST THINGS.",
+    ],
+    out: "Ready",
+  },
   "jesus-32": {
     // Luke puts the blind man straight after the Twelve fail to understand
     // the third passion prediction ("the meaning was hidden from them"): the

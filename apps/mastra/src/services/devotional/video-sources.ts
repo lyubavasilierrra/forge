@@ -541,6 +541,34 @@ const SOURCES: VideoSource[] = [
       byLang: { ru: "video-sources/lumo-luke-12-worry.ru.vtt" },
     },
   },
+  {
+    // "Ready and waiting" follows "Do not worry" in segment 2613 (Luke
+    // 12:1-59): EN "Be dressed ready for service" (12:35) starts at 320.55
+    // right after "there your heart will be also" (12:34, ends ~317.8);
+    // "when you do not expect him" (12:40) ends at 373.7 and Peter's
+    // question (12:41) starts at ~381 (whisper per burst, 2026-11-11).
+    key: "lumo-luke-12-ready",
+    index: 1018,
+    mediaComponentId: "6_GOLuke2613",
+    title: "Ready and Waiting",
+    film: "lumo",
+    passage: { reference: "Luke 12:35-40", osisRef: "Luke.12.35-Luke.12.40" },
+    window: { startSec: 320.2, lengthSec: 54.4 },
+    // RU «Будьте всегда наготове» starts at 320.65; «когда вы Его не ждёте»
+    // ends at 373.6.
+    windowByLang: { ru: { startSec: 320.2, lengthSec: 54.0 } },
+    // ~54.4s ×1.05 → ~51.8s on screen, plus a breath.
+    maxVideoCardSec: 54,
+    videoSpeed: 1.05,
+    filmCaptionStyle: "scroll",
+    filmMark: "lumo",
+    style: "clean",
+    captions: {
+      kind: "file",
+      path: "video-sources/lumo-luke-12-ready.en.vtt",
+      byLang: { ru: "video-sources/lumo-luke-12-ready.ru.vtt" },
+    },
+  },
 ]
 
 const BY_KEY = new Map(SOURCES.map((s) => [s.key, s]))

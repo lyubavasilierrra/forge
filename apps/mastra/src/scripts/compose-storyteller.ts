@@ -389,6 +389,25 @@ const STORIES: Record<
     ],
     out: "Ready",
   },
+  "lumo-luke-13-figtree": {
+    // No setting: the card opens on "Then he told this parable"; the
+    // Galileans and the tower of Siloam (13:1-5) are in the segment but
+    // outside the window, so the viewer never sees them.
+    terms: [
+      "Fig",
+      "Vineyard",
+      "Husbandman",
+      "Dung",
+      "Fruit",
+      "Three years",
+      // Edersheim reads the parable as the nation's call to repent with a
+      // year of grace still given; the first chapter has the context
+      // (Galileans, Siloam) that the parable answers.
+      "THE THREE PARABLES OF WARNING: TO THE INDIVIDUAL, TO THE NATION, AND TO THE THEOCRACY - THE FOOLISH RICH MAN - THE BARREN FIG-TREE - THE GREAT SUPPER.",
+      "TO THE DISCIPLES - TWO EVENTS AND THEIR MORAL.",
+    ],
+    out: "Fig Tree",
+  },
   "jesus-32": {
     // Luke puts the blind man straight after the Twelve fail to understand
     // the third passion prediction ("the meaning was hidden from them"): the

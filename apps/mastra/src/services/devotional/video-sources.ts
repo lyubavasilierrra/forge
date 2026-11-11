@@ -569,6 +569,34 @@ const SOURCES: VideoSource[] = [
       byLang: { ru: "video-sources/lumo-luke-12-ready.ru.vtt" },
     },
   },
+  {
+    // The barren fig tree opens segment 2614 (Luke 13:1-35) after the
+    // Galileans and the tower of Siloam (13:1-5). EN "Then he told this
+    // parable" (13:6) starts at 43.2 after a music gap from 39.7; "then cut
+    // it down" (13:9) ends at 77.8, then music until 13:10 at 99. Index 1019:
+    // 1018 is left for Ready and Waiting (12:35-40), made in parallel.
+    key: "lumo-luke-13-figtree",
+    index: 1019,
+    mediaComponentId: "6_GOLuke2614",
+    title: "The Fig Tree",
+    film: "lumo",
+    passage: { reference: "Luke 13:6-9", osisRef: "Luke.13.6-Luke.13.9" },
+    window: { startSec: 43.0, lengthSec: 35.6 },
+    // RU «Затем Иисус рассказал им притчу» starts at 42.95; «тогда ты
+    // срубишь его» ends at 81.9 (the dub runs ~4 s longer than EN).
+    windowByLang: { ru: { startSec: 42.6, lengthSec: 40.0 } },
+    // RU 40.0s ×1.05 → ~38.1s on screen, plus a breath (EN is shorter).
+    maxVideoCardSec: 41,
+    videoSpeed: 1.05,
+    filmCaptionStyle: "scroll",
+    filmMark: "lumo",
+    style: "clean",
+    captions: {
+      kind: "file",
+      path: "video-sources/lumo-luke-13-figtree.en.vtt",
+      byLang: { ru: "video-sources/lumo-luke-13-figtree.ru.vtt" },
+    },
+  },
 ]
 
 const BY_KEY = new Map(SOURCES.map((s) => [s.key, s]))

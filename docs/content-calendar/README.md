@@ -196,6 +196,22 @@ morning-test long-form days Nov 4, 6, 9, 11 (RU 08:30, EN 21:00, the only Short 
 from Nov 12. Shorts go into a queue, oldest story first, one per day at RU 13:00 / EN 17:00 (EN on
 YT + FB + IG, the day's single FB post), skipping intro days and the RU-only Jan 7 / Jan 19 days.
 
+### Shorts of one story never repeat (from Nov 12, 2026; checked step)
+
+Lyuba via Analytics, 2026-11-12. RU Nov 9-11 had three Friend at Midnight Shorts on three days with
+the same question: 1,843 views, then 15 and 20 (YouTube stopped after ~10 viewers each). Earlier
+same-story runs with different angles (Boy, Widow) all got 1,100+. Before placing or moving any Short:
+
+1. Never two Shorts of one story on consecutive days on the same channel (yt-en, yt-ru, Meta). Put a
+   Short of another story between them, or leave the day for the next approved Short of another story.
+   On Nov 12 every planned row from Nov 13 on was re-spaced this way (a story's 2nd Short now comes
+   two days after its 1st, alternating with the next story).
+2. Each Short of a story has its own question/angle. Before it is scheduled, the titles and first
+   description lines of all that story's Shorts go side by side (EN and RU separately). If two ask the
+   same question or share the main words, the later one goes back to the story session for a new
+   title + first line before Publishing schedules it.
+3. Publishing runs the same side-by-side check when it schedules; Analytics flags repeats weekly.
+
 ### Lyuba's answers (`requests`)
 
 Every pick, note, Approve or Needs changes on the page becomes a doc in `requests`:

@@ -53,3 +53,11 @@ Talk to Lyuba in Russian, plainly, without jargon. Files, commits and docs stay 
       New York, which is 02:00 Kyiv the following night.
     - RU: the film-scene + question Short plus the reflection Short. No RU intro unless Lyuba asks.
       Lyuba picks one per day per channel. Follow the calendar rows for the dates.
+
+13. Shorts of one story must not repeat each other (Lyuba via Analytics, 2026-11-12; checked step, not a note):
+    - Each Short of the story asks its own question from its own angle. Before you send the Shorts to Lyuba or to
+      Publishing, put the titles and the first description line of all this story's Shorts side by side, EN and RU
+      separately. If two ask the same question or share the main words, rewrite the later one (title + first line)
+      before it goes on. Why: Nov 9-11 RU posted three Friend at Midnight Shorts with the same question; the first got
+      1,843 views, the next two 15 and 20 (YouTube showed them to ~10 people and stopped).
+    - The Calendar session never puts two Shorts of one story on consecutive days on one channel; keep to its dates.

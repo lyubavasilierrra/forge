@@ -116,3 +116,38 @@ same; only the words around it change. Applies to EN and RU long forms.
    ```
 4. **Cover text** is for recognition, not search: 2–4 words, does not repeat
    the title, the passage label stays.
+
+## Search rules for Shorts titles and descriptions (from 2026-11-18)
+
+Lyuba's decision via Analytics, 2026-11-18. In the 28 days to Nov 17, YouTube
+search brought EN 648 and RU 968 views, and almost all of them went to Shorts,
+not long forms. The visible phrases are passage references ("luke 17:11-19",
+«евангелие от луки»), Jesus' own words ("who do you say that i am", "let the
+dead bury the dead"), traditional story names («исцеление гадаринского
+бесноватого»), "listen / audio bible / sermon" («библия онлайн слушать»,
+«проповеди христианские») and film searches ("jesus film project", "lumo
+project films", «фильмы про бога»). Applies to every EN and RU Short.
+
+1. **Title** keeps our question or hook first, and always ends with
+   `| <passage>` (RU «| От Луки 9:57–62»). A hashtag never replaces the
+   passage.
+2. **Jesus' words and the story's common name, word for word.** If the story
+   has a well-known line of Jesus, it goes into the title or the first
+   description line in its familiar wording. RU uses the traditional
+   (Synodal) story name.
+3. **First description line, one or two sentences, nothing more:** the
+   story's common name or Jesus' line, the passage, then what the video is,
+   with the film named in the same sentence. Use "reflection" / «размышление»
+   (never "sermon" / «проповедь»: our reflection is not a sermon). RU always
+   says «Евангелие от Луки, глава N». Name the film the footage really comes
+   from (JESUS film / фильм «Иисус», or LUMO). No keyword lists.
+   ```
+   EN: "Who do you say that I am?" Peter's confession in Luke 9:18–22, read aloud with a short reflection, from the JESUS film.
+   RU: «А вы за кого почитаете Меня?» Исповедание Петра, Евангелие от Луки, глава 9 (9:18–22): чтение и короткое размышление по фильму «Иисус».
+   ```
+4. **Avoid a lone generic word as the hook** (e.g. «люди»): "Божьи люди: те,
+   кто всё ещё просит" drew a foreign «18+ люди» query, 82 search views at 7
+   seconds each.
+
+Analytics compares Shorts search views and visible phrases ~3 weeks after the
+first Short made under these rules.

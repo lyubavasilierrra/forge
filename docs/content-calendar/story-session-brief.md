@@ -61,3 +61,12 @@ Talk to Lyuba in Russian, plainly, without jargon. Files, commits and docs stay 
       before it goes on. Why: Nov 9-11 RU posted three Friend at Midnight Shorts with the same question; the first got
       1,843 views, the next two 15 and 20 (YouTube showed them to ~10 people and stopped).
     - The Calendar session never puts two Shorts of one story on consecutive days on one channel; keep to its dates.
+
+14. Share line on reflection Shorts (Lyuba via Analytics, 2026-11-18): every NEW reflection Short ends with a share line
+    on screen. EN: "Thought of someone? Send this to them." RU: «Подумали о ком-то? Отправьте это видео».
+    - Reflection Shorts only (not intro, film-verse or history Shorts).
+    - It is the last on-screen line, in the closing seconds. It does not replace the closing thought and it stays inside
+      the Shorts safe zone.
+    - Already published Shorts stay as they are.
+    - Why: reflection Shorts bring the most subscribers, but EN reflection Shorts get 0 shares (RU 1.8 per 1,000 views).
+      Analytics compares shares per 1,000 views about 3 weeks after the first one goes out.

@@ -408,6 +408,26 @@ const STORIES: Record<
     ],
     out: "Fig Tree",
   },
+  "lumo-luke-10-seventytwo": {
+    // No setting: the card opens on "After this the Lord appointed", which is
+    // 10:1 itself; the would-be followers (9:57-62) are in another segment.
+    terms: [
+      "Harvest",
+      "Lamb",
+      "Wolf",
+      "Purse",
+      "Scrip",
+      "Sandals",
+      "Salutation",
+      "Dust",
+      "Sodom",
+      // Edersheim's chapter on the mission of the Seventy reads their errand
+      // as urgent and the greeting ban as "no time for the long Eastern
+      // salutation".
+      "FURTHER INCIDENTS OF THE JOURNEY TO JERUSALEM - THE MISSION AND RETURN OF THE SEVENTY - THE HOME AT BETHANY - MARTHA AND MARY",
+    ],
+    out: "Seventy-Two",
+  },
   "jesus-28": {
     // No setting: the card opens on the street and Jesus' question, which is
     // 13:18 itself; the healing of the bent woman before it (13:10-17) is

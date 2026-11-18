@@ -597,6 +597,34 @@ const SOURCES: VideoSource[] = [
       byLang: { ru: "video-sources/lumo-luke-13-figtree.ru.vtt" },
     },
   },
+  {
+    // Luke 10:1-12 is the opening of segment 6_GOLuke2611 (LUMO Luke 10:1-42):
+    // a laugh at 3.0, then "After this the Lord appointed" starts at 4.7;
+    // "than for that town" (10:12) ends at 97.1, and "Woe to you, Korazin"
+    // (10:13) follows at ~98 with no music gap, so the window ends tight.
+    key: "lumo-luke-10-seventytwo",
+    index: 1020,
+    mediaComponentId: "6_GOLuke2611",
+    title: "The Sending of the Seventy-Two",
+    film: "lumo",
+    passage: { reference: "Luke 10:1-12", osisRef: "Luke.10.1-Luke.10.12" },
+    window: { startSec: 4.3, lengthSec: 93.3 },
+    // RU «После этого Господь назначил» starts at 0.7 (the dub drops the
+    // EN lead-in); «чем этому городу» ends at 92.9, «Горе тебе, Хоразин» follows at 93.3. The dub says
+    // «семьдесят учеников» (as the Synodal text does), not seventy-two.
+    windowByLang: { ru: { startSec: 0.4, lengthSec: 92.9 } },
+    // EN 93.3s ×1.05 → ~88.9s on screen, plus a breath.
+    maxVideoCardSec: 91,
+    videoSpeed: 1.05,
+    filmCaptionStyle: "scroll",
+    filmMark: "lumo",
+    style: "clean",
+    captions: {
+      kind: "file",
+      path: "video-sources/lumo-luke-10-seventytwo.en.vtt",
+      byLang: { ru: "video-sources/lumo-luke-10-seventytwo.ru.vtt" },
+    },
+  },
 ]
 
 const BY_KEY = new Map(SOURCES.map((s) => [s.key, s]))

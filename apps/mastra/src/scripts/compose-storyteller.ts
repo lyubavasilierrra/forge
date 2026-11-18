@@ -408,6 +408,31 @@ const STORIES: Record<
     ],
     out: "Fig Tree",
   },
+  "jesus-28": {
+    // No setting: the card opens on the street and Jesus' question, which is
+    // 13:18 itself; the healing of the bent woman before it (13:10-17) is
+    // not in this chapter. The yeast (13:20-21) is told in words only.
+    terms: [
+      "Mustard",
+      "Mustard seed",
+      "Seed",
+      "Leaven",
+      "Yeast",
+      "Meal",
+      "Measure",
+      "Bread",
+      "Oven",
+      "Garden",
+      "Bird",
+      "Branch",
+      "Kingdom of God",
+      "Kingdom of heaven",
+      // Edersheim's chapter on the lake parables covers the mustard seed and
+      // the leaven (told together in Matthew 13 too).
+      "NEW TEACHING IN PARABLES' - THE PARABLES TO THE PEOPLE BY THE LAKE OF GALILEE, AND THOSE TO THE DISCIPLES IN CAPERNAUM",
+    ],
+    out: "Mustard Seed",
+  },
   "jesus-32": {
     // Luke puts the blind man straight after the Twelve fail to understand
     // the third passion prediction ("the meaning was hidden from them"): the

@@ -343,6 +343,33 @@ export const JESUS_FILM_PASSAGES: ChapterPassage[] = [
     maxVideoCardSec: 51,
   }, // Ask, Seek, Knock. Walking through the woods and a stream → "Ask, and you will receive; seek … knock" → "a snake when he asks for a fish, a scorpion when he asks for an egg" → "How much more will the Heavenly Father give the Holy Spirit to those who ask Him" (~50s). (subtitle- and frame-verified)
   {
+    index: 28,
+    // The passage is Ryle's whole section, Luke 13:18-21 ("Mustard Seed and
+    // Yeast", Lyuba's calendar), but the film shows only 13:18-19: the yeast
+    // (13:20-21) is not in it, so the script tells that parable in words and
+    // the card never claims to show it (same as Friend at Midnight, ch. 26).
+    osisRef: "Luke.13.18-Luke.13.21",
+    reference: "Luke 13:18-21",
+    mood: "hope",
+    themes: [
+      "kingdom of god",
+      "small beginnings",
+      "growth",
+      "patience",
+      "hidden work",
+    ],
+    // Subtitle- and frame-verified (Arclight EN + RU tracks, 2026-11-18).
+    // An old teacher in a white turban walks a dyers' street while Jesus,
+    // off screen and then seated among the crowd (~5-9s), asks "What is the
+    // kingdom of God like?" (EN 2.4s, RU 1.9s); "nests in its branches" ends
+    // ~15.7s in both dubs. At 16.9s a line that is not in Luke ("I'm not sure
+    // what He's talking about"), then Jesus' scene with sinners begins and
+    // the end card from ~19.6s, so the card ends at 16.5s.
+    clipStartSec: 0,
+    clipLengthSec: 16.5,
+    maxVideoCardSec: 17,
+  }, // Mustard Seed. Dyers' street, the old teacher listening → Jesus seated with the crowd → "a grain of mustard seed ... the birds make their nests in its branches" (~15.7s). (subtitle- and frame-verified)
+  {
     index: 31,
     // Tightened from 10:25-37: Ryle splits this into two DISTINCT sections —
     // 10:25-28 is the lawyer's lead-in question ("The Rule of Faith"), 10:29-37

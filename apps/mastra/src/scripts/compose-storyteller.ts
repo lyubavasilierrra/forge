@@ -428,6 +428,29 @@ const STORIES: Record<
     ],
     out: "Seventy-Two",
   },
+  "lumo-luke-14-honor": {
+    // No setting: the card opens on "When he noticed how the guests picked
+    // the places of honor", which is 14:7 itself; the Sabbath meal and the
+    // healing before it (14:1-6) end before the window.
+    terms: [
+      "Feast",
+      "Feasts",
+      "Wedding",
+      "Marriage",
+      "Meals",
+      "Guest",
+      "Room",
+      "Host",
+      "Humility",
+      "Pharisees",
+      // Edersheim: at meals "the learned and most honored occupied ... the
+      // chief places" (the morning-meal chapter); the Peraean discourses
+      // chapter covers this Sabbath meal and its table talk.
+      "THE MORNING-MEAL IN THE PHARISEE'S HOUSE - MEALS AND FEASTS AMONG THE JEWS - CHRIST'S LAST PERÆAN WARNING TO PHARISAISM",
+      "CHRIST'S DISCOURSES IN PERÆA - CLOSE OF THE PERÆAN MINISTRY",
+    ],
+    out: "Place of Honor",
+  },
   "jesus-28": {
     // No setting: the card opens on the street and Jesus' question, which is
     // 13:18 itself; the healing of the bent woman before it (13:10-17) is

@@ -625,6 +625,34 @@ const SOURCES: VideoSource[] = [
       byLang: { ru: "video-sources/lumo-luke-10-seventytwo.ru.vtt" },
     },
   },
+  {
+    // Luke 14:7-11 sits inside segment 6_GOLuke2615 (LUMO Luke 14:1-15:10),
+    // right after the Sabbath healing (14:1-6). EN "And they had nothing to
+    // say" (14:6) ends at 52.35; "When he noticed how the guests picked the
+    // places of honor" starts at 54.6; "will be exalted" (14:11) ends at
+    // 104.55, then "Then Jesus said to his host" (14:12) at 105.6.
+    key: "lumo-luke-14-honor",
+    index: 1021,
+    mediaComponentId: "6_GOLuke2615",
+    title: "The Place of Honor",
+    film: "lumo",
+    passage: { reference: "Luke 14:7-11", osisRef: "Luke.14.7-Luke.14.11" },
+    window: { startSec: 54.3, lengthSec: 50.9 },
+    // RU «Иисус заметил, как гости выбирали почётные места» starts at 52.2;
+    // «будет возвышен» ends at 107.45, «Затем Иисус сказал хозяину» at 108.2.
+    windowByLang: { ru: { startSec: 51.9, lengthSec: 56.0 } },
+    // RU 56.0s / 1.05 is ~53.3s on screen (EN ~48.5s), plus a breath.
+    maxVideoCardSec: 56,
+    videoSpeed: 1.05,
+    filmCaptionStyle: "scroll",
+    filmMark: "lumo",
+    style: "clean",
+    captions: {
+      kind: "file",
+      path: "video-sources/lumo-luke-14-honor.en.vtt",
+      byLang: { ru: "video-sources/lumo-luke-14-honor.ru.vtt" },
+    },
+  },
 ]
 
 const BY_KEY = new Map(SOURCES.map((s) => [s.key, s]))

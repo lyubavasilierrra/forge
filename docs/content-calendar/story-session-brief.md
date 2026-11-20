@@ -70,3 +70,14 @@ Talk to Lyuba in Russian, plainly, without jargon. Files, commits and docs stay 
     - Already published Shorts stay as they are.
     - Why: reflection Shorts bring the most subscribers, but EN reflection Shorts get 0 shares (RU 1.8 per 1,000 views).
       Analytics compares shares per 1,000 views about 3 weeks after the first one goes out.
+15. Film-first opening (Lyuba, 2026-11-20, Seventy-Two): every film-first long form (no spoken opening), in both
+    languages, renders with `--structure=clip-first --intro=brand`.
+    - What it shows: only a dark scrim, with the step row lit at the top from frame 0. There is no "N min" line and
+      no story/reflection/prayer list.
+    - Then lay the channel logo animation over it in post:
+      `/Users/mac/Desktop/Social Media/Ready/work/logo-overlay.sh <in> <out> ru|en`.
+    - The RU channel is «Библия ближе», never Daily Bible Pause.
+    - A plain clip-first render opens with the default cover ("4 min", the step list, DAILY BIBLE PAUSE on RU).
+      Seventy-Two had to be redone because of it.
+    - Classic (spoken opening first) or film-first: follow the story's calendar note, or ask Lyuba via the Calendar
+      session.

@@ -607,14 +607,19 @@ const SOURCES: VideoSource[] = [
     mediaComponentId: "6_GOLuke2611",
     title: "The Sending of the Seventy-Two",
     film: "lumo",
-    passage: { reference: "Luke 10:1-12", osisRef: "Luke.10.1-Luke.10.12" },
-    window: { startSec: 4.3, lengthSec: 93.3 },
-    // RU «После этого Господь назначил» starts at 0.7 (the dub drops the
-    // EN lead-in); «чем этому городу» ends at 92.9, «Горе тебе, Хоразин» follows at 93.3. The dub says
-    // «семьдесят учеников» (as the Synodal text does), not seventy-two.
-    windowByLang: { ru: { startSec: 0.4, lengthSec: 92.9 } },
-    // EN 93.3s ×1.05 → ~88.9s on screen, plus a breath.
-    maxVideoCardSec: 91,
+    // Cut to Luke 10:1-5 (Nov 20, Lyuba: one line of thought, pray, go, stay
+    // focused; the dust and Sodom warning of 10:10-12 is left out).
+    passage: { reference: "Luke 10:1-5", osisRef: "Luke.10.1-Luke.10.5" },
+    // EN "Peace to this house" (10:5) ends at 42.7, "If someone who promotes
+    // peace" (10:6) starts at 43.35.
+    window: { startSec: 4.3, lengthSec: 38.8 },
+    // RU «После этого Господь назначил» starts at 0.7 (the dub drops the EN
+    // lead-in); «Мир этому дому» ends at 36.85, «Если в том доме» follows at
+    // 37.45. The dub says «семьдесят учеников» (as the Synodal text does),
+    // not seventy-two.
+    windowByLang: { ru: { startSec: 0.4, lengthSec: 36.8 } },
+    // EN 38.8s ×1.05 → ~37s on screen, plus a breath.
+    maxVideoCardSec: 39,
     videoSpeed: 1.05,
     filmCaptionStyle: "scroll",
     filmMark: "lumo",

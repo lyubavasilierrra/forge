@@ -384,7 +384,13 @@ export function ScrollingScripture({
                       release + 0.22,
                     ],
                     // 1.1 made a short word touch its neighbours ("giveme").
-                    [1, 1.08, 1.04, 1.04, 1],
+                    // A long word grows by 8% of its own width, which is
+                    // wider than a space: «семьдесят» covered the gap after
+                    // «ещё» in both aspects (Seventy-Two RU, 2026-11-20).
+                    // So the peak shrinks with the word's length.
+                    ((p) => [1, 1 + p, 1 + p / 2, 1 + p / 2, 1])(
+                      Math.min(0.08, 0.3 / Math.max(1, [...w.text].length)),
+                    ),
                     {
                       extrapolateLeft: "clamp",
                       extrapolateRight: "clamp",

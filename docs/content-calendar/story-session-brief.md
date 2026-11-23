@@ -63,7 +63,9 @@ Talk to Lyuba in Russian, plainly, without jargon. Files, commits and docs stay 
     - The Calendar session never puts two Shorts of one story on consecutive days on one channel; keep to its dates.
 
 14. Share line on reflection Shorts (Lyuba via Analytics, 2026-11-18): every NEW reflection Short ends with a share line
-    on screen. EN: "Thought of someone? Send this to them." RU: «Подумали о ком-то? Поделитесь этим видео».
+    on screen. Since Nov 23, 2026 (Lyuba, so sharing does not feel awkward): EN "Share this video with someone who
+    needs to know it." RU «Поделитесь этим видео с тем, кому это важно знать». (Before Nov 23: "Thought of someone? Send this to them." /
+    «Подумали о ком-то? Поделитесь этим видео».)
     - Reflection Shorts only (not intro, film-verse or history Shorts).
     - It is the last on-screen line, in the closing seconds. It does not replace the closing thought and it stays inside
       the Shorts safe zone.

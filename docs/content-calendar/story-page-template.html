@@ -1293,7 +1293,7 @@
             <button data-p="long" type="button">Long</button
             ><button data-p="1" type="button">Short 1</button
             ><button data-p="2" type="button">Short 2</button
-            ><button data-p="quiz" type="button">Quiz</button
+            ><button data-p="quiz" type="button">Post</button
             ><button data-p="titles" type="button">Titles</button>
           </div>
           <article class="script">
@@ -2029,13 +2029,21 @@
         ["long", "Long"],
         ["1", "Short 1"],
         ["2", "Short 2"],
-        ["quiz", "Quiz"],
+        ["quiz", "Post"],
         ["titles", "Titles"],
       ]
       // Opening the Script tab always starts on Long (Lyuba, Nov 26); the part is not remembered.
       let PART = "long"
       let shownScript = null
       function showScript(g) {
+        // Switcher labels follow each part's format: a script doc may carry a short `label`
+        // ("Verse", "Quiz", "Promise"); the post part falls back to "Post" (Lyuba, Nov 26).
+        document.querySelectorAll("[data-p]").forEach((b) => {
+          const doc = SCRIPT[g + "-" + b.dataset.p]
+          const def = (PARTS.find(([k]) => k === b.dataset.p) || [])[1]
+          b.textContent =
+            (doc && typeof doc.label === "string" && doc.label.trim()) || def
+        })
         document
           .querySelectorAll("[data-p]")
           .forEach((b) => b.setAttribute("aria-pressed", b.dataset.p === PART))
@@ -2045,7 +2053,7 @@
           PART === "long"
             ? "Long video"
             : PART === "quiz"
-              ? "Quiz post"
+              ? "Community post"
               : PART === "titles"
                 ? "Titles and descriptions"
                 : "Short " + PART + (sh ? " · " + (sh.label || sh.key) : "")

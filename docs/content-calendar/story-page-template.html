@@ -1934,11 +1934,8 @@
         ["quiz", "Quiz"],
         ["titles", "Titles"],
       ]
+      // Opening the Script tab always starts on Long (Lyuba, Nov 26); the part is not remembered.
       let PART = "long"
-      try {
-        const p = localStorage.getItem("ph-part")
-        if (PARTS.some(([k]) => k === p)) PART = p
-      } catch (e) {}
       let shownScript = null
       function showScript(g) {
         document
@@ -1972,9 +1969,6 @@
         (b) =>
           (b.onclick = () => {
             PART = b.dataset.p
-            try {
-              localStorage.setItem("ph-part", PART)
-            } catch (e) {}
             showScript(split(LANG)[1])
           }),
       )
@@ -2178,7 +2172,10 @@
         $("storySub").textContent = sub
         $("storySub").hidden = !sub
       }
+      let lastKind = null
       function setLang(l) {
+        if (split(l)[0] === "script" && lastKind !== "script") PART = "long"
+        lastKind = split(l)[0]
         LANG = l
         try {
           localStorage.setItem("ph-lang", l)

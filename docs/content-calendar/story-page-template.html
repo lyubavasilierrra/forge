@@ -153,8 +153,15 @@
         color: var(--fg);
         border-color: var(--line);
       }
+      /* The tab row sticks to the top of the screen while the page scrolls (Lyuba, Nov 26). */
       .tabs {
-        grid-column: 1 / -1;
+        position: sticky;
+        top: 0;
+        z-index: 5;
+        max-width: 1280px;
+        margin: 0 auto 16px;
+        padding-top: 6px;
+        background: var(--bg);
         display: flex;
         gap: 16px;
         align-items: center;
@@ -1167,38 +1174,38 @@
           hidden
         ></div>
       </div>
-      <nav class="tabs" aria-label="Steps">
-        <button
-          class="ovb"
-          data-c="path"
-          type="button"
-          title="Path"
-          aria-label="Path"
-        >
-          <svg
-            viewBox="0 0 20 20"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.6"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <circle cx="5" cy="4.5" r="1.8" />
-            <circle cx="5" cy="15.5" r="1.8" />
-            <path d="M5 6.3v7.4M9.5 4.5h7M9.5 10h7M9.5 15.5h7" />
-          </svg>
-        </button>
-        <div class="kinds" role="group" aria-label="Step">
-          <button data-c="script" type="button">Script</button>
-          <button data-c="cover" type="button">Covers</button>
-          <button data-c="long" type="button">Video</button>
-          <button data-c="shorts" type="button">Shorts</button>
-          <button data-c="post" type="button">Post</button>
-          <button data-c="pub" type="button">Publish</button>
-        </div>
-      </nav>
     </div>
+    <nav class="tabs" aria-label="Steps">
+      <button
+        class="ovb"
+        data-c="path"
+        type="button"
+        title="Path"
+        aria-label="Path"
+      >
+        <svg
+          viewBox="0 0 20 20"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <circle cx="5" cy="4.5" r="1.8" />
+          <circle cx="5" cy="15.5" r="1.8" />
+          <path d="M5 6.3v7.4M9.5 4.5h7M9.5 10h7M9.5 15.5h7" />
+        </svg>
+      </button>
+      <div class="kinds" role="group" aria-label="Step">
+        <button data-c="script" type="button">Script</button>
+        <button data-c="cover" type="button">Covers</button>
+        <button data-c="long" type="button">Video</button>
+        <button data-c="shorts" type="button">Shorts</button>
+        <button data-c="post" type="button">Post</button>
+        <button data-c="pub" type="button">Publish</button>
+      </div>
+    </nav>
     <div class="wrap">
       <section class="stage" aria-label="Video">
         <div

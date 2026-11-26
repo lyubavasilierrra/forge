@@ -179,6 +179,11 @@ Short's key (`refl`, `hist`, `insight`...), and the long form is the bare langua
 `publish` rows when there are any (uploaded, scheduled and live count as done), so `pub-<lang>`
 is only needed before the first row exists.
 
+Until `script-<lang>` is done (`done >= total`, set it when Lyuba approves the script), the page
+is in its start state (Lyuba, Nov 26): Path shows only the Script card with empty dashed
+containers under it, and every tab except Path and Script is disabled. A page whose later steps
+already have progress or publish rows is never locked.
+
 ```json
 { "step": "long", "lang": "en", "done": 3, "total": 3, "line": "5:46" }
 ```

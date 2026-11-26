@@ -328,6 +328,13 @@
         background: transparent;
         color: var(--fg);
       }
+      /* Until the script is approved only Path and Script open (Lyuba, Nov 26). */
+      .tabs .kinds button:disabled,
+      .tabs .kinds button:disabled:hover {
+        color: var(--muted);
+        opacity: 0.35;
+        cursor: default;
+      }
       .tabs .kinds button[aria-pressed="true"] {
         background: transparent;
         color: var(--fg);
@@ -526,6 +533,31 @@
         }
         .step.wait {
           border-color: color-mix(in srgb, var(--tint) 45%, transparent);
+        }
+        /* Steps after an unapproved script: empty containers, only a hint that more comes */
+        .step.ghost {
+          display: grid;
+          grid-template-columns: minmax(0, 1fr);
+          justify-items: start;
+          align-content: start;
+          min-height: 76px;
+          box-sizing: border-box;
+          background: transparent;
+          border-style: dashed;
+          padding: 22px 16px 0 74px;
+        }
+        .step.ghost i {
+          display: block;
+          height: 8px;
+          width: 38%;
+          border-radius: 4px;
+          background: var(--line);
+          opacity: 0.7;
+        }
+        .step.ghost i + i {
+          width: 62%;
+          margin-top: 12px;
+          opacity: 0.45;
         }
         .name .ok {
           color: var(--ok);
@@ -1454,6 +1486,20 @@
           p = c === "post" ? postOf(g) : null
         return String((a && a.ver) || (p && p.ver) || "v1")
       }
+      // Before the script is approved (Lyuba, Nov 26): Path shows only the Script card with empty
+      // containers under it, and every tab except Path and Script is disabled. Stories whose later
+      // steps already have progress (older pages) are never locked.
+      const early = (g) => {
+        if (DATA !== "ready") return false
+        const s = STEPDOCS["script-" + g]
+        if (s && +s.total > 0 && +s.done >= +s.total) return false
+        return !(
+          ["cover", "long", "shorts", "post", "pub"].some(
+            (id) => +(STEPDOCS[id + "-" + g] || {}).done > 0,
+          ) || pubRows(g).length
+        )
+      }
+      const OPEN_EARLY = ["path", "script"]
       const waitTabs = (g) =>
         WAITS.filter((w) => w.lang === g && typeof w.tab === "string").map(
           (w) => w.tab,
@@ -1726,8 +1772,19 @@
         const draw = (g, open) => {
           const flow = document.getElementById("path")
           flow.textContent = ""
+          const locked = early(g)
           states(g).forEach(({ S, pct, line, state }, i) => {
             const li = document.createElement("li")
+            if (locked && i > 0) {
+              li.className = "step ghost"
+              li.setAttribute("aria-hidden", "true")
+              li.append(
+                document.createElement("i"),
+                document.createElement("i"),
+              )
+              flow.appendChild(li)
+              return
+            }
             li.className = "step " + state
             li.style.setProperty("--tint", S.tint)
             const b = document.createElement("div")
@@ -2174,6 +2231,8 @@
       }
       let lastKind = null
       function setLang(l) {
+        if (early(split(l)[1]) && !OPEN_EARLY.includes(split(l)[0]))
+          l = join("path", split(l)[1])
         if (split(l)[0] === "script" && lastKind !== "script") PART = "long"
         lastKind = split(l)[0]
         LANG = l
@@ -2187,8 +2246,10 @@
         const short = isShort(c),
           att = waitTabs(g)
         // No dots on the top tab row (Lyuba, Nov 26): waits show on Path and inside switchers.
+        const locked = early(g)
         document.querySelectorAll(".tabs [data-c]").forEach((b) => {
           const k = b.dataset.c
+          b.disabled = locked && !OPEN_EARLY.includes(k)
           b.setAttribute("aria-pressed", k === c || (k === "shorts" && short))
         })
         // On a narrow screen keep the open step visible in the sideways-scrolling tab row.

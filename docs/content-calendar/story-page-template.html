@@ -1034,9 +1034,9 @@
         border-left: 2px solid var(--green);
         padding-left: 12px;
       }
-      .stage.isPost .player,
-      .stage.isPost .bar,
-      .stage.isPost .ctl {
+      .stage.isPost > .player,
+      .stage.isPost > .bar,
+      .stage.isPost > .ctl {
         display: none;
       }
       .isPostSide #at {
@@ -1577,15 +1577,31 @@
         return (g, open) => {
           const flow = document.getElementById("path")
           flow.textContent = ""
-          const att = waitTabs(g)
+          const ws = WAITS.filter(
+            (w) => w.lang === g && typeof w.tab === "string",
+          )
           const p = STEPS.map((S) => progress(S, g))
           STEPS.forEach((S, i) => {
             const [d, t, line] = p[i]
             const pct = t ? Math.round((100 * d) / t) : 0
-            const waits =
+            // waits docs for this step; the line then says what waits, e.g. "Your review: 2 · History"
+            const mine = ws.filter((w) =>
               S.id === "shorts"
-                ? att.some((x) => isShort(x) && x !== "path")
-                : att.includes(S.tab)
+                ? isShort(w.tab) && w.tab !== "path"
+                : w.tab === S.tab,
+            )
+            const waits = mine.length > 0
+            const waitLine = waits
+              ? "Your review: " +
+                mine
+                  .map(
+                    (w) =>
+                      (typeof w.what === "string" && w.what) ||
+                      (S.id === "shorts" ? shortLabel(w.tab) : "") ||
+                      S.name,
+                  )
+                  .join(", ")
+              : ""
             const prevDone =
               i > 0 && p[i - 1][1] > 0 && p[i - 1][0] === p[i - 1][1]
             const state = waits
@@ -1613,9 +1629,6 @@
             const n = document.createElement("div")
             n.className = "name"
             n.textContent = S.name
-            const c = document.createElement("b")
-            c.textContent = t ? d + "/" + t : ""
-            n.appendChild(c)
             const bar = document.createElement("div")
             bar.className = "bar"
             bar.setAttribute("role", "progressbar")
@@ -1654,7 +1667,7 @@
             prog.append(bar, m)
             const sl = document.createElement("div")
             sl.className = "line"
-            sl.textContent = state === "wait" && !line ? "Waits for you" : line
+            sl.textContent = waits ? waitLine : line
             mid.append(n, sl, prog)
             li.append(b, mid, a)
             flow.appendChild(li)
@@ -2041,15 +2054,10 @@
           .forEach((b) => b.setAttribute("aria-pressed", b.dataset.l === g))
         const short = isShort(c),
           att = waitTabs(g)
+        // No dots on the top tab row (Lyuba, Nov 26): waits show on Path and inside switchers.
         document.querySelectorAll(".tabs [data-c]").forEach((b) => {
           const k = b.dataset.c
           b.setAttribute("aria-pressed", k === c || (k === "shorts" && short))
-          b.classList.toggle(
-            "att",
-            k === "shorts"
-              ? att.some((x) => isShort(x) && x !== "path")
-              : att.includes(k),
-          )
         })
         $("shortSeg").hidden = !short || !shorts().length
         document.querySelectorAll("[data-s]").forEach((b) => {

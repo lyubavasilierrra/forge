@@ -180,11 +180,15 @@ is only needed before the first row exists.
 { "step": "long", "lang": "en", "done": 3, "total": 3, "line": "5:46" }
 ```
 
-**`waits`**: one doc per tab that waits for Lyuba, id `<tab>-<lang>`; it puts the orange dot on
-that tab and turns its Path step orange. Delete it as soon as she has answered.
+**`waits`**: one doc per piece that waits for Lyuba, id `<tab>-<lang>`; `tab` is `script`,
+`cover`, `long`, `post`, `pub` or a Short's key (`refl`, `hist`). There are no dots on the top
+tab row (Lyuba, Nov 26). Instead the Path step turns to its wait state (flame dot, orange
+button) with the line "Your review: <what>", and inside the Shorts switcher the waiting Short
+gets the orange dot. `what` defaults to the Short's switcher label ("2 · History") or the step
+name. Delete the doc as soon as she has answered.
 
 ```json
-{ "tab": "hist", "lang": "en", "what": "History Short v1" }
+{ "tab": "hist", "lang": "en", "what": "2 · History" }
 ```
 
 **`script`**: the exact text Lyuba reviews, id `<lang>-<part>`; `part` is `long`, `1`, `2`
@@ -229,7 +233,7 @@ Recipe (ArtifactData, one batch per update):
 ```text
 ArtifactData action "batch", url <page url>, writes [
   {op: "update", collection: "steps",   doc_id: "long-en", data: {step: "long", lang: "en", done: 3, total: 3, line: "5:46"}, if_version: <v>},
-  {op: "set",    collection: "waits",   doc_id: "hist-en", data: {tab: "hist", lang: "en", what: "History Short v1"}},
+  {op: "set",    collection: "waits",   doc_id: "hist-en", data: {tab: "hist", lang: "en", what: "2 · History"}},
   {op: "update", collection: "publish", doc_id: "en-long-youtube", data: {status: "live", url: "https://youtu.be/..."}, if_version: <v>}
 ]
 ArtifactData action "delete", collection "waits", doc_id "hist-en", if_version <v>   // she answered

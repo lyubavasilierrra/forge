@@ -32,6 +32,11 @@ Talk to Lyuba in Russian, plainly, without jargon. Files, commits and docs stay 
    YouTube description mentions "the JESUS film" in its first two lines. Check the chapter
    against the film itself. Stories follow Luke in order: open by tying back to the previous
    episode where it fits.
+   JESUS-film episodes take their devotional text from the Jesus Film materials on Lyuba's
+   Google Drive (Lyuba, Nov 26): that scene's JF Sermon Project sermon (or the Advent sermon
+   series) and, where one fits, a YouVersion plan; see memory jfp-drive-materials. Before you
+   write, confirm the passage is actually shown in that JESUS chapter; if it is not (Lost Sheep,
+   Nov 26: ch. 29 is Levi's meal, the parable is not in the film), tell Lyuba and offer LUMO.
 3. Follow the recipe in /Users/mac/Forge/.claude/worktrees/devo-lab/docs/handoffs/devotional-new-story-kickoff.md exactly, and work in that worktree. It covers the film source, the storyteller writer, the checks, the RU script and the folder layout. Also follow the memory notes in /Users/mac/.claude/projects/-Users-mac-Forge/memory/ (MEMORY.md is the index), especially:
    - the storyteller path, opening rules, one insight explained, no source names aloud, no dashes, no worn moves;
    - the closing verse from elsewhere (pick one verified BSB verse yourself, no options since 2026-10-30);

@@ -1093,6 +1093,14 @@
         font-size: 17px;
         line-height: 1.45;
       }
+      .pimg {
+        display: block;
+        width: 100%;
+        max-height: 62vh;
+        object-fit: contain;
+        border-radius: 10px;
+        background: #000;
+      }
       .popts {
         list-style: none;
         margin: 0;
@@ -1337,6 +1345,7 @@
             <div><b id="pChan"></b><small id="pWhen"></small></div>
           </div>
           <p class="pq" id="pQ"></p>
+          <img class="pimg" id="pImg" alt="" hidden />
           <ul class="popts" id="pOpts"></ul>
           <p class="pex" id="pEx"></p>
         </article>
@@ -1512,7 +1521,8 @@
       }
       const postOf = (g) => {
         const p = STORY && STORY.post && STORY.post[g]
-        return p && typeof p === "object" && p.q ? p : null
+        // A post is a quiz (q + opts) or an image post (img + q as its caption).
+        return p && typeof p === "object" && (p.q || okSrc(p.img)) ? p : null
       }
       const coversOf = (g) => {
         const a = asset("cover-" + g)
@@ -2205,6 +2215,11 @@
         set("pWhen", P.when || "")
         set("pQ", P.q || "")
         set("pEx", P.ex || "")
+        const pi = $("pImg")
+        pi.hidden = !okSrc(P.img)
+        if (okSrc(P.img)) pi.src = P.img
+        else pi.removeAttribute("src")
+        $("pEx").hidden = !P.ex
         const ul = document.getElementById("pOpts")
         ul.textContent = ""
         const ok = Number.isInteger(P.answer) ? P.answer : 0

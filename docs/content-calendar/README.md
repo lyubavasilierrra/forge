@@ -189,6 +189,8 @@ already have a steps doc or publish rows is never locked, so the script step can
 { "step": "long", "lang": "en", "done": 3, "total": 3, "line": "5:46" }
 ```
 
+**Post tab** (`story/main.post.<lang>`): a quiz is `{chan, when, q, opts, answer, ex}`; an image post (verse, promise) is `{chan, when, img, q}` with `img` a published file (e.g. `post-ru-v1.jpg`) and `q` the caption (Lost Sheep, Nov 26).
+
 **Switcher labels**: a script doc may carry `label` ("Verse", "Quiz", "Promise"); the post part shows it in the Script switcher instead of the default "Post" (Lyuba, Nov 26).
 
 **Script text markup** (Lyuba, Nov 26): in `script/<lang>-<part>.text`, plain lines are the text she

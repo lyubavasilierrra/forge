@@ -63,8 +63,18 @@ Do not make a Claude Doc for the script.
 language is planned for this story, publish one more page per language, titled
 "<Story> · <language>" (e.g. "The Place of Honor · 中文"): only that language, no language
 switch, never the EN or RU script; translated script, video, covers and post. Lyuba shares it
-herself from the page's Share menu (Claude cannot). Curators comment the same way; apply their
-notes in this session. 8. Shorts (Lyuba, 2026-10-22): at most 4 Shorts per story, 3 is fine. Intro and film-verse are always made; insight, verse and reflection only when this story has a strong one. From 2026-10-30 the review doc is split by language (Intro, Русский, English, Review): each language tab = long-form script, then the 3-4 Shorts (exact spoken/on-screen words per Short, then a visual line, dividers between them), then Captions. No verse options: pick the verse yourself. See docs/handoffs/devotional-new-story-kickoff.md step 8. Once she approves, make only what she approves, and tell the Calendar session (local_44bbf027-2d85-47da-a007-99399f6735f4 (Calendar)) which planned Short rows to drop. Details: docs/devotional-shorts-playbook.md, section 0.
+herself from the page's Share menu (Claude cannot), with a role that lets curators interact
+(not view-only), or their note boxes will not save. Curators cannot use "Send to Claude", so
+nothing wakes the session for them: when asked, read the comments and `notes` on their page
+(8c) and apply their notes in this session.
+8c. Reading Lyuba's notes (Nov 26): notes saved in the page's own boxes (Video, Covers, Shorts,
+Post) wake no session; they wait in the page's `notes` collection. Artifact comments reach you on
+their own only when she uses "Send to Claude" on the thread. So whenever she says she left notes,
+read both: ArtifactData `list` of `notes` on the story page and ArtifactComments `read`. Fix each
+one, then write `reply` (what changed) and `status: "fixed"` on each note doc, and reply on each
+comment thread.
+
+8. Shorts (Lyuba, 2026-10-22): at most 4 Shorts per story, 3 is fine. Intro and film-verse are always made; insight, verse and reflection only when this story has a strong one. From 2026-10-30 the review doc is split by language (Intro, Русский, English, Review): each language tab = long-form script, then the 3-4 Shorts (exact spoken/on-screen words per Short, then a visual line, dividers between them), then Captions. No verse options: pick the verse yourself. See docs/handoffs/devotional-new-story-kickoff.md step 8. Once she approves, make only what she approves, and tell the Calendar session (local_44bbf027-2d85-47da-a007-99399f6735f4 (Calendar)) which planned Short rows to drop. Details: docs/devotional-shorts-playbook.md, section 0.
 
 9. Reflection OR verse Short, never both (Lyuba, 2026-10-22): they alternate story to story. Look up this story's turn in docs/content-calendar/README.md, "Reflection / verse rotation", and offer only that one in the Shorts table.
 

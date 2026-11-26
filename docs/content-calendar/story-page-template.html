@@ -1155,6 +1155,33 @@
         overflow-wrap: anywhere;
         color: var(--fg);
       }
+      .stext {
+        display: grid;
+        gap: 0;
+      }
+      .stext .rv {
+        margin: 0 0 14px;
+        white-space: pre-wrap;
+      }
+      .stext .tech {
+        margin: 0 0 6px;
+        white-space: pre-wrap;
+        font: 400 12.5px/1.5 var(--sans);
+        color: var(--muted);
+        opacity: 0.6;
+      }
+      .stext .sh1 {
+        margin: 0 0 4px;
+        font: 400 28px/1.2 var(--serif);
+        color: var(--fg);
+      }
+      .stext .sh2 {
+        margin: 22px 0 8px;
+        font: 600 13px/1.2 var(--sans);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--soft);
+      }
       .calm,
       .stext.calm {
         font-family: var(--sans);
@@ -2026,7 +2053,43 @@
         shownScript = key
         body.classList.toggle("calm", !has)
         body.lang = has ? g : "en"
-        body.textContent = has ? d.text : calm("Not written yet.")
+        body.textContent = ""
+        if (!has) body.textContent = calm("Not written yet.")
+        else body.append(...scriptBlocks(d.text))
+      }
+      // Script markup (Lyuba, Nov 26): plain lines are the text she reviews (large, light serif);
+      // "# " = the story heading, "## " = a section, "> " = a technical note for the pipeline
+      // (voice, timing, visuals), shown small and faded so the eye skips it. Text without
+      // markup shows as before.
+      function scriptBlocks(text) {
+        const out = []
+        let cur = null
+        const push = (cls, line) => {
+          if (!cur || cur.className !== cls) {
+            cur = document.createElement(
+              cls === "rv" || cls === "tech" ? "p" : "div",
+            )
+            cur.className = cls
+            out.push(cur)
+            cur.textContent = line
+          } else cur.textContent += "\n" + line
+        }
+        text
+          .replace(/\s+$/, "")
+          .split("\n")
+          .forEach((line) => {
+            const m = /^(#{1,2}) (.*)$/.exec(line)
+            if (m) {
+              const h = document.createElement(m[1] === "#" ? "h3" : "h4")
+              h.className = m[1] === "#" ? "sh1" : "sh2"
+              h.textContent = m[2]
+              out.push(h)
+              cur = null
+            } else if (/^> ?/.test(line)) push("tech", line.replace(/^> ?/, ""))
+            else if (!line.trim()) cur = null
+            else push("rv", line)
+          })
+        return out
       }
       document.querySelectorAll("[data-p]").forEach(
         (b) =>

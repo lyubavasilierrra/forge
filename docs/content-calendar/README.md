@@ -189,6 +189,12 @@ already have a steps doc or publish rows is never locked, so the script step can
 { "step": "long", "lang": "en", "done": 3, "total": 3, "line": "5:46" }
 ```
 
+**Script text markup** (Lyuba, Nov 26): in `script/<lang>-<part>.text`, plain lines are the text she
+reviews (large light serif); `# ` is the story heading, `## ` a section ("Reflection", "Closing verse"),
+and `> ` a technical note for the pipeline (voice, tags, cards, pauses, visuals), shown small and faded so
+her eye skips it. Leave out what is not for review: no series name, no title line (titles live in the
+Titles part), no pause marks inside the text, no markup syntax like `|*word*|` (describe styling in a `>` note).
+
 **`waits`**: one doc per piece that waits for Lyuba, id `<tab>-<lang>`; `tab` is `script`,
 `cover`, `long`, `post`, `pub` or a Short's key (`refl`, `hist`). There are no dots on the top
 tab row (Lyuba, Nov 26). Instead its Path card takes the wait state in the step's own

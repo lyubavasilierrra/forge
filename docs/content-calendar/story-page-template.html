@@ -1730,7 +1730,7 @@
                 i,
                 S.tint,
                 state === "todo",
-                S.id === "pub" && state === "work",
+                state === "work" || state === "wait", // bots on steps in progress look around and blink
               ),
             )
             const mid = document.createElement("div")

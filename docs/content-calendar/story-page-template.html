@@ -1096,7 +1096,7 @@
         visibility: hidden;
       }
       #partSeg {
-        justify-self: start;
+        justify-self: center;
       }
       .script {
         display: grid;
@@ -1212,8 +1212,8 @@
         <section class="sheet" id="script" hidden>
           <div class="seg" id="partSeg" role="group" aria-label="Script part">
             <button data-p="long" type="button">Long</button
-            ><button data-p="1" type="button">1</button
-            ><button data-p="2" type="button">2</button
+            ><button data-p="1" type="button">Short 1</button
+            ><button data-p="2" type="button">Short 2</button
             ><button data-p="quiz" type="button">Quiz</button
             ><button data-p="titles" type="button">Titles</button>
           </div>
@@ -1912,11 +1912,11 @@
         li.textContent = text
         return li
       }
-      // Script tab: Long / 1 / 2 / Quiz / Titles. Lyuba highlights the text and comments on it.
+      // Script tab: Long / Short 1 / Short 2 / Quiz / Titles. Lyuba highlights the text and comments on it.
       const PARTS = [
         ["long", "Long"],
-        ["1", "1"],
-        ["2", "2"],
+        ["1", "Short 1"],
+        ["2", "Short 2"],
         ["quiz", "Quiz"],
         ["titles", "Titles"],
       ]

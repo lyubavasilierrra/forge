@@ -54,7 +54,7 @@ Talk to Lyuba in Russian, plainly, without jargon. Files, commits and docs stay 
 7. Open decisions on the content page: whenever you wait on Lyuba (script approval, verse choice, topic choice, cover approval, opening/closing lines), write it into the calendar's `stories` collection, doc id = slug of the story (e.g. "lost-sheep"): { todo: [{ piece, lang, stage, text, options, link }] } — recipe in docs/content-calendar/README.md, section "Content view and open decisions". Remove items once she has decided. This is the only collection a story session writes.
 
 8a. Script review on the story page (Lyuba, Nov 26; replaces the Claude Doc review below from
-the next story on): put the scripts in the page's Script tab as `script` docs (rule 1), switcher Long / 1 / 2 / Quiz /
+the next story on): put the scripts in the page's Script tab as `script` docs (rule 1), switcher Long / Short 1 / Short 2 / Quiz /
 Titles, EN and RU behind the language switch, the exact spoken and on-screen words. Lyuba
 reviews by highlighting text and leaving artifact comments; read them with ArtifactComments
 (action "read" on the page url), apply them, and reply on each thread with what changed.

@@ -10,6 +10,17 @@ Talk to Lyuba in Russian, plainly, without jargon. Files, commits and docs stay 
    "self", where <d/m> is the long-form date without the year, e.g. "✍️ Boy with a Spirit 4/11"
    (Lyuba, Oct 31). The stage emoji then moves ✍️ → 🎬 → 📱 → ✅; keep the date when you rename. Write `session: <this session's id>` into the
    story's doc in the calendar's `stories` collection (id = slug of the story).
+   Then make the story page (Lyuba, Nov 26): publish a copy of
+   docs/content-calendar/story-page-template.html (the Place of Honor page, hand-filled; swap in
+   this story's title, data and assets, title "<Story>", one page with the EN/RU switch) as a new
+   artifact, write its link as `page: "<url>"` into the same `stories` doc, and open it in the
+   right-hand panel with Artifact `open` (the story page, not the calendar). Keep it current as
+   you go: Path progress, an orange dot only on a tab that waits for Lyuba, Script text, covers,
+   videos, Shorts, post, and Publish rows (green check once uploaded or scheduled, clock while
+   scheduled, link button once live). Live links come from the README "LIVE LINKS" block that
+   Publishing writes: `LIVE <YYYY-MM-DD HH:MM Kyiv> | <EN/RU> | <piece> | <platform> | <url or "no link">`.
+   Previews and notes for approval go on this page (Video and Shorts tabs have timed notes);
+   rule 10's calendar upload is no longer needed once the story page exists.
 2. A JESUS-film (1979) story is built the way the JESUS version of Bartimaeus was built (folder
    ~/Desktop/Social Media/Bartimaeus, README line 1: JESUS film ch. 32): the LUMO steps (segment,
    source key, scroll captions, x1.05) do not apply, the credits name the JESUS film, and the
@@ -37,7 +48,18 @@ Talk to Lyuba in Russian, plainly, without jargon. Files, commits and docs stay 
 
 7. Open decisions on the content page: whenever you wait on Lyuba (script approval, verse choice, topic choice, cover approval, opening/closing lines), write it into the calendar's `stories` collection, doc id = slug of the story (e.g. "lost-sheep"): { todo: [{ piece, lang, stage, text, options, link }] } — recipe in docs/content-calendar/README.md, section "Content view and open decisions". Remove items once she has decided. This is the only collection a story session writes.
 
-8. Shorts (Lyuba, 2026-10-22): at most 4 Shorts per story, 3 is fine. Intro and film-verse are always made; insight, verse and reflection only when this story has a strong one. From 2026-10-30 the review doc is split by language (Intro, Русский, English, Review): each language tab = long-form script, then the 3-4 Shorts (exact spoken/on-screen words per Short, then a visual line, dividers between them), then Captions. No verse options: pick the verse yourself. See docs/handoffs/devotional-new-story-kickoff.md step 8. Once she approves, make only what she approves, and tell the Calendar session (local_44bbf027-2d85-47da-a007-99399f6735f4 (Calendar)) which planned Short rows to drop. Details: docs/devotional-shorts-playbook.md, section 0.
+8a. Script review on the story page (Lyuba, Nov 26; replaces the Claude Doc review below from
+the next story on): put the scripts in the page's Script tab, switcher Long / 1 / 2 / Quiz /
+Titles, EN and RU behind the language switch, the exact spoken and on-screen words. Lyuba
+reviews by highlighting text and leaving artifact comments; read them with ArtifactComments
+(action "read" on the page url), apply them, and reply on each thread with what changed.
+Do not make a Claude Doc for the script.
+8b. Curator pages (Lyuba, Nov 26): once Lyuba approves the EN script, and only when a curator
+language is planned for this story, publish one more page per language, titled
+"<Story> · <language>" (e.g. "The Place of Honor · 中文"): only that language, no language
+switch, never the EN or RU script; translated script, video, covers and post. Lyuba shares it
+herself from the page's Share menu (Claude cannot). Curators comment the same way; apply their
+notes in this session. 8. Shorts (Lyuba, 2026-10-22): at most 4 Shorts per story, 3 is fine. Intro and film-verse are always made; insight, verse and reflection only when this story has a strong one. From 2026-10-30 the review doc is split by language (Intro, Русский, English, Review): each language tab = long-form script, then the 3-4 Shorts (exact spoken/on-screen words per Short, then a visual line, dividers between them), then Captions. No verse options: pick the verse yourself. See docs/handoffs/devotional-new-story-kickoff.md step 8. Once she approves, make only what she approves, and tell the Calendar session (local_44bbf027-2d85-47da-a007-99399f6735f4 (Calendar)) which planned Short rows to drop. Details: docs/devotional-shorts-playbook.md, section 0.
 
 9. Reflection OR verse Short, never both (Lyuba, 2026-10-22): they alternate story to story. Look up this story's turn in docs/content-calendar/README.md, "Reflection / verse rotation", and offer only that one in the Shorts table.
 

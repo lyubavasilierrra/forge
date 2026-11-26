@@ -93,6 +93,12 @@ post was removed or cancelled.
 
 ## Content view and open decisions (`stories`)
 
+Story page link (Lyuba, Nov 26): each story has its own page (Path, Script, Covers, Video,
+Shorts, Post, Publish tabs; template `story-page-template.html`, first one
+https://claude.ai/artifact/TiXNup1CPefhEqF9viJmvy for The Place of Honor). The story session
+writes its link into the story's doc as `page: "<artifact url>"`; the calendar then shows a
+page icon at the right of that story's row in "All content". The calendar stays the overview.
+
 Owner only (Lyuba, Oct 29): the calendar is shared by link, so the `stories` and `requests`
 collections are readable and writable only by the artifact's owner (db rules `read`/`write:
 "owner"`), and the list icon that opens this view shows only when `user.isOwner()`. Keep the

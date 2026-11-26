@@ -716,8 +716,36 @@
     transition: transform 0.15s ease;
     flex: none;
   }
-  .story.open > .srow .chev {
+  .story.open > .shead > .srow .chev {
     transform: rotate(180deg);
+  }
+  /* Story page (Nov 26): each story has its own page (path, script, covers, video, Shorts, post,
+     publish); stories/<slug>.page holds its link. The calendar stays the overview. */
+  .shead {
+    display: flex;
+    align-items: center;
+  }
+  .shead > .srow {
+    flex: 1;
+    min-width: 0;
+  }
+  .spage {
+    flex: none;
+    width: 36px;
+    height: 36px;
+    margin-right: 10px;
+    display: grid;
+    place-items: center;
+    border-radius: 8px;
+    color: var(--muted);
+  }
+  .spage:hover {
+    background: var(--hover);
+    color: var(--flame);
+  }
+  .spage svg {
+    width: 18px;
+    height: 18px;
   }
   .sbody {
     display: grid;
@@ -2047,6 +2075,7 @@
         total: keys.length,
         done: keys.filter((k) => cells[k].every(isDone)).length,
         todo: (stories[st.slug] || {}).todo || [],
+        page: (stories[st.slug] || {}).page || "",
       })
     }
     list.sort((a, b) => a.first.localeCompare(b.first))
@@ -2394,6 +2423,8 @@
       btn.textContent = "Not sent, try again"
     }
   }
+  const PAGE_ICON =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>'
   const CHEV =
     '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>'
   // Newest first by default; the arrows button flips to oldest first. Stories whose long form is not
@@ -2405,7 +2436,7 @@
     return (
       '<section class="story' +
       (open ? " open" : "") +
-      '"><button type="button" class="srow" data-story="' +
+      '"><div class="shead"><button type="button" class="srow" data-story="' +
       esc(s.slug) +
       '" aria-expanded="' +
       open +
@@ -2431,6 +2462,14 @@
       "</span></span>" +
       CHEV +
       "</button>" +
+      (s.page
+        ? '<a class="spage" href="' +
+          esc(s.page) +
+          '" target="_blank" rel="noopener" title="Story page" aria-label="Open the story page">' +
+          PAGE_ICON +
+          "</a>"
+        : "") +
+      "</div>" +
       (open ? storyTable(s) : "") +
       "</section>"
     )

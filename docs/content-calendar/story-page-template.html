@@ -156,15 +156,15 @@
       .tabs {
         grid-column: 1 / -1;
         display: flex;
-        gap: 8px;
-        align-items: flex-start;
+        gap: 14px;
+        align-items: center;
         border-bottom: 1px solid var(--line);
-        padding-bottom: 12px;
       }
-      /* Overview: icon-only, apart at the left, then a thin separator */
+      /* Path: icon-only, apart at the left, then a thin separator */
       .tabs .ovb {
         width: 38px;
-        height: 34px;
+        height: 32px;
+        margin: 1px 0;
         min-width: 0;
         padding: 0;
         border: 0;
@@ -185,7 +185,7 @@
       }
       .nsep {
         width: 1px;
-        height: 34px;
+        height: 22px;
         background: var(--line);
         flex: none;
       }
@@ -302,74 +302,33 @@
         padding: 0 14px;
         color: var(--fg);
       }
-      /* Stepper: a circle per step with its label under it */
+      /* Plain text tabs; the open one is underlined orange. Progress lives only on Path. */
+      .tabs .kinds {
+        gap: 20px;
+      }
       .tabs .kinds button {
-        flex: 1 0 58px;
-        position: relative;
+        flex: none;
         border: 0;
         border-radius: 0;
-        height: auto;
+        height: 34px;
         min-width: 0;
-        padding: 0 2px 2px;
+        padding: 0;
         background: transparent;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 6px;
-        font: 500 13px/1.2 var(--sans);
+        font: 500 14px/1 var(--sans);
         letter-spacing: 0;
         color: var(--muted);
+        border-bottom: 2px solid transparent;
         white-space: nowrap;
       }
       .tabs .kinds button:hover {
         background: transparent;
         color: var(--fg);
       }
-      .tabs .kinds button:not(:last-child)::after {
-        content: "";
-        position: absolute;
-        top: 9px;
-        left: calc(50% + 13px);
-        right: calc(-50% + 13px);
-        height: 2px;
-        background: var(--line);
-      }
-      .tabs .kinds button.d.dn::after {
-        background: color-mix(in srgb, var(--green) 70%, transparent);
-      }
-      .tabs .kinds .c {
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        border: 1.5px solid #3a2c27;
-        box-sizing: border-box;
-        display: grid;
-        place-items: center;
-        color: transparent;
-      }
-      .tabs .kinds .c svg {
-        width: 11px;
-        height: 11px;
-      }
-      .tabs .kinds .d .c {
-        border-color: color-mix(in srgb, var(--green) 70%, transparent);
-        background: color-mix(in srgb, var(--green) 16%, transparent);
-        color: var(--green);
-      }
-      .tabs .kinds .now .c {
-        border-color: color-mix(in srgb, #f0975a 70%, transparent);
-        background: color-mix(in srgb, #f0975a 18%, transparent);
-      }
       .tabs .kinds button[aria-pressed="true"] {
         background: transparent;
         color: var(--fg);
         border-color: transparent;
-      }
-      .tabs .kinds button[aria-pressed="true"] .lb {
-        text-decoration: underline;
-        text-decoration-color: #f0975a;
-        text-decoration-thickness: 2px;
-        text-underline-offset: 5px;
+        border-bottom-color: #f0975a;
       }
       .ttl {
         display: flex;
@@ -1178,8 +1137,8 @@
           class="ovb"
           data-c="path"
           type="button"
-          title="Overview"
-          aria-label="Overview"
+          title="Path"
+          aria-label="Path"
         >
           <svg
             viewBox="0 0 20 20"
@@ -1197,90 +1156,12 @@
         </button>
         <span class="nsep" aria-hidden="true"></span>
         <div class="kinds" role="group" aria-label="Step">
-          <button data-c="script" type="button">
-            <span class="c"
-              ><svg
-                viewBox="0 0 10 10"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M2.2 5.3l1.9 1.9 3.8-4.4" /></svg></span
-            ><span class="lb">Script</span>
-          </button>
-          <button data-c="cover" type="button">
-            <span class="c"
-              ><svg
-                viewBox="0 0 10 10"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M2.2 5.3l1.9 1.9 3.8-4.4" /></svg></span
-            ><span class="lb">Covers</span>
-          </button>
-          <button data-c="long" type="button">
-            <span class="c"
-              ><svg
-                viewBox="0 0 10 10"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M2.2 5.3l1.9 1.9 3.8-4.4" /></svg></span
-            ><span class="lb">Video</span>
-          </button>
-          <button data-c="shorts" type="button">
-            <span class="c"
-              ><svg
-                viewBox="0 0 10 10"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M2.2 5.3l1.9 1.9 3.8-4.4" /></svg></span
-            ><span class="lb">Shorts</span>
-          </button>
-          <button data-c="post" type="button">
-            <span class="c"
-              ><svg
-                viewBox="0 0 10 10"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M2.2 5.3l1.9 1.9 3.8-4.4" /></svg></span
-            ><span class="lb">Post</span>
-          </button>
-          <button data-c="pub" type="button">
-            <span class="c"
-              ><svg
-                viewBox="0 0 10 10"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M2.2 5.3l1.9 1.9 3.8-4.4" /></svg></span
-            ><span class="lb">Publish</span>
-          </button>
+          <button data-c="script" type="button">Script</button>
+          <button data-c="cover" type="button">Covers</button>
+          <button data-c="long" type="button">Video</button>
+          <button data-c="shorts" type="button">Shorts</button>
+          <button data-c="post" type="button">Post</button>
+          <button data-c="pub" type="button">Publish</button>
         </div>
       </nav>
     </div>
@@ -1755,7 +1636,7 @@
             typeof s.line === "string" && s.line ? s.line : t ? "" : "Not yet",
           ]
         }
-        // One entry per step: state is done | work | todo | wait (the stepper and the Overview share it)
+        // One entry per step: state is done | work | todo | wait
         const states = (g) => {
           const ws = WAITS.filter(
             (w) => w.lang === g && typeof w.tab === "string",
@@ -1865,7 +1746,6 @@
             flow.appendChild(li)
           })
         }
-        draw.states = states
         return draw
       })()
       // Covers: one row per cover, each with its own note box. A note saved there carries cover: "A" | "B" | "C".
@@ -2259,17 +2139,7 @@
           const k = b.dataset.c
           b.setAttribute("aria-pressed", k === c || (k === "shorts" && short))
         })
-        // Stepper: done steps get a green check; the first step not done is "where we stopped" (soft orange ring).
-        const st = renderPath.states(g),
-          now = st.find((x) => x.state !== "done")
-        document.querySelectorAll(".tabs .kinds [data-c]").forEach((b, i) => {
-          const x = st[i] || {},
-            nx = st[i + 1] || {}
-          b.classList.toggle("d", x.state === "done")
-          b.classList.toggle("dn", x.state === "done" && nx.state === "done")
-          b.classList.toggle("now", !!now && now === x)
-        })
-        // On a narrow screen keep the open step visible in the sideways-scrolling stepper.
+        // On a narrow screen keep the open step visible in the sideways-scrolling tab row.
         const kinds = document.querySelector(".tabs .kinds"),
           open = kinds.querySelector('[aria-pressed="true"]')
         if (open && kinds.scrollWidth > kinds.clientWidth) {

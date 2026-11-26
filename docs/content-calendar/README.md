@@ -93,7 +93,7 @@ post was removed or cancelled.
 
 ## Content view and open decisions (`stories`)
 
-Story page link (Lyuba, Nov 26): each story has its own page (Overview, then the steps Script, Covers, Video,
+Story page link (Lyuba, Nov 26): each story has its own page (Path, Script, Covers, Video,
 Shorts, Post, Publish tabs; template `story-page-template.html`, first one
 https://claude.ai/artifact/TiXNup1CPefhEqF9viJmvy for The Place of Honor). The story session
 writes its link into the story's doc as `page: "<artifact url>"`; the calendar then shows a
@@ -173,7 +173,7 @@ Short's key (`refl`, `hist`, `insight`...), and the long form is the bare langua
 }
 ```
 
-**`steps`**: progress for the Overview cards and the stepper in the tab row (a done step gets a green check; the first step not done gets the soft orange ring), id `<step>-<lang>`; `step` is one of `script`, `cover`, `long`,
+**`steps`**: progress for the Path cards (the only place progress shows; the tab row is plain text), id `<step>-<lang>`; `step` is one of `script`, `cover`, `long`,
 `shorts`, `post`, `pub`. A missing doc shows "Not yet". Publish progress comes from the
 `publish` rows when there are any (uploaded, scheduled and live count as done), so `pub-<lang>`
 is only needed before the first row exists.
@@ -184,7 +184,7 @@ is only needed before the first row exists.
 
 **`waits`**: one doc per piece that waits for Lyuba, id `<tab>-<lang>`; `tab` is `script`,
 `cover`, `long`, `post`, `pub` or a Short's key (`refl`, `hist`). There are no dots on the top
-tab row (Lyuba, Nov 26). Instead its Overview card takes the wait state in the step's own
+tab row (Lyuba, Nov 26). Instead its Path card takes the wait state in the step's own
 tint (border, dot and the line "Your review: <what>"; never red), and inside the Shorts switcher
 the waiting Short gets the orange dot. `what` defaults to the Short's switcher label
 ("2 · History") or the step

@@ -1159,6 +1159,14 @@
         display: grid;
         gap: 0;
       }
+      #scriptHead.chip2 {
+        justify-self: start;
+        padding: 5px 10px;
+        border-radius: 6px;
+        background: color-mix(in srgb, #f0975a 16%, transparent);
+        color: #f0975a;
+        letter-spacing: 0.02em;
+      }
       .stext .rv {
         margin: 0 0 14px;
         white-space: pre-wrap;
@@ -2041,7 +2049,18 @@
               : PART === "titles"
                 ? "Titles and descriptions"
                 : "Short " + PART + (sh ? " · " + (sh.label || sh.key) : "")
-        $("scriptHead").textContent = (d && d.title) || head
+        // A Short's heading is its format as a chip ("Film scene"); "Short N" is already in the switcher
+        // (Lyuba, Nov 26). Long, Quiz and Titles keep a plain heading.
+        const isShortPart = PART === "1" || PART === "2"
+        const fmt =
+          (d &&
+            typeof d.title === "string" &&
+            d.title.split("·").pop().trim()) ||
+          (sh && (sh.label || sh.key)) ||
+          ""
+        $("scriptHead").textContent = isShortPart ? fmt : (d && d.title) || head
+        $("scriptHead").classList.toggle("chip2", isShortPart && !!fmt)
+        $("scriptHead").hidden = isShortPart && !fmt
         $("scriptNote").textContent =
           d && typeof d.note === "string" ? d.note : ""
         $("scriptNote").hidden = !$("scriptNote").textContent

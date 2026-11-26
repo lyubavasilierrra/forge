@@ -331,7 +331,25 @@
         display: flex;
         flex-wrap: wrap;
         align-items: center;
-        gap: 8px 14px;
+        gap: 8px 10px;
+      }
+      .calb {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        display: grid;
+        place-items: center;
+        color: var(--muted);
+        flex: none;
+      }
+      .calb:hover {
+        background: var(--hover);
+        color: var(--fg);
+      }
+      .calb svg {
+        width: 20px;
+        height: 20px;
+        display: block;
       }
       .seg {
         display: inline-flex;
@@ -1114,6 +1132,26 @@
       <div>
         <div class="ttl">
           <h1 id="storyTitle"></h1>
+          <a
+            class="calb"
+            id="calb"
+            href="https://claude.ai/artifact/BUdriP79dkGFDPR89MY1dt"
+            target="_blank"
+            rel="noopener"
+            title="Calendar"
+            aria-label="Back to the calendar"
+            ><svg
+              viewBox="0 0 20 20"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <rect x="3" y="4.5" width="14" height="12.5" rx="2" />
+              <path d="M3 8.5h14M7 2.5v3.5M13 2.5v3.5" /></svg
+          ></a>
         </div>
         <p class="sub" id="storySub" hidden></p>
         <span hidden
@@ -2112,6 +2150,11 @@
         $("storyTitle").textContent =
           title || (DATA === "loading" ? "" : "Story")
         if (title) document.title = title
+        // Calendar button: the content calendar by default; story.calendar "" hides it (curator pages)
+        const cal =
+          STORY && typeof STORY.calendar === "string" ? STORY.calendar : null
+        $("calb").hidden = cal === "" || (cal !== null && !okUrl(cal))
+        if (cal && okUrl(cal)) $("calb").href = cal
         // Subtitle: passage plus a short plain description, e.g. "Luke 14:7–11 · Jesus' parable of the wedding guests"
         const sub = [STORY && STORY.passage, STORY && STORY.about]
           .filter((x) => typeof x === "string" && x)

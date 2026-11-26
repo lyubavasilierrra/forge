@@ -154,6 +154,7 @@ Short's key (`refl`, `hist`, `insight`...), and the long form is the bare langua
     }
   },
   "figma": "https://www.figma.com/design/...", // optional, Covers tab button
+  "calendar": "", // optional; the icon after the title links to the content calendar by default, "" hides it (curator pages)
   "post": {
     // Post tab, per language; the page publishes avatar.png as the channel picture
     "en": {

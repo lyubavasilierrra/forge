@@ -1493,14 +1493,15 @@
       }
       // Before the script is approved (Lyuba, Nov 26): Path shows only the Script card with empty
       // containers under it, and every tab except Path and Script is disabled. Stories whose later
-      // steps already have progress (older pages) are never locked.
+      // steps already have a steps doc (work started on them, e.g. the long form after its script is
+      // approved while the Shorts texts still wait) or publish rows are never locked.
       const early = (g) => {
         if (DATA !== "ready") return false
         const s = STEPDOCS["script-" + g]
         if (s && +s.total > 0 && +s.done >= +s.total) return false
         return !(
           ["cover", "long", "shorts", "post", "pub"].some(
-            (id) => +(STEPDOCS[id + "-" + g] || {}).done > 0,
+            (id) => STEPDOCS[id + "-" + g],
           ) || pubRows(g).length
         )
       }

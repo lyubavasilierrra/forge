@@ -182,7 +182,8 @@ is only needed before the first row exists.
 Until `script-<lang>` is done (`done >= total`, set it when Lyuba approves the script), the page
 is in its start state (Lyuba, Nov 26): Path shows only the Script card with empty dashed
 containers under it, and every tab except Path and Script is disabled. A page whose later steps
-already have progress or publish rows is never locked.
+already have a steps doc or publish rows is never locked, so the script step can stay open
+(e.g. 1 of 5 while the Shorts texts wait) once work on the long form has started.
 
 ```json
 { "step": "long", "lang": "en", "done": 3, "total": 3, "line": "5:46" }

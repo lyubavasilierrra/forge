@@ -10,15 +10,20 @@ Talk to Lyuba in Russian, plainly, without jargon. Files, commits and docs stay 
    "self", where <d/m> is the long-form date without the year, e.g. "✍️ Boy with a Spirit 4/11"
    (Lyuba, Oct 31). The stage emoji then moves ✍️ → 🎬 → 📱 → ✅; keep the date when you rename. Write `session: <this session's id>` into the
    story's doc in the calendar's `stories` collection (id = slug of the story).
-   Then make the story page (Lyuba, Nov 26): publish a copy of
-   docs/content-calendar/story-page-template.html (the Place of Honor page, hand-filled; swap in
-   this story's title, data and assets, title "<Story>", one page with the EN/RU switch) as a new
-   artifact, write its link as `page: "<url>"` into the same `stories` doc, and open it in the
-   right-hand panel with Artifact `open` (the story page, not the calendar). Keep it current as
-   you go: Path progress, an orange dot only on a tab that waits for Lyuba, Script text, covers,
-   videos, Shorts, post, and Publish rows (green check once uploaded or scheduled, clock while
-   scheduled, link button once live). Live links come from the README "LIVE LINKS" block that
-   Publishing writes: `LIVE <YYYY-MM-DD HH:MM Kyiv> | <EN/RU> | <piece> | <platform> | <url or "no link">`.
+   Then make the story page (Lyuba, Nov 26): publish docs/content-calendar/story-page-template.html
+   as a new artifact with `<title>` set to "<Story>" and the capabilities listed in
+   docs/content-calendar/README.md "Story page data" (one page with the EN/RU switch), write its
+   link as `page: "<url>"` into the same `stories` doc, and open it in the right-hand panel with
+   Artifact `open` (the story page, not the calendar). Never edit the page's HTML to change its
+   content: the page renders from its own database, and you fill it with `ArtifactData` writes to
+   the collections `story` (title, langs, Shorts, asset paths, post), `steps` (Path progress),
+   `waits` (one doc per tab that waits for Lyuba: the orange dot; delete it once she answers),
+   `script` (the exact text per language and part: long, 1, 2, quiz, titles) and `publish` (one
+   row per piece and platform, status uploaded/scheduled/live). Shapes and a recipe are in that
+   README section. Keep it current as you go; new videos or covers are a republish that only adds
+   files, followed by a `story` write pointing at them. Publish rows go live from the README
+   "LIVE LINKS" block that Publishing writes:
+   `LIVE <YYYY-MM-DD HH:MM Kyiv> | <EN/RU> | <piece> | <platform> | <url or "no link">`.
    Previews and notes for approval go on this page (Video and Shorts tabs have timed notes);
    rule 10's calendar upload is no longer needed once the story page exists.
 2. A JESUS-film (1979) story is built the way the JESUS version of Bartimaeus was built (folder
@@ -49,7 +54,7 @@ Talk to Lyuba in Russian, plainly, without jargon. Files, commits and docs stay 
 7. Open decisions on the content page: whenever you wait on Lyuba (script approval, verse choice, topic choice, cover approval, opening/closing lines), write it into the calendar's `stories` collection, doc id = slug of the story (e.g. "lost-sheep"): { todo: [{ piece, lang, stage, text, options, link }] } — recipe in docs/content-calendar/README.md, section "Content view and open decisions". Remove items once she has decided. This is the only collection a story session writes.
 
 8a. Script review on the story page (Lyuba, Nov 26; replaces the Claude Doc review below from
-the next story on): put the scripts in the page's Script tab, switcher Long / 1 / 2 / Quiz /
+the next story on): put the scripts in the page's Script tab as `script` docs (rule 1), switcher Long / 1 / 2 / Quiz /
 Titles, EN and RU behind the language switch, the exact spoken and on-screen words. Lyuba
 reviews by highlighting text and leaving artifact comments; read them with ArtifactComments
 (action "read" on the page url), apply them, and reply on each thread with what changed.

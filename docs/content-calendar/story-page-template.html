@@ -35,7 +35,7 @@
     </style>
   </head>
   <body>
-    <title>The Place of Honor</title>
+    <title>Story page</title>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,300;7..72,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap"
@@ -195,6 +195,9 @@
         margin: 8px auto 0;
         display: grid;
         gap: 16px;
+      }
+      #script {
+        max-width: 680px;
       }
       .sheet[hidden] {
         display: none;
@@ -1039,12 +1042,43 @@
       .isPostSide #at {
         visibility: hidden;
       }
+      #partSeg {
+        justify-self: start;
+      }
+      .script {
+        display: grid;
+        gap: 8px;
+      }
+      .stext {
+        font-family: var(--serif);
+        font-weight: 300;
+        font-size: 17px;
+        line-height: 1.6;
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+        color: var(--fg);
+      }
+      .calm,
+      .stext.calm {
+        font-family: var(--sans);
+        font-size: 14px;
+        color: var(--muted);
+        margin: 0;
+      }
+      #empty .calm {
+        padding: 24px 0;
+        text-align: center;
+      }
+      .rows li.calm {
+        display: block;
+        padding: 14px 16px;
+      }
     </style>
 
     <div class="head">
       <div>
         <div class="ttl">
-          <h1>The Place of Honor</h1>
+          <h1 id="storyTitle"></h1>
         </div>
         <p class="sub" hidden>
           <span id="kindLabel">long form</span> · cut
@@ -1052,10 +1086,13 @@
         </p>
       </div>
       <div class="tools">
-        <div class="seg" role="group" aria-label="Language">
-          <button data-l="en" type="button">EN</button
-          ><button data-l="ru" type="button">RU</button>
-        </div>
+        <div
+          class="seg"
+          id="langSeg"
+          role="group"
+          aria-label="Language"
+          hidden
+        ></div>
       </div>
       <nav class="tabs" aria-label="What to review">
         <div class="kinds" role="group" aria-label="Step">
@@ -1063,7 +1100,7 @@
           <button data-c="script" type="button">Script</button>
           <button data-c="cover" type="button">Covers</button>
           <button data-c="long" type="button">Video</button>
-          <button data-c="refl" type="button">Shorts</button>
+          <button data-c="shorts" type="button">Shorts</button>
           <button data-c="post" type="button">Post</button>
           <button data-c="pub" type="button">Publish</button>
         </div>
@@ -1071,28 +1108,30 @@
     </div>
     <div class="wrap">
       <section class="stage" aria-label="Video">
+        <div
+          class="seg"
+          id="shortSeg"
+          role="group"
+          aria-label="Short"
+          hidden
+        ></div>
         <ol class="flow" id="path" hidden></ol>
         <section class="sheet" id="script" hidden>
-          <ul class="rows" id="scriptRows"></ul>
-          <a
-            class="ghost wide"
-            href="https://claude.ai/artifact/Vu3ov89zaUU5wqeemBFjQx"
-            target="_blank"
-            rel="noopener"
-          >
-            <svg
-              viewBox="0 0 20 20"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.6"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M5.5 2.5h6l3.5 3.5v11.5h-9.5z" />
-              <path d="M11.5 2.5v3.5h3.5M7.5 10h5M7.5 13h5" /></svg
-            >Open the script</a
-          >
+          <div class="seg" id="partSeg" role="group" aria-label="Script part">
+            <button data-p="long" type="button">Long</button
+            ><button data-p="1" type="button">1</button
+            ><button data-p="2" type="button">2</button
+            ><button data-p="quiz" type="button">Quiz</button
+            ><button data-p="titles" type="button">Titles</button>
+          </div>
+          <article class="script">
+            <h2 id="scriptHead"></h2>
+            <p class="state" id="scriptNote" hidden></p>
+            <div class="stext" id="scriptBody"></div>
+          </article>
+        </section>
+        <section class="sheet" id="empty" hidden>
+          <p class="calm" id="emptyText"></p>
         </section>
         <section class="sheet" id="pub" hidden>
           <ul class="rows" id="pubRows"></ul>
@@ -1101,7 +1140,9 @@
           <div id="crows"></div>
           <a
             class="ghost"
-            href="https://www.figma.com/design/sH8roRBVKAyzumI4lKm9T2/?node-id=854-2"
+            id="figma"
+            hidden
+            href="#"
             target="_blank"
             rel="noopener"
           >
@@ -1127,10 +1168,6 @@
           <ul class="popts" id="pOpts"></ul>
           <p class="pex" id="pEx"></p>
         </article>
-        <div class="seg" id="shortSeg" role="group" aria-label="Short" hidden>
-          <button data-s="refl" type="button">1 · Reflection</button
-          ><button data-s="hist" type="button">2 · History</button>
-        </div>
         <div class="player">
           <video id="v" playsinline preload="auto"></video>
           <button
@@ -1237,58 +1274,132 @@
     </div>
 
     <script>
-      const VERS = {
-        en: "v2",
-        ru: "v2",
-        "hist-ru": "v2",
-        "refl-ru": "v1",
-        "refl-en": "v1",
-        "hist-en": "v1",
-        "post-en": "v1",
-        "post-ru": "v1",
-        "cover-en": "v4",
-        "cover-ru": "v4",
-        "path-en": "v1",
-        "path-ru": "v1",
+      // Live data. Everything story-specific comes from this page's own db, written by the story
+      // session with ArtifactData (docs/content-calendar/README.md "Story page data"):
+      //   story/main      title, langs, shorts, assets, post, figma
+      //   steps/<step>-<lang>   Path progress     waits/<tab>-<lang>   orange dots
+      //   script/<lang>-<part>  script text       publish/<id>         one row per piece and platform
+      // Nothing is hand-filled here. When a collection is empty the page says "not yet".
+      let STORY = null,
+        STEPDOCS = {},
+        WAITS = [],
+        SCRIPT = {},
+        PUBROWS = []
+      const COLS = ["story", "steps", "waits", "script", "publish"]
+      const LOADED = {}
+      let DATA = "loading" // loading | ready | off
+      let SLOW = false
+      const calm = (what) =>
+        DATA === "off"
+          ? "Story data is not available in this view. Open the page signed in to claude.ai."
+          : DATA === "loading"
+            ? SLOW
+              ? "Story data cannot be reached yet. Still trying."
+              : "Loading…"
+            : what
+      const KNOWN = ["path", "script", "cover", "long", "post", "pub", "shorts"]
+      const isShort = (c) => c === "shorts" || !KNOWN.includes(c)
+      const isVideo = (c) => c === "long" || isShort(c)
+      const langs = () => {
+        const l =
+          STORY && Array.isArray(STORY.langs)
+            ? STORY.langs.filter(
+                (x) => typeof x === "string" && /^[a-z]{2,3}$/.test(x),
+              )
+            : []
+        return l.length ? l : ["en"]
       }
-      const SRC = {
-        en: "en-v2.mp4",
-        ru: "ru-v2.mp4",
-        "hist-ru": "hist-ru-v2.mp4",
-        "refl-ru": "refl-ru-v1.mp4",
-        "refl-en": "refl-en-v1.mp4",
-        "hist-en": "hist-en-v1.mp4",
-        "post-en": "",
-        "post-ru": "",
-        "cover-en": "",
-        "cover-ru": "",
-        "path-en": "",
-        "path-ru": "",
+      // Shorts of this story, in tab order: [{key: "refl", label: "Reflection"}, ...]
+      const shorts = () =>
+        STORY && Array.isArray(STORY.shorts)
+          ? STORY.shorts.filter(
+              (s) =>
+                s &&
+                typeof s.key === "string" &&
+                /^[a-z][a-z0-9]{0,11}$/.test(s.key) &&
+                !KNOWN.includes(s.key),
+            )
+          : []
+      const shortLabel = (key) => {
+        const i = shorts().findIndex((s) => s.key === key)
+        return i < 0 ? "" : i + 1 + " · " + (shorts()[i].label || key)
       }
-      const POST = {
-        "post-en": {
-          chan: "Daily Bible Pause",
-          when: "Quiz · Thu Nov 26, 10:00",
-          q: "In Jesus' parable in Luke 14, what does the host say to the guest who took the lowest place?",
-          opts: [
-            '"Friend, move up to a better place."',
-            '"Give this person your seat."',
-            '"Stay where you are."',
-          ],
-          ex: 'In Luke 14:10 the host calls the guest from the lowest place "Friend". The full devotional looks at why that one warm word matters.',
-        },
-        "post-ru": {
-          chan: "Библия ближе",
-          when: "Quiz · Thu Nov 26, 10:00",
-          q: "Что в притче Иисуса (От Луки 14) хозяин говорит гостю, который сел на последнее место?",
-          opts: [
-            "«Друг, перейди на лучшее место»",
-            "«Уступи место этому человеку»",
-            "«Оставайся там, где сидишь»",
-          ],
-          ex: "В Евангелии от Луки 14:10 хозяин называет гостя с последнего места другом. В полном видео мы разбираем, почему это единственное тёплое слово так важно.",
-        },
+      const okSrc = (s) =>
+        typeof s === "string" &&
+        (/^https:\/\//.test(s) || /^[\w][\w./-]*$/.test(s)) &&
+        !s.includes("..")
+      const okUrl = (s) => typeof s === "string" && /^https:\/\//.test(s)
+      // assets["<tab key>"]: {src, ver} for videos, {ver, A, B, C} for covers
+      const asset = (l) => {
+        const a = STORY && STORY.assets && STORY.assets[l]
+        return a && typeof a === "object" ? a : null
       }
+      const srcOf = (l) => {
+        const a = asset(l)
+        return a && okSrc(a.src) ? a.src : ""
+      }
+      const postOf = (g) => {
+        const p = STORY && STORY.post && STORY.post[g]
+        return p && typeof p === "object" && p.q ? p : null
+      }
+      const coversOf = (g) => {
+        const a = asset("cover-" + g)
+        if (!a) return null
+        const list = COVERS.filter(([k]) => okSrc(a[k]))
+        return list.length ? list.map(([k, n]) => [k, n, a[k]]) : null
+      }
+      const verOf = (l) => {
+        const [c, g] = split(l)
+        const a = asset(l),
+          p = c === "post" ? postOf(g) : null
+        return String((a && a.ver) || (p && p.ver) || "v1")
+      }
+      const waitTabs = (g) =>
+        WAITS.filter((w) => w.lang === g && typeof w.tab === "string").map(
+          (w) => w.tab,
+        )
+      // Kyiv wall clock -> Date (handles summer and winter time)
+      function kyiv(date, time) {
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(date || "")) return null
+        const t = /^\d{2}:\d{2}$/.test(time || "") ? time : "00:00"
+        const guess = new Date(date + "T" + t + ":00Z")
+        if (isNaN(guess)) return null
+        const parts = new Intl.DateTimeFormat("en-GB", {
+          timeZone: "Europe/Kyiv",
+          hourCycle: "h23",
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+        }).formatToParts(guess)
+        const get = (k) => +parts.find((p) => p.type === k).value
+        const asUTC = Date.UTC(
+          get("year"),
+          get("month") - 1,
+          get("day"),
+          get("hour"),
+          get("minute"),
+        )
+        return new Date(guess.getTime() - (asUTC - guess.getTime()))
+      }
+      const whenText = (d) =>
+        d.toLocaleString("en-GB", {
+          weekday: "short",
+          month: "short",
+          day: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+          timeZone: "Europe/Kyiv",
+        })
+      const PUB_DONE = ["uploaded", "scheduled", "live"]
+      const pubRows = (g) =>
+        PUBROWS.filter((r) => String(r.lang || "").toLowerCase() === g).sort(
+          (a, b) =>
+            ((a.date || "9") + (a.time || "")).localeCompare(
+              (b.date || "9") + (b.time || ""),
+            ) || String(a.piece).localeCompare(String(b.piece)),
+        )
       // Story path: the workflow of this devotional. Each step button opens its tab on this same page.
       const renderPath = (() => {
         const NS = "http://www.w3.org/2000/svg"
@@ -1380,7 +1491,6 @@
           sched: I(
             '<rect x="3" y="4" width="14" height="13" rx="2"/><path d="M3 8h14M7 2.5v3M13 2.5v3M7.3 12.6l1.9 1.9 3.5-3.6"/>',
           ),
-          chart: I('<path d="M3 17h14M5.5 14v-4M10 14V5.5M14.5 14V8.5"/>'),
           check: I('<path d="M4 10.5l4 4 8-9" stroke-width="2.2"/>'),
           chat: I(
             '<path d="M3 4.5h14v9.5H9l-4 3v-3H3z"/><path d="M7 8h6M7 10.8h4"/>',
@@ -1389,90 +1499,100 @@
             '<circle cx="10" cy="10" r="7"/><path d="M10 6v4.3l2.8 1.7"/>',
           ),
         }
-        const DOC = "https://claude.ai/artifact/Vu3ov89zaUU5wqeemBFjQx",
-          CAL = "https://claude.ai/artifact/BUdriP79dkGFDPR89MY1dt"
-        // go: a tab kind on this page, or a link to another page
+        // id: the step id in the `steps` collection; tab: the tab its button opens
         const STEPS = [
           {
+            id: "script",
             name: "Script",
             tint: "#4fc3a1",
             icon: "doc",
             tab: "script",
-            tip: "Script",
           },
           {
+            id: "cover",
             name: "Covers",
             tint: "#e88aa8",
             icon: "image",
             tab: "cover",
-            tip: "Covers",
           },
           {
+            id: "long",
             name: "Long video",
             tint: "#a78bfa",
             icon: "play",
             tab: "long",
-            tip: "Video",
           },
           {
+            id: "shorts",
             name: "Shorts",
             tint: "#f0975a",
             icon: "play",
-            tab: "refl",
-            tip: "Shorts",
+            tab: "shorts",
           },
           {
+            id: "post",
             name: "Community post",
             tint: "#efd08a",
             icon: "chat",
             tab: "post",
-            tip: "Post",
           },
           {
+            id: "pub",
             name: "Publish",
             tint: "#5cc8d8",
             icon: "sched",
             tab: "pub",
-            tip: "Publish",
           },
         ]
-        // [done, total, secondary line] per step
-        const LANES = {
-          en: [
-            [3, 3, "Long video, 2 Shorts, quiz"],
-            [3, 3, "A · B · C"],
-            [3, 3, "5:46"],
-            [2, 2, "Reflection · History"],
-            [2, 2, "Quiz · Thu Nov 26, 10:00"],
-            [1, 4, "Next: Thu Nov 26, 10:00"],
-          ],
-          ru: [
-            [3, 3, "Long video, 2 Shorts, quiz"],
-            [3, 3, "A · B · C"],
-            [3, 3, "5:39"],
-            [2, 2, "History · Reflection"],
-            [2, 2, "Quiz · Thu Nov 26, 10:00"],
-            [1, 4, "Next: Thu Nov 26, 10:00"],
-          ],
+        const progress = (S, g) => {
+          if (S.id === "pub") {
+            const rows = pubRows(g)
+            if (rows.length) {
+              const d = rows.filter((r) => PUB_DONE.includes(r.status)).length
+              const next = rows.find(
+                (r) =>
+                  r.status === "scheduled" && kyiv(r.date, r.time) > new Date(),
+              )
+              return [
+                d,
+                rows.length,
+                next
+                  ? "Next out: " + whenText(kyiv(next.date, next.time))
+                  : d === rows.length
+                    ? "All out"
+                    : rows.length - d + " still to upload",
+              ]
+            } // scheduled counts as done
+          }
+          const s = STEPDOCS[S.id + "-" + g]
+          if (!s) return [0, 0, calm("Not yet")]
+          const t = Math.max(0, Math.floor(+s.total || 0)),
+            d = Math.min(t, Math.max(0, Math.floor(+s.done || 0)))
+          return [
+            d,
+            t,
+            typeof s.line === "string" && s.line ? s.line : t ? "" : "Not yet",
+          ]
         }
         return (g, open) => {
           const flow = document.getElementById("path")
           flow.textContent = ""
-          const p = LANES[g]
+          const att = waitTabs(g)
+          const p = STEPS.map((S) => progress(S, g))
           STEPS.forEach((S, i) => {
-            let [d, t, line] = p[i]
-            if (S.tab === "pub") {
-              const rows = PUB[g],
-                next = rows.find((r) => !pubOut(r))
-              d = rows.length
-              t = rows.length
-              line = next ? "Next out: " + pubWhen(next) : "All out"
-            } // every row in PUB is already scheduled = done
-            const pct = Math.round((100 * d) / t)
-            const state =
-              d === t
+            const [d, t, line] = p[i]
+            const pct = t ? Math.round((100 * d) / t) : 0
+            const waits =
+              S.id === "shorts"
+                ? att.some((x) => isShort(x) && x !== "path")
+                : att.includes(S.tab)
+            const prevDone =
+              i > 0 && p[i - 1][1] > 0 && p[i - 1][0] === p[i - 1][1]
+            const state = waits
+              ? "wait"
+              : t > 0 && d === t
                 ? "done"
-                : d > 0 || (i > 0 && p[i - 1][0] === p[i - 1][1])
+                : d > 0 || prevDone
                   ? "work"
                   : "todo"
             const li = document.createElement("li")
@@ -1485,7 +1605,7 @@
                 i,
                 S.tint,
                 state === "todo",
-                S.name === "Publish" && state === "work",
+                S.id === "pub" && state === "work",
               ),
             )
             const mid = document.createElement("div")
@@ -1494,7 +1614,7 @@
             n.className = "name"
             n.textContent = S.name
             const c = document.createElement("b")
-            c.textContent = d + "/" + t
+            c.textContent = t ? d + "/" + t : ""
             n.appendChild(c)
             const bar = document.createElement("div")
             bar.className = "bar"
@@ -1508,26 +1628,21 @@
             bar.appendChild(f)
             const prog = document.createElement("div")
             prog.className = "prog"
-            let a
-            if (S.href) {
-              a = document.createElement("a")
-              a.href = S.href
-              a.target = "_blank"
-              a.rel = "noopener"
-            } else {
-              a = document.createElement("button")
-              a.type = "button"
-              a.onclick = () => open(S.tab)
-            }
+            const a = document.createElement("button")
+            a.type = "button"
+            a.onclick = () => open(S.tab)
             a.className = "go"
-            a.title = S.tip
-            a.setAttribute("aria-label", S.name + ": " + S.tip)
+            a.title = S.name
+            a.setAttribute("aria-label", "Open " + S.name)
             a.innerHTML = ICON[S.icon]
             const m = document.createElement("div")
             m.className = "mark"
-            m.title = { done: "Done", work: "In progress", todo: "Later" }[
-              state
-            ]
+            m.title = {
+              done: "Done",
+              work: "In progress",
+              todo: "Later",
+              wait: "Waits for you",
+            }[state]
             m.setAttribute("aria-label", m.title)
             m.setAttribute("role", "img")
             m.innerHTML =
@@ -1539,7 +1654,7 @@
             prog.append(bar, m)
             const sl = document.createElement("div")
             sl.className = "line"
-            sl.textContent = line
+            sl.textContent = state === "wait" && !line ? "Waits for you" : line
             mid.append(n, sl, prog)
             li.append(b, mid, a)
             flow.appendChild(li)
@@ -1552,16 +1667,25 @@
         ["B", "Question"],
         ["C", "Paradox"],
       ]
+      let coverSig = ""
       function buildCovers(l) {
+        const g = split(l)[1],
+          list = coversOf(g) || []
+        const figma = STORY && okUrl(STORY.figma) ? STORY.figma : ""
+        $("figma").hidden = !figma
+        if (figma) $("figma").href = figma
+        const sig = l + "|" + JSON.stringify(list)
+        if (sig === coverSig && $("crows").childElementCount) return
+        coverSig = sig
         const box = document.getElementById("crows")
         box.textContent = ""
-        COVERS.forEach(([k, name]) => {
+        list.forEach(([k, name, file]) => {
           const row = document.createElement("section")
           row.className = "crow"
           const h = document.createElement("h3")
           h.textContent = k + " · " + name
           const img = document.createElement("img")
-          img.src = l + "-" + k + ".jpg"
+          img.src = file
           img.alt = "Cover " + k
           const side = document.createElement("div")
           side.className = "cnotes"
@@ -1591,18 +1715,16 @@
             }
             btn.disabled = true
             try {
-              await db
-                .collection("notes")
-                .add({
-                  t: 0,
-                  text,
-                  lang: LANG,
-                  ver: VER,
-                  cover: k,
-                  status: "open",
-                  reply: "",
-                  at: new Date().toISOString(),
-                })
+              await db.collection("notes").add({
+                t: 0,
+                text,
+                lang: LANG,
+                ver: VER,
+                cover: k,
+                status: "open",
+                reply: "",
+                at: new Date().toISOString(),
+              })
               ta.value = ""
               st.textContent = ""
             } catch (err) {
@@ -1618,85 +1740,6 @@
           box.appendChild(row)
         })
       }
-      // Where each piece goes out. Times are Kyiv (UTC+2). A link shows only once the time has passed.
-      const PUB = {
-        en: [
-          [
-            "Long video",
-            "YouTube",
-            "2026-11-25T13:00",
-            "https://youtu.be/SkG8Pe9m8PQ",
-          ],
-          [
-            "Quiz post",
-            "YouTube",
-            "2026-11-26T10:00",
-            "https://www.youtube.com/post/UgkxnkKjRPI5x68huS-XXvObMvZLuC9-Xpav",
-          ],
-          [
-            "Short 1 · Reflection",
-            "Facebook and Instagram",
-            "2026-11-27T17:00",
-            "",
-          ],
-          [
-            "Short 1 · Reflection",
-            "YouTube",
-            "2026-11-28T02:00",
-            "https://youtube.com/shorts/TWJGGNiz2mc",
-          ],
-          [
-            "Short 2 · History",
-            "Facebook and Instagram",
-            "2026-11-29T17:00",
-            "",
-          ],
-          [
-            "Short 2 · History",
-            "YouTube",
-            "2026-11-30T02:00",
-            "https://youtube.com/shorts/nu-GaMhrUNU",
-          ],
-        ],
-        ru: [
-          [
-            "Long video",
-            "YouTube",
-            "2026-11-25T08:00",
-            "https://youtu.be/8SLBJzkmfe0",
-          ],
-          [
-            "Quiz post",
-            "YouTube",
-            "2026-11-26T10:00",
-            "https://www.youtube.com/post/UgkxT9ki9v5UhVEXBTqJbl8QEDR0-Kq47pbt",
-          ],
-          [
-            "Short 2 · History",
-            "YouTube",
-            "2026-11-27T17:00",
-            "https://youtube.com/shorts/oLdoZFfq_k8",
-          ],
-          [
-            "Short 1 · Reflection",
-            "YouTube",
-            "2026-11-29T13:00",
-            "https://youtube.com/shorts/tbdsPMt8UZc",
-          ],
-        ],
-      }
-      const pubOut = (r) => new Date(r[2] + ":00+02:00") <= new Date()
-      const pubWhen = (r) =>
-        new Date(r[2] + ":00+02:00").toLocaleString("en-GB", {
-          weekday: "short",
-          month: "short",
-          day: "numeric",
-          hour: "2-digit",
-          minute: "2-digit",
-          timeZone: "Europe/Kyiv",
-        })
-      // Steps that wait for the owner, per language. Set by hand for now.
-      const ATT = { en: ["hist"], ru: [] }
       const RI = (d, sw) =>
         `<svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="${sw || 1.6}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`
       const ROW_ICON = {
@@ -1706,7 +1749,7 @@
         ),
         check: RI('<path d="M4 10.5l4 4 8-9"/>', 2),
       }
-      // mark: small state mark on the left ("check" = done: approved, uploaded/scheduled or out). href: link button on the right.
+      // mark: small state mark on the left ("check" = uploaded, scheduled or live). href: link button on the right.
       const row = (title, sub, mark, href, wait) => {
         const li = document.createElement("li")
         const m = document.createElement("span")
@@ -1742,84 +1785,161 @@
         }
         return li
       }
+      const calmRow = (text) => {
+        const li = document.createElement("li")
+        li.className = "calm"
+        li.textContent = text
+        return li
+      }
+      // Script tab: Long / 1 / 2 / Quiz / Titles. Lyuba highlights the text and comments on it.
+      const PARTS = [
+        ["long", "Long"],
+        ["1", "1"],
+        ["2", "2"],
+        ["quiz", "Quiz"],
+        ["titles", "Titles"],
+      ]
+      let PART = "long"
+      try {
+        const p = localStorage.getItem("ph-part")
+        if (PARTS.some(([k]) => k === p)) PART = p
+      } catch (e) {}
+      let shownScript = null
+      function showScript(g) {
+        document
+          .querySelectorAll("[data-p]")
+          .forEach((b) => b.setAttribute("aria-pressed", b.dataset.p === PART))
+        const d = SCRIPT[g + "-" + PART]
+        const sh = shorts()[+PART - 1]
+        const head =
+          PART === "long"
+            ? "Long video"
+            : PART === "quiz"
+              ? "Quiz post"
+              : PART === "titles"
+                ? "Titles and descriptions"
+                : "Short " + PART + (sh ? " · " + (sh.label || sh.key) : "")
+        $("scriptHead").textContent = (d && d.title) || head
+        $("scriptNote").textContent =
+          d && typeof d.note === "string" ? d.note : ""
+        $("scriptNote").hidden = !$("scriptNote").textContent
+        const has = d && typeof d.text === "string" && d.text.trim()
+        const body = $("scriptBody")
+        const key =
+          g + "|" + PART + "|" + (has ? d.text : calm("Not written yet."))
+        if (key === shownScript) return // leave the text untouched so comment highlights stay put
+        shownScript = key
+        body.classList.toggle("calm", !has)
+        body.lang = has ? g : "en"
+        body.textContent = has ? d.text : calm("Not written yet.")
+      }
+      document.querySelectorAll("[data-p]").forEach(
+        (b) =>
+          (b.onclick = () => {
+            PART = b.dataset.p
+            try {
+              localStorage.setItem("ph-part", PART)
+            } catch (e) {}
+            showScript(split(LANG)[1])
+          }),
+      )
       function showSheets(c, g) {
         document.getElementById("script").hidden = c !== "script"
         document.getElementById("pub").hidden = c !== "pub"
-        if (c === "script") {
-          const ul = document.getElementById("scriptRows")
-          ul.textContent = ""
-          ;[
-            ["Long video", "Script and verse cards"],
-            ["Short 1 · Reflection", "Cut from the long video"],
-            ["Short 2 · History", "Own script"],
-            ["Quiz post", "Question, answers, explanation"],
-          ].forEach((r) => ul.appendChild(row(r[0], r[1], "check")))
-        }
+        if (c === "script") showScript(g)
         if (c === "pub") {
           const ul = document.getElementById("pubRows")
           ul.textContent = ""
-          PUB[g].forEach((r) => {
-            const out = pubOut(r)
+          const rows = pubRows(g)
+          if (!rows.length)
+            ul.appendChild(calmRow(calm("Nothing uploaded or scheduled yet.")))
+          rows.forEach((r) => {
+            const at = kyiv(r.date, r.time)
+            const live = r.status === "live"
+            const sub =
+              String(r.platform || "") +
+              " · " +
+              (r.status === "uploaded" && !at
+                ? "Uploaded, not scheduled yet"
+                : at
+                  ? whenText(at)
+                  : "No date yet")
             ul.appendChild(
               row(
-                r[0],
-                r[1] + " · " + pubWhen(r),
-                "check",
-                out && r[3] ? r[3] : "",
-                !out,
+                String(r.piece || ""),
+                sub,
+                PUB_DONE.includes(r.status) ? "check" : "",
+                live && okUrl(r.url) ? r.url : "",
+                r.status === "scheduled",
               ),
             )
           })
         }
       }
-      function showPost(l) {
-        const kind = split(l)[0],
-          S = kind === "script" || kind === "pub"
-        const P = POST[l],
-          C = l.startsWith("cover-"),
-          H = l.startsWith("path-")
-        document.getElementById("post").hidden = !P
-        document.getElementById("covers").hidden = !C
-        document.getElementById("path").hidden = !H
-        showSheets(kind, split(l)[1])
+      const EMPTY = {
+        long: "The long video is not here yet.",
+        shorts: "No Shorts here yet.",
+        post: "The community post is not here yet.",
+        cover: "No covers yet.",
+      }
+      function showTab(l) {
+        const [c, g] = split(l)
+        const P = c === "post" ? postOf(g) : null
+        const C = c === "cover",
+          H = c === "path",
+          S = c === "script" || c === "pub"
+        const E =
+          (c === "post" && !P) ||
+          (isVideo(c) && !srcOf(l)) ||
+          (C && !coversOf(g))
+        $("post").hidden = !P
+        $("covers").hidden = !C || E
+        $("path").hidden = !H
+        $("empty").hidden = !E
+        if (E)
+          $("emptyText").textContent = calm(
+            isShort(c) && shorts().some((s) => s.key === c)
+              ? "This Short is not here yet."
+              : EMPTY[isShort(c) ? "shorts" : c] || "Not here yet.",
+          )
+        showSheets(c, g)
         document
           .querySelector(".stage")
-          .classList.toggle("isPost", !!P || C || H || S)
-        document.querySelector(".side").classList.toggle("isPostSide", !!P || C)
-        document.querySelector(".wrap").classList.toggle("isCovers", C)
-        document.querySelector(".wrap").classList.toggle("isWide", C || H || S)
-        if (H) renderPath(split(l)[1], (c) => setLang(join(c, split(LANG)[1])))
-        if (C) buildCovers(l)
+          .classList.toggle("isPost", !!P || C || H || S || E)
+        document
+          .querySelector(".side")
+          .classList.toggle("isPostSide", !!P || (C && !E))
+        document.querySelector(".wrap").classList.toggle("isCovers", C && !E)
+        document
+          .querySelector(".wrap")
+          .classList.toggle("isWide", C || H || S || E)
+        if (H) renderPath(g, (t) => setLang(tabKey(t, g)))
+        if (C && !E) buildCovers(l)
         if (!P) return
         const set = (id, t) => (document.getElementById(id).textContent = t)
-        set("pChan", P.chan)
-        set("pWhen", P.when)
-        set("pQ", P.q)
-        set("pEx", P.ex)
+        set("pChan", P.chan || "")
+        set("pWhen", P.when || "")
+        set("pQ", P.q || "")
+        set("pEx", P.ex || "")
         const ul = document.getElementById("pOpts")
         ul.textContent = ""
-        P.opts.forEach((o, i) => {
+        const ok = Number.isInteger(P.answer) ? P.answer : 0
+        ;(Array.isArray(P.opts) ? P.opts : []).forEach((o, i) => {
           const li = document.createElement("li")
-          li.textContent = o
-          if (i === 0) li.className = "ok"
+          li.textContent = String(o)
+          if (i === ok) li.className = "ok"
           ul.appendChild(li)
         })
       }
       const KIND = {
-        en: "long form",
-        ru: "long form",
-        "hist-ru": "history Short",
-        "refl-ru": "reflection Short",
-        "refl-en": "reflection Short",
-        "hist-en": "history Short",
-        "post-en": "community post",
-        "post-ru": "community post",
-        "cover-en": "covers",
-        "cover-ru": "covers",
-        "path-en": "path",
-        "path-ru": "path",
+        long: "long form",
+        post: "community post",
+        cover: "covers",
+        path: "path",
+        script: "script",
+        pub: "publish",
       }
-      let VER = "v2"
+      let VER = "v1"
       const $ = (id) => document.getElementById(id)
       const v = $("v"),
         seek = $("seek"),
@@ -1828,8 +1948,7 @@
       let LANG = "path-en"
       try {
         const l = localStorage.getItem("ph-lang")
-        if (l && /^((path|script|cover|refl|hist|post|pub)-)?(en|ru)$/.test(l))
-          LANG = l
+        if (l && /^([a-z][a-z0-9]{0,11}-)?[a-z]{2,3}$/.test(l)) LANG = l
       } catch (e) {}
 
       const fmt = (t) => {
@@ -1855,8 +1974,62 @@
         }
       }
       // A tab key is "<kind>-<language>"; the long form is just the language ("en", "ru").
+      // A Short's kind is its key from story.shorts ("refl-en"); "shorts-en" means "no Short yet".
       const split = (k) => (k.includes("-") ? k.split("-") : ["long", k])
       const join = (c, g) => (c === "long" ? g : c + "-" + g)
+      const tabKey = (c, g) =>
+        join(c === "shorts" ? (shorts()[0] || { key: "shorts" }).key : c, g)
+      let langSig = null,
+        shortSig = null
+      function buildSwitches() {
+        const ls = langs(),
+          sig = ls.join()
+        if (sig !== langSig) {
+          langSig = sig
+          const box = $("langSeg")
+          box.textContent = ""
+          ls.forEach((g) => {
+            const b = document.createElement("button")
+            b.type = "button"
+            b.dataset.l = g
+            b.textContent = g.toUpperCase()
+            b.onclick = () => setLang(join(split(LANG)[0], g))
+            box.appendChild(b)
+          })
+          box.hidden = ls.length < 2 // a curator's page has one language and no switch
+        }
+        const sh = shorts(),
+          ss = JSON.stringify(sh)
+        if (ss !== shortSig) {
+          shortSig = ss
+          const box = $("shortSeg")
+          box.textContent = ""
+          sh.forEach((s, i) => {
+            const b = document.createElement("button")
+            b.type = "button"
+            b.dataset.s = s.key
+            b.textContent = i + 1 + " · " + (s.label || s.key)
+            b.onclick = () => setLang(join(s.key, split(LANG)[1]))
+            box.appendChild(b)
+          })
+        }
+      }
+      // Re-render from the latest data without restarting a playing video.
+      function refresh() {
+        buildSwitches()
+        let [c, g] = split(LANG)
+        if (DATA === "ready") {
+          if (!langs().includes(g)) g = langs()[0]
+          if (isShort(c) && !shorts().some((s) => s.key === c)) c = "shorts"
+          if (c === "shorts") c = tabKey("shorts", g).split("-")[0]
+        }
+        setLang(join(c, g))
+        const title =
+          (STORY && typeof STORY.title === "string" && STORY.title) || ""
+        $("storyTitle").textContent =
+          title || (DATA === "loading" ? "" : "Story")
+        if (title) document.title = title
+      }
       function setLang(l) {
         LANG = l
         try {
@@ -1866,58 +2039,49 @@
         document
           .querySelectorAll("[data-l]")
           .forEach((b) => b.setAttribute("aria-pressed", b.dataset.l === g))
-        const short = c === "refl" || c === "hist",
-          att = ATT[g] || []
+        const short = isShort(c),
+          att = waitTabs(g)
         document.querySelectorAll(".tabs [data-c]").forEach((b) => {
           const k = b.dataset.c
-          b.setAttribute("aria-pressed", k === c || (k === "refl" && short))
+          b.setAttribute("aria-pressed", k === c || (k === "shorts" && short))
           b.classList.toggle(
             "att",
-            k === "refl"
-              ? att.includes("refl") || att.includes("hist")
+            k === "shorts"
+              ? att.some((x) => isShort(x) && x !== "path")
               : att.includes(k),
           )
         })
-        $("shortSeg").hidden = !short
+        $("shortSeg").hidden = !short || !shorts().length
         document.querySelectorAll("[data-s]").forEach((b) => {
           b.setAttribute("aria-pressed", b.dataset.s === c)
           b.classList.toggle("att", att.includes(b.dataset.s))
         })
-        VER = VERS[l] || "v1"
+        VER = verOf(l)
         $("verLabel").textContent = VER
-        $("kindLabel").textContent = KIND[l] || ""
-        v.classList.toggle("vert", l !== "en" && l !== "ru")
-        showPost(l)
-        if (!SRC[l]) {
-          v.pause()
-          v.removeAttribute("src")
+        $("kindLabel").textContent = KIND[c] || shortLabel(c) || "Short"
+        v.classList.toggle("vert", short)
+        showTab(l)
+        const src = isVideo(c) ? srcOf(l) : ""
+        if (!src) {
+          if (v.getAttribute("src")) {
+            v.pause()
+            v.removeAttribute("src")
+            v.load()
+          }
+        } else if (v.getAttribute("src") !== src) {
+          v.src = src
           v.load()
-          lastPaused = null
-          tick()
-          render()
-          return
+          v.muted = $("mute").getAttribute("aria-pressed") === "true"
         }
-        v.src = SRC[l]
-        v.load()
-        v.muted = $("mute").getAttribute("aria-pressed") === "true"
         lastPaused = null
         tick()
         render()
       }
       document
-        .querySelectorAll("[data-l]")
-        .forEach(
-          (b) => (b.onclick = () => setLang(join(split(LANG)[0], b.dataset.l))),
-        )
-      document
         .querySelectorAll(".tabs [data-c]")
         .forEach(
-          (b) => (b.onclick = () => setLang(join(b.dataset.c, split(LANG)[1]))),
-        )
-      document
-        .querySelectorAll("[data-s]")
-        .forEach(
-          (b) => (b.onclick = () => setLang(join(b.dataset.s, split(LANG)[1]))),
+          (b) =>
+            (b.onclick = () => setLang(tabKey(b.dataset.c, split(LANG)[1]))),
         )
       v.addEventListener("loadedmetadata", () => {
         seek.max = v.duration
@@ -2156,17 +2320,15 @@
         $("save").disabled = true
         say("Saving…")
         try {
-          await db
-            .collection("notes")
-            .add({
-              t,
-              text,
-              lang: LANG,
-              ver: VER,
-              status: "open",
-              reply: "",
-              at: new Date().toISOString(),
-            })
+          await db.collection("notes").add({
+            t,
+            text,
+            lang: LANG,
+            ver: VER,
+            status: "open",
+            reply: "",
+            at: new Date().toISOString(),
+          })
           note.value = ""
           try {
             localStorage.removeItem("ph-draft")
@@ -2177,7 +2339,7 @@
         }
         $("save").disabled = false
       })
-      setLang(LANG)
+      refresh()
       ;(async () => {
         const d = await (window.claude && window.claude.use
           ? window.claude.use("dictation")
@@ -2249,8 +2411,54 @@
           li.textContent =
             "Notes are not available in this view. Open the page signed in to claude.ai."
           l.appendChild(li)
+          DATA = "off"
+          refresh()
           return
         }
+        // Story data: one subscription per collection, kept for the life of the page.
+        const slowData = setTimeout(() => {
+          if (DATA === "loading") {
+            SLOW = true
+            refresh()
+          }
+        }, 10000)
+        const loaded = (name) => {
+          LOADED[name] = true
+          if (DATA === "loading" && COLS.every((n) => LOADED[n])) {
+            clearTimeout(slowData)
+            DATA = "ready"
+          }
+          refresh()
+        }
+        const APPLY = {
+          story: (docs) =>
+            (STORY = docs.find((d) => d.id === "main") || docs[0] || null),
+          steps: (docs) => {
+            STEPDOCS = {}
+            docs.forEach(
+              (d) => (STEPDOCS[(d.step || "") + "-" + (d.lang || "")] = d),
+            )
+          },
+          waits: (docs) => (WAITS = docs),
+          script: (docs) => {
+            SCRIPT = {}
+            docs.forEach(
+              (d) => (SCRIPT[(d.lang || "") + "-" + (d.part || "")] = d),
+            )
+          },
+          publish: (docs) => (PUBROWS = docs),
+        }
+        COLS.forEach((name) =>
+          db.collection(name).onSnapshot(
+            (snap) => {
+              APPLY[name](
+                snap.docs.map((d) => Object.assign({}, d.data(), { id: d.id })),
+              )
+              loaded(name)
+            },
+            () => loaded(name),
+          ),
+        )
         const slow = setTimeout(() => {
           if (!notes.length) say("Notes cannot be reached yet. Still trying.")
         }, 10000)

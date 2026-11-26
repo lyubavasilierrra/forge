@@ -99,6 +99,146 @@ https://claude.ai/artifact/TiXNup1CPefhEqF9viJmvy for The Place of Honor). The s
 writes its link into the story's doc as `page: "<artifact url>"`; the calendar then shows a
 page icon at the right of that story's row in "All content". The calendar stays the overview.
 
+### Story page data (Nov 26)
+
+The template holds no story data. It renders from its own artifact database, which the story
+session fills with `ArtifactData`; the session never edits the page's HTML to change content.
+When a collection is empty the page says "not yet" (or "Loading…" while it connects). Notes
+(`notes`, written by the page itself) stay as they were.
+
+Publish the page once per story (and once per curator language) from the template, changing
+only `<title>`, with the media files (`files`) and these capabilities:
+
+```json
+{
+  "dictation": {},
+  "db": {
+    "rules": [
+      { "path": "story", "read": "view", "write": "owner" },
+      { "path": "steps", "read": "view", "write": "owner" },
+      { "path": "waits", "read": "view", "write": "owner" },
+      { "path": "script", "read": "view", "write": "owner" },
+      { "path": "publish", "read": "view", "write": "owner" }
+    ]
+  }
+}
+```
+
+Later republishes (a new cut, new covers) only add files: omit `capabilities` so the rules
+carry forward, then point `story/main.assets` at the new file. Language codes are lowercase
+(`en`, `ru`, `zh`). Tab keys are `<kind>-<lang>`: `path`, `script`, `cover`, `post`, `pub`, a
+Short's key (`refl`, `hist`, `insight`...), and the long form is the bare language (`en`).
+
+**`story`**: one doc, id `main`.
+
+```json
+{
+  "title": "The Place of Honor", // page heading and browser title
+  "langs": ["en", "ru"], // switch order; one language hides the switch (curator page)
+  "shorts": [
+    // Shorts tab switcher in this order: "1 · Reflection", "2 · History"
+    { "key": "refl", "label": "Reflection" },
+    { "key": "hist", "label": "History" }
+  ],
+  "assets": {
+    // published file paths (or https URLs); ver labels the cut that notes attach to
+    "en": { "src": "en-v2.mp4", "ver": "v2" }, // long form
+    "refl-en": { "src": "refl-en-v1.mp4", "ver": "v1" },
+    "cover-en": {
+      "ver": "v4",
+      "A": "cover-en-A.jpg",
+      "B": "cover-en-B.jpg",
+      "C": "cover-en-C.jpg"
+    }
+  },
+  "figma": "https://www.figma.com/design/...", // optional, Covers tab button
+  "post": {
+    // Post tab, per language; the page publishes avatar.png as the channel picture
+    "en": {
+      "chan": "Daily Bible Pause",
+      "when": "Quiz · Thu Nov 26, 10:00",
+      "q": "In Jesus' parable in Luke 14, what does the host say...?",
+      "opts": [
+        "\"Friend, move up to a better place.\"",
+        "\"Give this person your seat.\"",
+        "\"Stay where you are.\""
+      ],
+      "answer": 0, // index of the right option
+      "ex": "In Luke 14:10 the host calls the guest...",
+      "ver": "v1"
+    }
+  }
+}
+```
+
+**`steps`**: Path progress, id `<step>-<lang>`; `step` is one of `script`, `cover`, `long`,
+`shorts`, `post`, `pub`. A missing doc shows "Not yet". Publish progress comes from the
+`publish` rows when there are any (uploaded, scheduled and live count as done), so `pub-<lang>`
+is only needed before the first row exists.
+
+```json
+{ "step": "long", "lang": "en", "done": 3, "total": 3, "line": "5:46" }
+```
+
+**`waits`**: one doc per tab that waits for Lyuba, id `<tab>-<lang>`; it puts the orange dot on
+that tab and turns its Path step orange. Delete it as soon as she has answered.
+
+```json
+{ "tab": "hist", "lang": "en", "what": "History Short v1" }
+```
+
+**`script`**: the exact text Lyuba reviews, id `<lang>-<part>`; `part` is `long`, `1`, `2`
+(Shorts in `story.shorts` order), `quiz` or `titles`. She highlights the text and leaves artifact
+comments, so change text with `str_replace` (anchors on untouched text survive) rather than
+resending the whole field.
+
+```json
+{
+  "lang": "en",
+  "part": "long",
+  "text": "THE PLACE OF HONOR | Daily Bible Pause | Luke 14:7-11\n...", // plain text, line breaks kept
+  "note": "Draft 2, waiting for your edits", // optional, small line above the text
+  "title": "Long video" // optional, replaces the default heading
+}
+```
+
+**`publish`**: one row per piece, language and platform, id `<lang>-<piece slug>-<platform slug>`
+(`en-long-youtube`, `en-short-1-reflection-meta`). The page sorts by date and time.
+
+```json
+{
+  "lang": "en",
+  "piece": "Short 1 · Reflection", // shown as is
+  "platform": "Facebook and Instagram",
+  "date": "2026-11-27", // Kyiv wall clock; "" while only uploaded
+  "time": "17:00",
+  "status": "scheduled", // uploaded | scheduled | live
+  "url": "" // https only; shown as a link button once status is live
+}
+```
+
+Left green check: any status. Right: a clock while `scheduled`, a link button when `live` with
+a URL, nothing when `live` without one. When Publishing adds a line to the README "LIVE LINKS"
+block, `LIVE <YYYY-MM-DD HH:MM Kyiv> | <EN/RU> | <piece> | <platform> | <url or "no link">`,
+update the matching row: `status: "live"`, `date`/`time` from the line, `lang` lowercased,
+`url` from the line (or `""` for "no link"). Piece tokens map to labels: `long` → "Long
+video", `quiz-post` → "Quiz post", Shorts → "Short <n> · <label>" from `story.shorts`.
+
+Recipe (ArtifactData, one batch per update):
+
+```text
+ArtifactData action "batch", url <page url>, writes [
+  {op: "update", collection: "steps",   doc_id: "long-en", data: {step: "long", lang: "en", done: 3, total: 3, line: "5:46"}, if_version: <v>},
+  {op: "set",    collection: "waits",   doc_id: "hist-en", data: {tab: "hist", lang: "en", what: "History Short v1"}},
+  {op: "update", collection: "publish", doc_id: "en-long-youtube", data: {status: "live", url: "https://youtu.be/..."}, if_version: <v>}
+]
+ArtifactData action "delete", collection "waits", doc_id "hist-en", if_version <v>   // she answered
+ArtifactData action "set", collection "script", doc_id "en-long", file_path <story folder>/script.json  // long text
+```
+
+Read a doc (`get` or `list`) before writing it again: every write to an existing doc needs its
+`if_version`. Large text goes in through `file_path` with a JSON file.
+
 Owner only (Lyuba, Oct 29): the calendar is shared by link, so the `stories` and `requests`
 collections are readable and writable only by the artifact's owner (db rules `read`/`write:
 "owner"`), and the list icon that opens this view shows only when `user.isOwner()`. Keep the

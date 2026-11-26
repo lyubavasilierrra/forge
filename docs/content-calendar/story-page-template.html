@@ -1519,11 +1519,15 @@
         const a = asset(l)
         return a && okSrc(a.src) ? a.src : ""
       }
-      const postOf = (g) => {
+      // A post is a quiz (q + opts) or an image post (img + q as its caption). post.<lang> may be
+      // one post or a list of them (verse post + Amen post); the tab shows them one under another.
+      const postsOf = (g) => {
         const p = STORY && STORY.post && STORY.post[g]
-        // A post is a quiz (q + opts) or an image post (img + q as its caption).
-        return p && typeof p === "object" && (p.q || okSrc(p.img)) ? p : null
+        return (Array.isArray(p) ? p : [p]).filter(
+          (x) => x && typeof x === "object" && (x.q || okSrc(x.img)),
+        )
       }
+      const postOf = (g) => postsOf(g)[0] || null
       const coversOf = (g) => {
         const a = asset("cover-" + g)
         if (!a) return null
@@ -2209,26 +2213,43 @@
           .classList.toggle("isWide", C || H || S || E)
         if (H) renderPath(g, (t) => setLang(tabKey(t, g)))
         if (C && !E) buildCovers(l)
+        document.querySelectorAll(".post.extra").forEach((n) => n.remove())
         if (!P) return
-        const set = (id, t) => (document.getElementById(id).textContent = t)
-        set("pChan", P.chan || "")
-        set("pWhen", P.when || "")
-        set("pQ", P.q || "")
-        set("pEx", P.ex || "")
-        const pi = $("pImg")
-        pi.hidden = !okSrc(P.img)
-        if (okSrc(P.img)) pi.src = P.img
-        else pi.removeAttribute("src")
-        $("pEx").hidden = !P.ex
-        const ul = document.getElementById("pOpts")
-        ul.textContent = ""
-        const ok = Number.isInteger(P.answer) ? P.answer : 0
-        ;(Array.isArray(P.opts) ? P.opts : []).forEach((o, i) => {
-          const li = document.createElement("li")
-          li.textContent = String(o)
-          if (i === ok) li.className = "ok"
-          ul.appendChild(li)
-        })
+        const fill = (root, P) => {
+          const q = (s) => root.querySelector(s)
+          q(".pwho b").textContent = P.chan || ""
+          q(".pwho small").textContent = P.when || ""
+          q(".pq").textContent = P.q || ""
+          q(".pex").textContent = P.ex || ""
+          q(".pex").hidden = !P.ex
+          const pi = q(".pimg")
+          pi.hidden = !okSrc(P.img)
+          if (okSrc(P.img)) pi.src = P.img
+          else pi.removeAttribute("src")
+          const ul = q(".popts")
+          ul.textContent = ""
+          const ok = Number.isInteger(P.answer) ? P.answer : 0
+          ;(Array.isArray(P.opts) ? P.opts : []).forEach((o, i) => {
+            const li = document.createElement("li")
+            li.textContent = String(o)
+            if (i === ok) li.className = "ok"
+            ul.appendChild(li)
+          })
+        }
+        const first = $("post")
+        fill(first, P)
+        let after = first
+        postsOf(g)
+          .slice(1)
+          .forEach((x) => {
+            const n = first.cloneNode(true)
+            n.removeAttribute("id")
+            n.querySelectorAll("[id]").forEach((e) => e.removeAttribute("id"))
+            n.classList.add("extra")
+            fill(n, x)
+            after.after(n)
+            after = n
+          })
       }
       const KIND = {
         long: "long form",

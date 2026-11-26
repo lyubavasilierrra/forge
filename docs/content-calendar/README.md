@@ -220,12 +220,12 @@ resending the whole field.
   "platform": "Facebook and Instagram",
   "date": "2026-11-27", // Kyiv wall clock; "" while only uploaded
   "time": "17:00",
-  "status": "scheduled", // uploaded | scheduled | live
+  "status": "scheduled", // planned | uploaded | scheduled | live
   "url": "" // https only; shown as a link button once status is live
 }
 ```
 
-Left green check: any status. Right: a clock while `scheduled`, a link button when `live` with
+A row can be written as `planned` as soon as the slot is known (no check, "Planned · <date>"). Left green check: uploaded, scheduled or live. The Path card for Publish is never done while an earlier step is still open. Right: a clock while `scheduled`, a link button when `live` with
 a URL, nothing when `live` without one. When Publishing adds a line to the README "LIVE LINKS"
 block, `LIVE <YYYY-MM-DD HH:MM Kyiv> | <EN/RU> | <piece> | <platform> | <url or "no link">`,
 update the matching row: `status: "live"`, `date`/`time` from the line, `lang` lowercased,

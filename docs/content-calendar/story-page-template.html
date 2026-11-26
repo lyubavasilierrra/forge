@@ -1714,7 +1714,14 @@
                   ? "work"
                   : "todo"
             return { S, pct, line: waits ? waitLine : line, state }
-          })
+          }).map((x, i, all) =>
+            // Publish is never done while an earlier step is still open (not reviewed, not made yet)
+            x.S.id === "pub" &&
+            x.state === "done" &&
+            all.slice(0, i).some((y) => y.state !== "done")
+              ? { ...x, state: "work" }
+              : x,
+          )
         }
         const draw = (g, open) => {
           const flow = document.getElementById("path")
@@ -1989,9 +1996,11 @@
               " · " +
               (r.status === "uploaded" && !at
                 ? "Uploaded, not scheduled yet"
-                : at
-                  ? whenText(at)
-                  : "No date yet")
+                : r.status === "planned"
+                  ? "Planned" + (at ? " · " + whenText(at) : "")
+                  : at
+                    ? whenText(at)
+                    : "No date yet")
             ul.appendChild(
               row(
                 String(r.piece || ""),

@@ -476,6 +476,28 @@ const STORIES: Record<
     ],
     out: "Mustard Seed",
   },
+  "jesus-29": {
+    // No setting: Luke 15:1-3 is the passage itself. The card is NOT Luke 15:
+    // its dialogue is the same complaint at Levi's table, Luke 5:30-32 (see
+    // jesus-film-passages.ts, index 29). The parable is told in words only.
+    terms: [
+      "Shepherd",
+      "Sheep",
+      "Flock",
+      "Fold",
+      "Wilderness",
+      "Publican",
+      "Publicans",
+      "Tax collector",
+      "Sinner",
+      "Pharisees",
+      "Scribes",
+      "Repentance",
+      "Neighbour",
+      "THE THREE PARABLES OF THE GOSPEL: OF THE RECOVERY OF THE LOST - OF THE LOST SHEEP, THE LOST DRACHM, THE LOST SON.",
+    ],
+    out: "Lost Sheep",
+  },
   "jesus-32": {
     // Luke puts the blind man straight after the Twelve fail to understand
     // the third passion prediction ("the meaning was hidden from them"): the

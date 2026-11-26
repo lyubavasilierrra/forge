@@ -370,6 +370,31 @@ export const JESUS_FILM_PASSAGES: ChapterPassage[] = [
     maxVideoCardSec: 17,
   }, // Mustard Seed. Dyers' street, the old teacher listening → Jesus seated with the crowd → "a grain of mustard seed ... the birds make their nests in its branches" (~15.7s). (subtitle- and frame-verified)
   {
+    index: 29,
+    // "Jesus Spends Time with Sinners" is NOT the lost sheep: its dialogue is
+    // Luke 5:30-32 (Levi's table): "Why do you eat and drink with tax
+    // collectors and other sinners?" / "People who are well do not need a
+    // doctor" / "I have not come to call respectable people to repent, but
+    // sinners" (Arclight EN + RU tracks, 2026-11-26). The parable of the lost
+    // sheep is not in the JESUS film at all. Lyuba's calendar pairs this
+    // chapter with Luke 15:1-7 ("Lost Sheep"), because Luke 15:2 repeats the
+    // same complaint ("This man welcomes sinners and eats with them"): the
+    // card shows the complaint, the script tells the parable in words, and
+    // nothing on screen may claim the clip is Luke 15 (label it Luke 5:30-32).
+    osisRef: "Luke.15.1-Luke.15.7",
+    reference: "Luke 15:1-7",
+    mood: "hope",
+    themes: ["grace", "seeking", "repentance", "joy", "welcome", "lost"],
+    // Subtitle- and frame-verified: a street meal, religious men in white
+    // standing at the back, Jesus seated among the guests beside a woman in a
+    // coin headdress. The question from 0.75s, "but sinners" ends 17.86s (RU
+    // «а грешников к покаянию» 17.84s, same clock); the end card (GNT credit,
+    // QR) from ~19.6s, so the card ends at 18.8s.
+    clipStartSec: 0,
+    clipLengthSec: 18.8,
+    maxVideoCardSec: 19,
+  }, // Jesus with sinners (Luke 5:30-32 dialogue). "Why do you eat and drink with tax collectors and other sinners?" → "People who are well do not need a doctor" → "not ... respectable people ... but sinners" (~17.9s). (subtitle- and frame-verified)
+  {
     index: 31,
     // Tightened from 10:25-37: Ryle splits this into two DISTINCT sections —
     // 10:25-28 is the lawyer's lead-in question ("The Rule of Faith"), 10:29-37

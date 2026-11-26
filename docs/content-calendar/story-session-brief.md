@@ -16,8 +16,8 @@ Talk to Lyuba in Russian, plainly, without jargon. Files, commits and docs stay 
    link as `page: "<url>"` into the same `stories` doc, and open it in the right-hand panel with
    Artifact `open` (the story page, not the calendar). Never edit the page's HTML to change its
    content: the page renders from its own database, and you fill it with `ArtifactData` writes to
-   the collections `story` (title, langs, Shorts, asset paths, post), `steps` (Path progress),
-   `waits` (one doc per piece that waits for Lyuba: its Path step says "Your review: ..."; no dots on the top tabs; delete it once she answers),
+   the collections `story` (title, passage, about, langs, Shorts, asset paths, post), `steps` (progress on Overview and the step row),
+   `waits` (one doc per piece that waits for Lyuba: its Overview card says "Your review: ..."; no dots on the top tabs; delete it once she answers),
    `script` (the exact text per language and part: long, 1, 2, quiz, titles) and `publish` (one
    row per piece and platform, status uploaded/scheduled/live). Shapes and a recipe are in that
    README section. Keep it current as you go; new videos or covers are a republish that only adds

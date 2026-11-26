@@ -93,7 +93,7 @@ post was removed or cancelled.
 
 ## Content view and open decisions (`stories`)
 
-Story page link (Lyuba, Nov 26): each story has its own page (Path, Script, Covers, Video,
+Story page link (Lyuba, Nov 26): each story has its own page (Overview, then the steps Script, Covers, Video,
 Shorts, Post, Publish tabs; template `story-page-template.html`, first one
 https://claude.ai/artifact/TiXNup1CPefhEqF9viJmvy for The Place of Honor). The story session
 writes its link into the story's doc as `page: "<artifact url>"`; the calendar then shows a
@@ -134,7 +134,9 @@ Short's key (`refl`, `hist`, `insight`...), and the long form is the bare langua
 ```json
 {
   "title": "The Place of Honor", // page heading and browser title
-  "langs": ["en", "ru"], // switch order; one language hides the switch (curator page)
+  "passage": "Luke 14:7–11", // subtitle, with "about" after a " · "
+  "about": "Jesus' parable of the wedding guests", // short plain description
+  "langs": ["en", "ru"], // switch order; a curator page lists one, shown as a single highlighted chip
   "shorts": [
     // Shorts tab switcher in this order: "1 · Reflection", "2 · History"
     { "key": "refl", "label": "Reflection" },
@@ -171,7 +173,7 @@ Short's key (`refl`, `hist`, `insight`...), and the long form is the bare langua
 }
 ```
 
-**`steps`**: Path progress, id `<step>-<lang>`; `step` is one of `script`, `cover`, `long`,
+**`steps`**: progress for the Overview cards and the stepper in the tab row (a done step gets a green check; the first step not done gets the soft orange ring), id `<step>-<lang>`; `step` is one of `script`, `cover`, `long`,
 `shorts`, `post`, `pub`. A missing doc shows "Not yet". Publish progress comes from the
 `publish` rows when there are any (uploaded, scheduled and live count as done), so `pub-<lang>`
 is only needed before the first row exists.
@@ -182,9 +184,10 @@ is only needed before the first row exists.
 
 **`waits`**: one doc per piece that waits for Lyuba, id `<tab>-<lang>`; `tab` is `script`,
 `cover`, `long`, `post`, `pub` or a Short's key (`refl`, `hist`). There are no dots on the top
-tab row (Lyuba, Nov 26). Instead the Path step turns to its wait state (flame dot, orange
-button) with the line "Your review: <what>", and inside the Shorts switcher the waiting Short
-gets the orange dot. `what` defaults to the Short's switcher label ("2 · History") or the step
+tab row (Lyuba, Nov 26). Instead its Overview card takes the wait state in the step's own
+tint (border, dot and the line "Your review: <what>"; never red), and inside the Shorts switcher
+the waiting Short gets the orange dot. `what` defaults to the Short's switcher label
+("2 · History") or the step
 name. Delete the doc as soon as she has answered.
 
 ```json

@@ -156,14 +156,42 @@
       .tabs {
         grid-column: 1 / -1;
         display: flex;
-        gap: 12px;
-        align-items: center;
-        justify-content: space-between;
+        gap: 8px;
+        align-items: flex-start;
         border-bottom: 1px solid var(--line);
+        padding-bottom: 12px;
+      }
+      /* Overview: icon-only, apart at the left, then a thin separator */
+      .tabs .ovb {
+        width: 38px;
+        height: 34px;
+        min-width: 0;
+        padding: 0;
+        border: 0;
+        border-radius: 8px;
+        color: var(--muted);
+        display: grid;
+        place-items: center;
+        flex: none;
+      }
+      .tabs .ovb svg {
+        width: 18px;
+        height: 18px;
+      }
+      .tabs .ovb[aria-pressed="true"] {
+        background: color-mix(in srgb, #f0975a 16%, transparent);
+        color: #f0975a;
+        border-color: transparent;
+      }
+      .nsep {
+        width: 1px;
+        height: 34px;
+        background: var(--line);
+        flex: none;
       }
       .kinds {
         display: flex;
-        gap: 18px;
+        flex: 1;
         min-width: 0;
         overflow-x: auto;
         scrollbar-width: none;
@@ -274,28 +302,74 @@
         padding: 0 14px;
         color: var(--fg);
       }
+      /* Stepper: a circle per step with its label under it */
       .tabs .kinds button {
+        flex: 1 0 58px;
+        position: relative;
         border: 0;
         border-radius: 0;
-        height: 40px;
+        height: auto;
         min-width: 0;
-        padding: 0;
+        padding: 0 2px 2px;
         background: transparent;
-        font: 500 14px/1 var(--sans);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        font: 500 13px/1.2 var(--sans);
         letter-spacing: 0;
         color: var(--muted);
-        border-bottom: 2px solid transparent;
-        margin-bottom: -1px;
         white-space: nowrap;
       }
       .tabs .kinds button:hover {
         background: transparent;
         color: var(--fg);
       }
+      .tabs .kinds button:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        top: 9px;
+        left: calc(50% + 13px);
+        right: calc(-50% + 13px);
+        height: 2px;
+        background: var(--line);
+      }
+      .tabs .kinds button.d.dn::after {
+        background: color-mix(in srgb, var(--green) 70%, transparent);
+      }
+      .tabs .kinds .c {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 1.5px solid #3a2c27;
+        box-sizing: border-box;
+        display: grid;
+        place-items: center;
+        color: transparent;
+      }
+      .tabs .kinds .c svg {
+        width: 11px;
+        height: 11px;
+      }
+      .tabs .kinds .d .c {
+        border-color: color-mix(in srgb, var(--green) 70%, transparent);
+        background: color-mix(in srgb, var(--green) 16%, transparent);
+        color: var(--green);
+      }
+      .tabs .kinds .now .c {
+        border-color: color-mix(in srgb, #f0975a 70%, transparent);
+        background: color-mix(in srgb, #f0975a 18%, transparent);
+      }
       .tabs .kinds button[aria-pressed="true"] {
         background: transparent;
         color: var(--fg);
-        border-bottom-color: var(--flame);
+        border-color: transparent;
+      }
+      .tabs .kinds button[aria-pressed="true"] .lb {
+        text-decoration: underline;
+        text-decoration-color: #f0975a;
+        text-decoration-thickness: 2px;
+        text-underline-offset: 5px;
       }
       .ttl {
         display: flex;
@@ -467,7 +541,19 @@
           margin-bottom: 6px;
         }
         .step.wait .line {
-          color: var(--flame);
+          color: var(--tint);
+        }
+        .step.wait {
+          border-color: color-mix(in srgb, var(--tint) 45%, transparent);
+        }
+        .name .ok {
+          color: var(--ok);
+          display: inline-grid;
+          margin-left: 6px;
+        }
+        .name .ok svg {
+          width: 15px;
+          height: 15px;
         }
         .prog {
           display: grid;
@@ -479,9 +565,8 @@
           font-weight: 600;
           font-size: 16px;
           display: flex;
-          justify-content: space-between;
-          gap: 10px;
-          align-items: baseline;
+          gap: 0;
+          align-items: center;
         }
         .name b {
           font: 500 12px var(--sans);
@@ -504,8 +589,8 @@
           width: 44px;
           height: 44px;
           border-radius: 10px;
-          border: 1px solid #5a4840;
-          color: var(--ink);
+          border: 0;
+          color: var(--soft);
           position: relative;
           display: grid;
           place-items: center;
@@ -527,11 +612,6 @@
         .go:hover .ar,
         .step.wait .go .ar {
           color: inherit;
-        }
-        .step.wait .go {
-          background: var(--flame);
-          border-color: var(--flame);
-          color: #fff;
         }
         .mark {
           display: grid;
@@ -556,9 +636,8 @@
           display: block;
         }
         .step.wait .mark i {
-          background: var(--flame);
-          box-shadow: 0 0 0 4px
-            color-mix(in srgb, var(--flame) 25%, transparent);
+          background: var(--tint);
+          box-shadow: 0 0 0 4px color-mix(in srgb, var(--tint) 25%, transparent);
         }
         .step.todo {
           background: var(--card);
@@ -1080,10 +1159,10 @@
         <div class="ttl">
           <h1 id="storyTitle"></h1>
         </div>
-        <p class="sub" hidden>
-          <span id="kindLabel">long form</span> · cut
-          <span id="verLabel"></span>
-        </p>
+        <p class="sub" id="storySub" hidden></p>
+        <span hidden
+          ><span id="kindLabel"></span><span id="verLabel"></span
+        ></span>
       </div>
       <div class="tools">
         <div
@@ -1094,15 +1173,114 @@
           hidden
         ></div>
       </div>
-      <nav class="tabs" aria-label="What to review">
+      <nav class="tabs" aria-label="Steps">
+        <button
+          class="ovb"
+          data-c="path"
+          type="button"
+          title="Overview"
+          aria-label="Overview"
+        >
+          <svg
+            viewBox="0 0 20 20"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.6"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <circle cx="5" cy="4.5" r="1.8" />
+            <circle cx="5" cy="15.5" r="1.8" />
+            <path d="M5 6.3v7.4M9.5 4.5h7M9.5 10h7M9.5 15.5h7" />
+          </svg>
+        </button>
+        <span class="nsep" aria-hidden="true"></span>
         <div class="kinds" role="group" aria-label="Step">
-          <button data-c="path" type="button">Path</button>
-          <button data-c="script" type="button">Script</button>
-          <button data-c="cover" type="button">Covers</button>
-          <button data-c="long" type="button">Video</button>
-          <button data-c="shorts" type="button">Shorts</button>
-          <button data-c="post" type="button">Post</button>
-          <button data-c="pub" type="button">Publish</button>
+          <button data-c="script" type="button">
+            <span class="c"
+              ><svg
+                viewBox="0 0 10 10"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M2.2 5.3l1.9 1.9 3.8-4.4" /></svg></span
+            ><span class="lb">Script</span>
+          </button>
+          <button data-c="cover" type="button">
+            <span class="c"
+              ><svg
+                viewBox="0 0 10 10"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M2.2 5.3l1.9 1.9 3.8-4.4" /></svg></span
+            ><span class="lb">Covers</span>
+          </button>
+          <button data-c="long" type="button">
+            <span class="c"
+              ><svg
+                viewBox="0 0 10 10"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M2.2 5.3l1.9 1.9 3.8-4.4" /></svg></span
+            ><span class="lb">Video</span>
+          </button>
+          <button data-c="shorts" type="button">
+            <span class="c"
+              ><svg
+                viewBox="0 0 10 10"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M2.2 5.3l1.9 1.9 3.8-4.4" /></svg></span
+            ><span class="lb">Shorts</span>
+          </button>
+          <button data-c="post" type="button">
+            <span class="c"
+              ><svg
+                viewBox="0 0 10 10"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M2.2 5.3l1.9 1.9 3.8-4.4" /></svg></span
+            ><span class="lb">Post</span>
+          </button>
+          <button data-c="pub" type="button">
+            <span class="c"
+              ><svg
+                viewBox="0 0 10 10"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M2.2 5.3l1.9 1.9 3.8-4.4" /></svg></span
+            ><span class="lb">Publish</span>
+          </button>
         </div>
       </nav>
     </div>
@@ -1441,8 +1619,8 @@
                 h: "#5a4a42",
               }
             : {
-                r: "#f0453a",
-                s: "#b92d24",
+                r: "#e2583a",
+                s: "#a83e22",
                 k: "#1a0f0d",
                 w: "#ffffff",
                 f: "#6b2a24",
@@ -1494,6 +1672,9 @@
           check: I('<path d="M4 10.5l4 4 8-9" stroke-width="2.2"/>'),
           chat: I(
             '<path d="M3 4.5h14v9.5H9l-4 3v-3H3z"/><path d="M7 8h6M7 10.8h4"/>',
+          ),
+          arrow: I(
+            '<path d="M4 10h11M11 5.5L15.5 10 11 14.5" stroke-width="1.8"/>',
           ),
           clock: I(
             '<circle cx="10" cy="10" r="7"/><path d="M10 6v4.3l2.8 1.7"/>',
@@ -1574,14 +1755,13 @@
             typeof s.line === "string" && s.line ? s.line : t ? "" : "Not yet",
           ]
         }
-        return (g, open) => {
-          const flow = document.getElementById("path")
-          flow.textContent = ""
+        // One entry per step: state is done | work | todo | wait (the stepper and the Overview share it)
+        const states = (g) => {
           const ws = WAITS.filter(
             (w) => w.lang === g && typeof w.tab === "string",
           )
           const p = STEPS.map((S) => progress(S, g))
-          STEPS.forEach((S, i) => {
+          return STEPS.map((S, i) => {
             const [d, t, line] = p[i]
             const pct = t ? Math.round((100 * d) / t) : 0
             // waits docs for this step; the line then says what waits, e.g. "Your review: 2 · History"
@@ -1611,6 +1791,13 @@
                 : d > 0 || prevDone
                   ? "work"
                   : "todo"
+            return { S, pct, line: waits ? waitLine : line, state }
+          })
+        }
+        const draw = (g, open) => {
+          const flow = document.getElementById("path")
+          flow.textContent = ""
+          states(g).forEach(({ S, pct, line, state }, i) => {
             const li = document.createElement("li")
             li.className = "step " + state
             li.style.setProperty("--tint", S.tint)
@@ -1629,6 +1816,14 @@
             const n = document.createElement("div")
             n.className = "name"
             n.textContent = S.name
+            if (state === "done") {
+              const ok = document.createElement("span")
+              ok.className = "ok"
+              ok.innerHTML = ICON.check
+              ok.setAttribute("role", "img")
+              ok.setAttribute("aria-label", "Done")
+              n.appendChild(ok)
+            }
             const bar = document.createElement("div")
             bar.className = "bar"
             bar.setAttribute("role", "progressbar")
@@ -1647,7 +1842,7 @@
             a.className = "go"
             a.title = S.name
             a.setAttribute("aria-label", "Open " + S.name)
-            a.innerHTML = ICON[S.icon]
+            a.innerHTML = ICON.arrow
             const m = document.createElement("div")
             m.className = "mark"
             m.title = {
@@ -1667,12 +1862,14 @@
             prog.append(bar, m)
             const sl = document.createElement("div")
             sl.className = "line"
-            sl.textContent = waits ? waitLine : line
+            sl.textContent = line
             mid.append(n, sl, prog)
             li.append(b, mid, a)
             flow.appendChild(li)
           })
         }
+        draw.states = states
+        return draw
       })()
       // Covers: one row per cover, each with its own note box. A note saved there carries cover: "A" | "B" | "C".
       const COVERS = [
@@ -2009,7 +2206,7 @@
             b.onclick = () => setLang(join(split(LANG)[0], g))
             box.appendChild(b)
           })
-          box.hidden = ls.length < 2 // a curator's page has one language and no switch
+          box.hidden = false // always shown; a curator's page shows its one language as a highlighted chip
         }
         const sh = shorts(),
           ss = JSON.stringify(sh)
@@ -2042,6 +2239,12 @@
         $("storyTitle").textContent =
           title || (DATA === "loading" ? "" : "Story")
         if (title) document.title = title
+        // Subtitle: passage plus a short plain description, e.g. "Luke 14:7–11 · Jesus' parable of the wedding guests"
+        const sub = [STORY && STORY.passage, STORY && STORY.about]
+          .filter((x) => typeof x === "string" && x)
+          .join(" · ")
+        $("storySub").textContent = sub
+        $("storySub").hidden = !sub
       }
       function setLang(l) {
         LANG = l
@@ -2059,6 +2262,24 @@
           const k = b.dataset.c
           b.setAttribute("aria-pressed", k === c || (k === "shorts" && short))
         })
+        // Stepper: done steps get a green check; the first step not done is "where we stopped" (soft orange ring).
+        const st = renderPath.states(g),
+          now = st.find((x) => x.state !== "done")
+        document.querySelectorAll(".tabs .kinds [data-c]").forEach((b, i) => {
+          const x = st[i] || {},
+            nx = st[i + 1] || {}
+          b.classList.toggle("d", x.state === "done")
+          b.classList.toggle("dn", x.state === "done" && nx.state === "done")
+          b.classList.toggle("now", !!now && now === x)
+        })
+        // On a narrow screen keep the open step visible in the sideways-scrolling stepper.
+        const kinds = document.querySelector(".tabs .kinds"),
+          open = kinds.querySelector('[aria-pressed="true"]')
+        if (open && kinds.scrollWidth > kinds.clientWidth) {
+          const kr = kinds.getBoundingClientRect(),
+            or = open.getBoundingClientRect()
+          kinds.scrollLeft += or.left - kr.left - (kr.width - or.width) / 2
+        }
         $("shortSeg").hidden = !short || !shorts().length
         document.querySelectorAll("[data-s]").forEach((b) => {
           b.setAttribute("aria-pressed", b.dataset.s === c)

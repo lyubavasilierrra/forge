@@ -114,7 +114,11 @@ comment thread.
     - Already published Shorts stay as they are.
     - Why: reflection Shorts bring the most subscribers, but EN reflection Shorts get 0 shares (RU 1.8 per 1,000 views).
       Analytics compares shares per 1,000 views about 3 weeks after the first one goes out.
-15. Film-first opening (Lyuba, 2026-11-20, Seventy-Two): every film-first long form (no spoken opening), in both
+15. No spoken opening for now (Lyuba, Nov 26, Lost Sheep): every long form is film-first (below),
+    so there is no EN intro Short either. EN pairs the reflection Short with a film-scene Short;
+    the calendar's EN "intro" slots carry the film-scene Short. Until she brings openings back,
+    this overrides rule 12's EN intro and "classic" below.
+16. Film-first opening (Lyuba, 2026-11-20, Seventy-Two): every film-first long form (no spoken opening), in both
     languages, renders with `--structure=clip-first --intro=brand`.
     - What it shows: only a dark scrim, with the step row lit at the top from frame 0. There is no "N min" line and
       no story/reflection/prayer list.

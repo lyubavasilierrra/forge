@@ -1134,8 +1134,13 @@
       .isPostSide #at {
         visibility: hidden;
       }
+      /* The script part switcher sits in the middle of the page (Lyuba, Nov 26), in any layout */
       #partSeg {
+        display: flex;
+        width: fit-content;
+        max-width: 100%;
         justify-self: center;
+        margin-inline: auto;
       }
       .script {
         display: grid;

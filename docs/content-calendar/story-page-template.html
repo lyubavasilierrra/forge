@@ -549,7 +549,6 @@
         .name .ok {
           color: var(--ok);
           display: inline-grid;
-          margin-left: 6px;
         }
         .name .ok svg {
           width: 15px;
@@ -565,7 +564,8 @@
           font-weight: 600;
           font-size: 16px;
           display: flex;
-          gap: 0;
+          justify-content: flex-start;
+          gap: 6px;
           align-items: center;
         }
         .name b {
@@ -1853,12 +1853,9 @@
             }[state]
             m.setAttribute("aria-label", m.title)
             m.setAttribute("role", "img")
+            // done: the check sits by the name only, nothing right of the bar
             m.innerHTML =
-              state === "done"
-                ? ICON.check
-                : state === "todo"
-                  ? ICON.clock
-                  : "<i></i>"
+              state === "done" ? "" : state === "todo" ? ICON.clock : "<i></i>"
             prog.append(bar, m)
             const sl = document.createElement("div")
             sl.className = "line"

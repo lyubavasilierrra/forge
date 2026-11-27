@@ -451,6 +451,31 @@ const STORIES: Record<
     ],
     out: "Place of Honor",
   },
+  "lumo-luke-14-banquet": {
+    // No setting: the card opens on "When one of those at the table with him
+    // heard this", which is 14:15 itself. The guest's blessing is in the card;
+    // the host's dinner and Jesus' words before it (14:7-14) end before it.
+    terms: [
+      "Feast",
+      "Feasts",
+      "Supper",
+      "Banquet",
+      "Guest",
+      "Invitation",
+      "Servant",
+      "Oxen",
+      "Yoke",
+      "Field",
+      "Highway",
+      "Hedge",
+      "Lame",
+      "Kingdom of God",
+      "Pharisees",
+      "CHRIST'S DISCOURSES IN PERÆA - CLOSE OF THE PERÆAN MINISTRY",
+      "THE MORNING-MEAL IN THE PHARISEE'S HOUSE - MEALS AND FEASTS AMONG THE JEWS - CHRIST'S LAST PERÆAN WARNING TO PHARISAISM",
+    ],
+    out: "Great Banquet",
+  },
   "lumo-luke-1-zechariah": {
     // No setting: the card opens on "In the time of Herod", which is 1:5
     // itself; Luke's prologue (1:1-4) ends before the window.

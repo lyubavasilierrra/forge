@@ -686,6 +686,36 @@ const SOURCES: VideoSource[] = [
     },
   },
   {
+    // Luke 14:15-24 sits inside segment 6_GOLuke2615 (LUMO Luke 14:1-15:10),
+    // right after Jesus' words to the host (14:12-14, "resurrection of the
+    // righteous" ends ~139.2). EN "When one of those at the table with him"
+    // starts at 140.75; "a taste of my banquet" (14:24) ends at 234.75, then
+    // music until "Large crowds were traveling with Jesus" (14:25) at 246.4.
+    // The film acts the parable out (servants in the fields, the streets).
+    // Whisper hears "servants" in 14:17; the cue keeps the NIV "servant".
+    key: "lumo-luke-14-banquet",
+    index: 1022,
+    mediaComponentId: "6_GOLuke2615",
+    title: "The Great Banquet",
+    film: "lumo",
+    passage: { reference: "Luke 14:15-24", osisRef: "Luke.14.15-Luke.14.24" },
+    window: { startSec: 140.5, lengthSec: 95.0 },
+    // RU «Когда один из обедавших услышал это» starts at 141.05; «никто не
+    // попробует моего обеда» ends at 233.2, music until 14:25 at 244.0.
+    windowByLang: { ru: { startSec: 140.6, lengthSec: 93.3 } },
+    // EN 95.0s / 1.05 is ~90.5s on screen, plus a breath.
+    maxVideoCardSec: 93,
+    videoSpeed: 1.05,
+    filmCaptionStyle: "scroll",
+    filmMark: "lumo",
+    style: "clean",
+    captions: {
+      kind: "file",
+      path: "video-sources/lumo-luke-14-banquet.en.vtt",
+      byLang: { ru: "video-sources/lumo-luke-14-banquet.ru.vtt" },
+    },
+  },
+  {
     // Luke 1:5-25 follows the prologue (1:1-4) in segment 6_GOLuke2601 (LUMO
     // Luke 1:1-56). EN "In the time of Herod" starts at 85.55 after music;
     // "taken away my disgrace among the people" (1:25) ends at 300.7, then

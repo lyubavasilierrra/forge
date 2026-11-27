@@ -451,6 +451,26 @@ const STORIES: Record<
     ],
     out: "Place of Honor",
   },
+  "lumo-luke-1-zechariah": {
+    // No setting: the card opens on "In the time of Herod", which is 1:5
+    // itself; Luke's prologue (1:1-4) ends before the window.
+    terms: [
+      "Zacharias",
+      "Zechariah",
+      "Elisabeth",
+      "Abia",
+      "Abijah",
+      "Incense",
+      "Altar",
+      "Lot",
+      "Priest",
+      "Gabriel",
+      // Edersheim: the lot for the incense, "only once in a lifetime", and
+      // incense as the symbol of Israel's accepted prayers.
+      "THE ANNUNCIATION OF ST. JOHN THE BAPTIST",
+    ],
+    out: "Zechariah",
+  },
   "jesus-28": {
     // No setting: the card opens on the street and Jesus' question, which is
     // 13:18 itself; the healing of the bent woman before it (13:10-17) is

@@ -685,6 +685,35 @@ const SOURCES: VideoSource[] = [
       byLang: { ru: "video-sources/lumo-luke-1-prologue.ru.vtt" },
     },
   },
+  {
+    // Luke 1:5-25 follows the prologue (1:1-4) in segment 6_GOLuke2601 (LUMO
+    // Luke 1:1-56). EN "In the time of Herod" starts at 85.55 after music;
+    // "taken away my disgrace among the people" (1:25) ends at 300.7, then
+    // music to "In the sixth month" (1:26) at ~312. Long card (the whole
+    // annunciation to Zechariah, ~3.4 min on screen): the silent temple beats
+    // (139-149.5, 250-256) are left to removeInternalGaps.
+    key: "lumo-luke-1-zechariah",
+    index: 1023,
+    mediaComponentId: "6_GOLuke2601",
+    title: "Zechariah",
+    film: "lumo",
+    passage: { reference: "Luke 1:5-25", osisRef: "Luke.1.5-Luke.1.25" },
+    window: { startSec: 85.3, lengthSec: 216.0 },
+    // RU «Во время правления Ирода» starts at 85.7; «позор перед людьми»
+    // ends at 300.25, then music to «Когда Елизавета была на шестом месяце».
+    windowByLang: { ru: { startSec: 85.4, lengthSec: 215.5 } },
+    // EN 216.0s / 1.05 is ~205.7s on screen, plus a breath.
+    maxVideoCardSec: 208,
+    videoSpeed: 1.05,
+    filmCaptionStyle: "scroll",
+    filmMark: "lumo",
+    style: "clean",
+    captions: {
+      kind: "file",
+      path: "video-sources/lumo-luke-1-zechariah.en.vtt",
+      byLang: { ru: "video-sources/lumo-luke-1-zechariah.ru.vtt" },
+    },
+  },
 ]
 
 const BY_KEY = new Map(SOURCES.map((s) => [s.key, s]))

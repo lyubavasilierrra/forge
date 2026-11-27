@@ -46,6 +46,8 @@
         --panel: #1b1412;
         --line: #2f2420;
         --fg: #f6ece2;
+        /* script text: softer than --fg so long reading does not glare (Lyuba, Nov 27) */
+        --script: #dccfc2;
         --soft: #d9cbbf;
         --muted: #9c8a7f;
         --hover: #2a201c;
@@ -1162,7 +1164,7 @@
         line-height: 1.6;
         white-space: pre-wrap;
         overflow-wrap: anywhere;
-        color: var(--fg);
+        color: var(--script);
       }
       .stext {
         display: grid;
@@ -1190,14 +1192,14 @@
       .stext .sh1 {
         margin: 0 0 4px;
         font: 400 28px/1.2 var(--serif);
-        color: var(--fg);
+        color: var(--script);
       }
       .stext .sh2 {
         margin: 22px 0 8px;
         font: 600 13px/1.2 var(--sans);
         letter-spacing: 0.06em;
         text-transform: uppercase;
-        color: var(--soft);
+        color: #b5a598;
       }
       .calm,
       .stext.calm {

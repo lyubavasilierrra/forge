@@ -658,6 +658,33 @@ const SOURCES: VideoSource[] = [
       byLang: { ru: "video-sources/lumo-luke-14-honor.ru.vtt" },
     },
   },
+  {
+    // Luke 1:1-4 (Luke's prologue to Theophilus) opens segment 6_GOLuke2601
+    // (LUMO Luke 1:1-56). EN "Many have undertaken" starts at 37.7 after the
+    // opening music; "the things you have been taught" (1:4) ends at 74.1, and
+    // music runs to "In the time of Herod" (1:5) at ~81.8.
+    key: "lumo-luke-1-prologue",
+    index: 1024,
+    mediaComponentId: "6_GOLuke2601",
+    title: "A Doctor Checks the Story",
+    film: "lumo",
+    passage: { reference: "Luke 1:1-4", osisRef: "Luke.1.1-Luke.1.4" },
+    window: { startSec: 37.4, lengthSec: 37.5 },
+    // RU «Поскольку уже многие» starts at 37.2; «чему был научен» ends at
+    // 63.3, then music to «Во время правления Ирода» at ~85.5.
+    windowByLang: { ru: { startSec: 36.9, lengthSec: 27.2 } },
+    // EN 37.5s / 1.05 is ~35.7s on screen, plus a breath.
+    maxVideoCardSec: 38,
+    videoSpeed: 1.05,
+    filmCaptionStyle: "scroll",
+    filmMark: "lumo",
+    style: "clean",
+    captions: {
+      kind: "file",
+      path: "video-sources/lumo-luke-1-prologue.en.vtt",
+      byLang: { ru: "video-sources/lumo-luke-1-prologue.ru.vtt" },
+    },
+  },
 ]
 
 const BY_KEY = new Map(SOURCES.map((s) => [s.key, s]))
